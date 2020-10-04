@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<filter id="whole_filter" in="1" out="1">
+  <output n="0" ref="filter_gain0.0">
+    <v x="521" y="41"/>
+  </output>
+  <gain id="filter_gain0">
+    <v input.0="whole_filter.0"/>
+    <v gain="1.3"/>
+    <v x="392" y="38"/>
+    <wire/>
+  </gain>
+  <let rit="43" x="760" y="80"/>
+  <input n="0" x="278" y="30"/>
+</filter>

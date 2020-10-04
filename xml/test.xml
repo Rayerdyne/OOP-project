@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id= "test_filter">
+
+    <output n="0" ref="ap2.0" />
+
+    <!-- Comment -->
+
+    <filter id="ap1" src="reverb.xml" input.0="test_filter.0" :pos_gain=":pg1" :neg_gain=":ng1" :delay=":d1" />
+    <filter id="ap2" src="reverb.xml" input.0="ap1.0" :pos_gain=":pg2" :neg_gain=":ng2" :delay=":d2" />
+    <!-- <filter id="ap3" src="reverb.xml" :pos_gain="1.2" :neg_gain="-0.7" :delay="4410" /> -->
+    <!-- <filter id="ap4" src="reverb.xml" :pos_gain="1.2" :neg_gain="-0.7" :delay="4410" /> -->
+
+</filter>

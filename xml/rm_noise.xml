@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id="rm_noise_filter">
+
+    <output n="0" ref="low_pass5.0" />
+
+    <filter id="noise" src="noise.xml" input.0="rm_noise_filter.0" :amplitude="200"/>
+
+    <filter id="low_pass1" src="lowpass.xml" input.0="noise.0"     :omega_0="2 * :PI * 1300" />
+    <filter id="low_pass2" src="lowpass.xml" input.0="low_pass1.0" :omega_0="2 * :PI * 1300" />
+    <filter id="low_pass3" src="lowpass.xml" input.0="low_pass2.0" :omega_0="2 * :PI * 1300" />
+    <filter id="low_pass4" src="lowpass.xml" input.0="low_pass3.0" :omega_0="2 * :PI * 1300" />
+    <filter id="low_pass5" src="lowpass.xml" input.0="low_pass4.0" :omega_0="2 * :PI * 1300" />
+
+
+</filter>

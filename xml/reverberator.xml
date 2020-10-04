@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id="reverberator">
+
+    <!-- The way connections are made here is quite different from -->
+    <!-- the one followed in ReverberatorFilter.java -->
+    <output n="0" ref="part_3.0" />
+
+    <addition id="adder_middle" input.0="reverberator.0" input.1="gain_horiz.0" />
+    
+    <filter id="ap_1" src="src/be/uliege/straet/oop/loader/allpass.xml" input.0="adder_middle.0" :gain="0.3" :delay="353" />
+    <filter id="ap_2" src="src/be/uliege/straet/oop/loader/allpass.xml" input.0="ap_1.0" :gain="0.3" :delay="529" />
+
+    <!-- 4 ms -->
+    <delay id="delay_1" input.0="ap_2.0" delay="4 * 44.1" />
+
+    <composite id="part_2" in="1" out="2" input.0="delay_1.0">
+        <output n="0" ref="gain.0" />
+        <output n="1" ref="delay_2.0" />
+
+        <gain id="gain" input.0="part_2.0" gain="0.34" />
+
+        <!-- 17 ms -->
+        <delay id="delay_1" input.0="part_2.0" delay="17 * 44.1" />
+        <filter id="nested_ap" src="src/be/uliege/straet/oop/loader/allpass1nested.xml" input.0="delay_1.0" :gain1="0.5" :delay1="87 * 44.1" :gain2="0.25" :delay2="62 * 44.1" />
+
+        <!-- 31 ms -->
+        <delay id="delay_2" input.0="nested_ap.0" delay="31 * 44.1" />
+    </composite>
+
+    <composite id="part_3" in="2" out="2" input.0="part_2.0" input.1="part_2.1">
+        <output n="0" ref="adder.0" />
+        <output n="1" ref="nested_ap.0" />
+
+        <gain id="gain" input.0="part_3.1" gain="0.14" />
+        <addition id="adder" input.0="part_3.0" input.1="gain.0" />
+
+        <!-- 3 ms -->
+        <delay id="delay" input.0="part_3.1" delay="3 * 44.1" />
+
+        <filter id="nested_ap" src="src/be/uliege/straet/oop/loader/allpass2nested.xml" input.0="delay.0" :gain1="0.5" :delay1="120 * 44.1" :gain2="0.25" :delay2="76 * 44.1" :gain3="0.25" :delay3="30 * 44.1" />
+    </composite>
+
+    <gain id="gain_vert" input.0="part_3.0" gain="0.14" />
+    <addition id="adder_top" input.0="part_3.0" input.1="gain_vert.0" />
+
+    <filter id="lowpass" src="src/be/uliege/straet/oop/loader/lowpass2.xml" input.0="part_3.0" :gain="0.7133" :delay="2 * 44.1" />
+    <!-- 2 ms = 44100 / 500 = 88 samples -->
+    <gain id="gain_horiz" input.0="lowpass.0" gain="0.1" />
+
+</filter>

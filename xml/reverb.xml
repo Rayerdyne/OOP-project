@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id="reverb_filter">
+
+    <output n="0" ref="adder_2.0" />
+
+    <addition id="adder_1" input.0="reverb_filter.0" input.1="pos_gain.0" />
+    <addition id="adder_2" input.0="delay.0" input.1="neg_gain.0" />
+
+    <gain id="pos_gain" input.0="adder_2.0" gain=":pos_gain"/>
+    <gain id="neg_gain" input.0="reverb_filter.0" gain=":neg_gain" />
+
+    <delay id="delay" input.0="adder_1.0" delay=":delay"/>
+
+</filter>

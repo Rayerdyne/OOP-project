@@ -1,0 +1,76 @@
+package be.uliege.straet.oop.filters;
+
+import java.util.HashMap;
+
+import be.uliege.montefiore.oop.audio.FilterException;
+
+/** <p>INFO0062 - Object-Oriented Programming project.</p>
+ * 
+ * <p>This class provides another type of basic block, a simple differentiator,
+ * i.e. it returns (n°i+1 - n°i) / dt, where dt is the time step, so that
+ * dt = 1 / fs, where fs is the sampling frequency.</p>
+ * 
+ * <p>As expected, if it is applied "alone" on a sound, the output is just 
+ * noise. </p>
+ * 
+ * <p>François Straet</p>
+ */
+public class DifferentiatorFilter implements WFilter {
+
+    private double prev = 0;
+    private double fs;
+
+    /**
+     * Constructor.
+     * @param fs                The sampling frequency
+     */
+    public DifferentiatorFilter (double fs) {
+        this.fs = fs;
+    }
+
+    /**
+     * Constructor, uses default sampling frequency 44100 Hz
+     */
+    public DifferentiatorFilter() {
+        this(44100.0);
+    }
+
+    /**
+     * Computes one step of the filter, i.e. returns 
+     * (input - prev) * fs
+     * @param input                 The input to compute.
+     */
+    public double[] computeOneStep(double[] input) throws FilterException {
+        if (input.length != nbInputs()) {
+            throw new FilterException("Invalid input length (is " + 
+                String.valueOf(input.length) + " instead of 1).");
+        }
+
+        double res = (input[0] - prev) * fs;
+        prev = input[0];
+        return new double[] { res };
+    }
+
+
+    /**
+     * Implementation of nbInputs and nbOutputs...
+     */
+    public int nbInputs() {
+        return 1;
+    }
+
+    public int nbOutputs() {
+        return 1;
+    }
+
+    /**
+     * Reset method for filter interface. Resets prev to 0
+     */
+    public void reset() {
+        prev = 0;
+    }
+
+    public HashMap<String, String> getParameters() {
+        return new HashMap<String, String>();
+    }
+}

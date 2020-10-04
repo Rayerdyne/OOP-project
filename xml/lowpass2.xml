@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id="lowpass_filter">
+    <!-- Low-pass filter as described in project ressources -->
+
+    <output n="0" ref="adder.0" />
+
+    <addition id="adder" input.0="gain_1.0" input.1="gain_2.0" />
+
+    <gain id="gain_1" input.0="lowpass_filter.0" gain="-1 * :gain + 1" />
+    <gain id="gain_2" input.0="delay.0" gain=":gain" />
+
+    <delay id="delay" input.0="adder.0" delay=":delay" />
+
+</filter>

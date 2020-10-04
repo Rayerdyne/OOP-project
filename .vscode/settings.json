@@ -1,0 +1,8 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/f/Unif/oop/projet/**/*.jar",
+        "/home/f/Unif/Bac2_Q2/oop/projet/**/*.jar"
+    ],
+    "java.format.settings.url": "eclipse-formatter.xml"
+}

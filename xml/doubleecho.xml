@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id="doubleecho_filter">
+
+    <output n="0" ref="base_adder.0" />
+
+    <addition id="base_adder" input.0="doubleecho_filter.0" input.1="base_gain.0"/>
+    <delay id="base_delay" input.0="sub_adder.0" delay=":bdelay"/>
+    <gain id="base_gain" input.0="base_delay.0" gain=":bgain" />
+
+    <addition id="sub_adder" input.0="base_adder.0" input.1="sub_gain.0" />
+    <delay id="sub_delay" input.0="sub_adder.0" delay=":sdelay" />
+    <gain id="sub_gain" input.0="sub_delay.0" gain=":sgain" />
+    <!-- <convolution id="conv" input.0="conv_filter.0" v="2, -2, -2, -2, 4"/> -->
+    
+</filter>

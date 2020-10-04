@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<filter id="whole_filter" in="1" out="1">
+  <output content="/home/f/Unif/Bac2_Q2/oop/projet/test-out.csv" n="0" ref="filter_addition0.0">
+    <v orientation="0" x="509" y="51"/>
+    <wire input="0"/>
+  </output>
+  <addition id="filter_addition0">
+    <v input.0="whole_filter.0" input.1="whole_filter.0"/>
+    <v orientation="0" x="333" y="60"/>
+    <wire input="1">
+      <fb x="267" y="37"/>
+    </wire>
+    <wire input="0">
+      <fb x="195" y="79"/>
+      <fb x="285" y="95"/>
+    </wire>
+  </addition>
+  <let orientation="0" u="3" x="303" y="145"/>
+  <let orientation="0" v="u+3" x="151" y="145"/>
+  <input content="/home/f/Unif/Bac2_Q2/oop/projet/test.csv" n="0" orientation="0" x="103" y="42"/>
+</filter>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filter in="1" out="1" id="echo_filter">
+
+    <output n="0" ref="adder.0" />
+
+    <let :gain="0.7" :delay="22050" />
+
+    <addition id="adder" input.0="echo_filter.0" input.1="gain.0" />
+    <gain id="gain" > 
+        <v gain=":gain" input.0="delay.0"/>
+    </gain>
+    <delay id="delay" input.0="adder.0" delay=":delay" />
+    
+</filter>
