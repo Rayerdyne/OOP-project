@@ -216,7 +216,7 @@ public class DraggableFilter extends Draggable {
         }
 
         // painting of the parameters of the filter if there are some
-        if (getParameterType() == 0) return;
+        if (getParameterType() == NONE) return;
 
         g.setColor(Color.BLACK);
         String[] parts = parameterS.split("[/]");

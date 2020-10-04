@@ -16,7 +16,9 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Vector;
 
 import be.uliege.straet.oop.filters.CompositeFilter;
@@ -966,5 +968,100 @@ public class WorkSpace extends JPanel implements KeyListener {
             "Unsaved changes will be lost.", "Quit", JOptionPane.YES_NO_OPTION)
             == JOptionPane.YES_OPTION)
             System.exit(0);
+    }
+
+    /**
+     * Part of the Nothing things....
+     * Don't look at this
+     * 
+     * Adds a nothing filter to the `WorkSpace`
+     * @param isLinearInterpAfter (...)
+     */
+	public NothingFilter addNothing(boolean nextInterpMethodIsLin) {
+       NothingFilter nf = new NothingFilter(this, nextInterpMethodIsLin);
+       filters.add(nf);
+       return nf;
+
+	}
+
+    /**
+     * Part of the Nothing things....
+     * Don't look at this
+     * 
+     * Writes the stuff needed for the fg program.
+     * @throws Exception   if sth went wrong
+     */
+	public void printNothing(PrintWriter pw) throws Exception {
+        if (filters.isEmpty())
+            throw new Exception("filters is empty");
+
+        if (!(filters.get(0) instanceof NothingFilter))
+            throw new Exception("first filter is not a Nothing Filter");
+
+        NothingFilter f = (NothingFilter) filters.get(0);
+        HashSet<NothingFilter> visited = new HashSet<NothingFilter>();
+        while (true) {
+            visited.add(f);
+            boolean isLine = f.getNextInterpMethodIsLin();
+            double timeStamp = f.getTimeStamp();
+            nothingLine(timeStamp, f, isLine, pw);
+            
+            if (f.wireAtOutputs().isEmpty()) {
+                System.out.println("No more continuing wire. " + 
+                    "Stopping file writing.");
+                return;
+            }
+
+            Wire w = f.wireAtOutputs().get(0);
+            NothingFilter next = (NothingFilter) w.input().owner();
+            Vector<FreeBall> fbs = w.freeBalls();
+            for (int i = 0; i < fbs.size(); i++) {
+                FreeBall fb = fbs.get(i);
+                double fbTimeStamp;
+                if (!visited.contains(next)) {
+                    double nextTimeStamp = next.getTimeStamp();
+                    double dt = (nextTimeStamp - timeStamp) / fbs.size();
+                    fbTimeStamp = timeStamp + dt * i;
+                }
+                else 
+                    fbTimeStamp = timeStamp + i + 1;
+
+                nothingLine(fbTimeStamp, fb, isLine, pw);
+            }
+
+            if (!(next instanceof NothingFilter)) {
+                System.out.println("Output of wire is not a NothingFilter. " + 
+                    "Stopping file writing.");
+                return;
+            }
+            else if (visited.contains(next)) {
+                nothingLine(timeStamp + fbs.size() + 1, next, isLine, pw);
+                System.out.println("Reached already visited NothingFilter. " +
+                    "Stopping file writing.");
+                return;
+            }
+            f = (NothingFilter) next;
+        }
+    }
+    
+    /**
+     * Part of the Nothing things....
+     * Don't look at this
+     * 
+     * Prints a line representing a to the file...
+     * @param timeStamp     The time stamp of the point
+     * @param l             A `Locatable` object at this point
+     * @param isLine        Wether or not the next line is line or cubic spline
+     */
+    public void nothingLine(double timeStamp, Locatable l, boolean isLine,
+        PrintWriter pw) {
+
+        if (isLine)
+            pw.println(timeStamp + ": l " +
+                       "(" + l.getX() + ", " + l.getY() + ")");
+        else
+            pw.println(timeStamp + ": " +
+                       "(" + l.getX() + ", " + l.getY() + ")");
+
     }
 }
