@@ -42,7 +42,9 @@ public class DOutputFilter extends DraggableFilter {
 
     @Override
     public void edit() {
+        selected = false;
         setParameter(getFilePathInput(false));
+        ws.repaint();
     }
     
 }

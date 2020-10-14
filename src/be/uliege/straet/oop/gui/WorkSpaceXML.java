@@ -449,7 +449,8 @@ public class WorkSpaceXML {
                                 nnm.getNamedItem("orientation").getNodeValue());
                             ws.addVariableDeclaration(x, y, orientation, false, 
                                 name, item.getNodeValue() );
-                        } catch (NullPointerException e) {
+                        } catch (Exception e) { 
+                            // for some reason NullPointerException won't work
                             throw new LoaderException("Position unavailible " + 
                                 "for some variable declaration."); 
                         }

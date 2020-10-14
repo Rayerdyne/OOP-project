@@ -76,6 +76,8 @@ public class DInputFilter extends DraggableFilter {
 
     @Override
     public void edit() {
+        selected = false;
         setParameter(getFilePathInput(true));
+        ws.repaint();
     }
 }

@@ -47,6 +47,7 @@ public class DVariableDeclaration extends DraggableFilter {
     
     @Override
     public void edit() {
+        selected = false;
         String newVarName = JOptionPane.showInputDialog(
             "Enter the variable's name.");
         String newVarDefinition = JOptionPane.showInputDialog(
@@ -65,6 +66,7 @@ public class DVariableDeclaration extends DraggableFilter {
             }
 
         change(newVarName, newVarDefinition);
+        ws.repaint();
     }
 
     private void change(String newVarName, String newVarDefinition) {
