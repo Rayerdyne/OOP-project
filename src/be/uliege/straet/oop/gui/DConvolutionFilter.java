@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import javax.swing.JOptionPane;
 
@@ -75,9 +75,14 @@ public class DConvolutionFilter extends DraggableFilter {
     @Override 
     public void paint(Graphics g, Color back, Color fore, double zoom) {
         String save = parameterS;
-        parameterS = parameterS.length() > MAX_CHARS_TO_DRAW ?
-            parameterS = parameterS.substring(0, MAX_CHARS_TO_DRAW) + "..." :
-            parameterS;
+        if (parameterS.endsWith(".csv")) {
+            String[] parts = parameterS.split("[/]");
+            parameterS = parts[parts.length-1];
+        }
+        else 
+            parameterS = parameterS.length() > MAX_CHARS_TO_DRAW ?
+                parameterS = parameterS.substring(0, MAX_CHARS_TO_DRAW) +"...":
+                parameterS;
         super.paint(g, back, fore, zoom);
         parameterS = save;
     }
@@ -85,18 +90,21 @@ public class DConvolutionFilter extends DraggableFilter {
     @Override
     public void edit() {
         selected = false;
-        String input = getParameterInput();
-        if (input == null || input.isEmpty()) 
-            return;
+        
+        int res = JOptionPane.showConfirmDialog(null, "Is vector in a csv " +
+            "file ?", "Make your choice", JOptionPane.YES_NO_OPTION);
 
         String oldValue = parameterS;
-        parameterS = input;
         // Load csv file...
-        if (input.endsWith(".csv") || input.endsWith(".CSV")) {
-            // load csv file
+        if (res == JOptionPane.YES_OPTION) {
             byte[] encoded;
 			try {
-				encoded = Files.readAllBytes(Paths.get(input));
+                parameterS = getFilePathInput(false, "csv");
+                if (parameterS == null) {
+                    parameterS = oldValue;
+                    return;
+                }
+				encoded = Files.readAllBytes(Path.of(parameterS));
 			} catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Could not read file: " +
                     e.getMessage());
@@ -109,17 +117,20 @@ public class DConvolutionFilter extends DraggableFilter {
                         values.length - 1 : values.length;
             double d[] = new double[nb];
             
-            for (int i = 0; i < nb; i++) {
+            for (int i = 0; i < nb; i++) 
                 d[i] = Double.valueOf(values[i].trim());
-            }
+            
             setParameter(d);
         }
         // or parse input...
-        else {            
+        else {
+            parameterS = getParameterInput();
+            if (parameterS == null || parameterS.isEmpty()) {
+                parameterS = oldValue;
+                return;
+            }
             double[] d;
             try {
-                // d = WorkSpaceXML.parseStringValue(parameterS, 
-                //     ws.getParameterSet());
                 d = parseStringValues(parameterS, ws.getParameterSet());
             } catch (NumberFormatException | LoaderException e) {
                 JOptionPane.showMessageDialog(null, "Invalid input: " + 

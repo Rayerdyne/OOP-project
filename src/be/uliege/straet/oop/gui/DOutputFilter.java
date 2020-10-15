@@ -43,7 +43,7 @@ public class DOutputFilter extends DraggableFilter {
     @Override
     public void edit() {
         selected = false;
-        setParameter(getFilePathInput(false));
+        setParameter(getFilePathInput(false, "csv", "wav", "WAV"));
         ws.repaint();
     }
     

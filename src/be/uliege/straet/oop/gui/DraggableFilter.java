@@ -86,12 +86,21 @@ public class DraggableFilter extends Draggable {
      * Gets the path of a file
      * @param saveFile  If true, then we select a file for saving (then the 
      * file will be created), else the file should exist.
+     * @param extentions Allowed extentions for the file to select.
      * @return  A `String` containing the path of the selected file
      */
-    public String getFilePathInput(boolean saveFile) {
+    public String getFilePathInput(boolean saveFile, String... extentions) {
         JFileChooser chooser = new JFileChooser();
+        String description = "";
+        if (extentions.length > 1) {
+            for (int i = 0; i < extentions.length-1; i++) 
+                description += extentions[i] + ", ";
+            description += " or " + extentions[extentions.length-1] + " files";
+        }
+        else
+            description = extentions[0] + " files";
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            "WAV or CSV Files", "WAV", "wav", "csv");
+            description, extentions);
         chooser.setFileFilter(filter);
         if (saveFile)
             chooser.setDialogType(JFileChooser.SAVE_DIALOG);
@@ -152,7 +161,7 @@ public class DraggableFilter extends Draggable {
                 setParameter(d);
                 break;
             case FILE_PATH:
-                setParameter(getFilePathInput(true));
+                setParameter(getFilePathInput(true, "csv", "wav", "WAV"));
                 break;
             default:    break;
         }

@@ -56,8 +56,8 @@ public class NothingFilter extends DraggableFilter {
 
     @Override
     public void edit() {
-        int res = JOptionPane.showConfirmDialog(null, "Click ok to let " +
-            "this have a linear interpolation method.", "Make your choice", 
+        int res = JOptionPane.showConfirmDialog(null, "Is a linear " +
+            "interpolation method used after ?", "Make your choice", 
             JOptionPane.YES_NO_OPTION);
 
         nextInterpMethodIsLin = res == JOptionPane.YES_OPTION;
