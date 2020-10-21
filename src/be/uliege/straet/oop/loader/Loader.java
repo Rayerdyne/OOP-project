@@ -325,8 +325,8 @@ public class Loader {
             if (sfData.inputsIds[i].equals(cfId)) {
                 if (verbose) 
                     System.out.println("> connect input this(" + cfId + 
-                        ")." + i + " to input " + sfData.id + "." +
-                        sfData.inputsNums[i] + ".");
+                        ")." + sfData.inputsNums[i] + " to input " + sfData.id
+                        + "." + i + ".");
                 try {
                     cf.connectInputToBlock(sfData.inputsNums[i], 
                         sfData.filter, i);

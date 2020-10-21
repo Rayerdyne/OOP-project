@@ -59,6 +59,15 @@ import be.uliege.montefiore.oop.audio.FilterException;
         Arrays.fill(isOutputConnected, false);
     }
 
+    /**
+     * Constructs an invalid `CompositeFilter`. This is useful when placing a
+     * `DCompositeFilter` whose file representing the desired filter has not 
+     * been set.
+     */
+    public CompositeFilter() {
+
+    }
+
     public Collection<Block> blocks() {
         return this.blocks.values();
     }

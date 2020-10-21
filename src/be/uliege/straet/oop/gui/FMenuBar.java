@@ -38,11 +38,11 @@ public class FMenuBar extends JMenuBar implements ActionListener {
         this.ws = ws;
 
         miAdd.put(new JMenuItem("Connection"), 
-                    () -> { 
+            () -> { 
             try { ws.addConnection();}
             catch (FilterException e) {
-                System.out.println(e.getMessage()); 
-                }  });
+                WorkSpace.showError("Could not add connection", e); 
+            }  });
         miAdd.put(new JMenuItem("Output filter"), 
                     () -> {  ws.addOutput();  });
         miAdd.put(new JMenuItem("Gain filter"),
@@ -52,7 +52,11 @@ public class FMenuBar extends JMenuBar implements ActionListener {
         miAdd.put(new JMenuItem("Delay filter"),
                     () -> { ws.addDelay();       });
         miAdd.put(new JMenuItem("Composite filter"), 
-                    () -> {  ws.addComposite();  });
+            () -> {
+            try { ws.addComposite(); }
+            catch (Exception e) {
+                WorkSpace.showError("Could not add the composite filter.", e);
+            }  });
         miAdd.put(new JMenuItem("Addition filter"), 
                     () -> { ws.addAddition();    });
         miAdd.put(new JMenuItem("Convolution filter"), 

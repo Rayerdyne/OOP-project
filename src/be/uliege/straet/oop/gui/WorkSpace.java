@@ -26,6 +26,7 @@ import be.uliege.straet.oop.filters.ConvolutionFilter;
 import be.uliege.straet.oop.filters.DelayFilter;
 import be.uliege.straet.oop.filters.GainFilter;
 import be.uliege.straet.oop.filters.WFilter;
+import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.Writer;
 import be.uliege.straet.oop.loader.WriterException;
 import be.uliege.montefiore.oop.audio.AudioSequenceException;
@@ -325,6 +326,12 @@ public class WorkSpace extends JPanel implements KeyListener {
         return df;
     }
 
+    /** Starts the placing of a delay filter at (0, 0), needs focus */
+    public void addDelay() {     
+        if (isBusy())  return; 
+        addDelay(0, 0, 0, true, new DelayFilter());
+    }
+
     /** Starts the placing of a convolution filter at (0, 0), needs focus */
     public void addConvolution() {     
         if (isBusy())  return; 
@@ -348,13 +355,53 @@ public class WorkSpace extends JPanel implements KeyListener {
         filters.add(df);
         return df;
     }
-
-    /** Starts the placing of a delay filter at (0, 0), needs focus */
-    public void addDelay() {     
-        if (isBusy())  return; 
-        addDelay(0, 0, 0, true, new DelayFilter());
-    }
     
+    /** Starts the placing of a composite filter of name cfName at (0, 0), 
+     * needs focus.
+     * @throws FilterException              If an error occured when 
+     *                                      instanciating and connecting filter
+     * @throws LoaderException              If an error occured when loading 
+     *                                      the file
+     * @throws ParserConfigurationException If an error occurs when reading and
+     *                                      parsing the input file
+     * @throws SAXException                 Idem
+     * @throws IOException                  Idem
+     * @throws DOMException                 Idem
+     */
+    public void addComposite() throws LoaderException, 
+        DOMException, FilterException, ParserConfigurationException, 
+        SAXException, IOException {     
+        if (isBusy())  return; 
+        addComposite(0, 0, 0, true);
+    }
+
+    /**
+     * Starts the placing of a convolution filter.
+     * @param x     The x coordinate of the filter
+     * @param y     The y coordinate of the filter
+     * @param orientation The orientation of the filter: the filter is oriented
+     *                    "normally" + orientation * 90° clockwise.
+     * @param selected    Wether or not the user is dragging this filter when 
+     *                    it is placed.
+     * @throws FilterException              If an error occured when 
+     *                                      instanciating and connecting filter
+     * @throws LoaderException              If an error occured when loading 
+     *                                      the file
+     * @throws ParserConfigurationException If an error occurs when reading and
+     *                                      parsing the input file
+     * @throws SAXException                 Idem
+     * @throws IOException                  Idem
+     * @throws DOMException                 Idem
+     */
+    public DraggableFilter addComposite(int x, int y, int orientation, 
+        boolean selected) throws LoaderException, DOMException, 
+        FilterException, ParserConfigurationException, SAXException,
+        IOException {
+        
+        DCompositeFilter df = new DCompositeFilter(x, y, this, selected);
+        filters.add(df);
+        return df;
+    }
     /**
      * Starts the placing of an input filter.
      * @param x     The x coordinate of the filter
@@ -427,18 +474,6 @@ public class WorkSpace extends JPanel implements KeyListener {
         if (isBusy())  return; 
         addVariableDeclaration(0, 0, 0, true, "To be defined", "0");
      }
-
-    /**
-     * Starts the placing of a composite filter.
-     * @param x     The x coordinate of the filter
-     * @param y     The y coordinate of the filter
-     */
-    public void addComposite(int x, int y) {
-        // TODO
-    }
-
-    /** Starts the placing of a composite filter at (0, 0) */
-    public void addComposite() {  addComposite(0, 0);  }
 
     /**
      * Cancels the current operation
@@ -882,15 +917,14 @@ public class WorkSpace extends JPanel implements KeyListener {
      * Opens a file in this `WorkSpace` (gets file name and opens it)
      */
     public void open() {
-        String fileName = "kk.xml";
-        // JFileChooser chooser = new JFileChooser();
-        // FileNameExtensionFilter filter = new FileNameExtensionFilter(
-        //     "XML Files", "xml");
-        // chooser.setFileFilter(filter);
-        // int returnVal = chooser.showOpenDialog(ws);
-        int returnVal = JFileChooser.APPROVE_OPTION;
+        String fileName;
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "XML Files", "xml");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            // fileName = chooser.getSelectedFile().getName();
+            fileName = chooser.getSelectedFile().getName();
             try {
                 clear();
                 openFile(fileName);

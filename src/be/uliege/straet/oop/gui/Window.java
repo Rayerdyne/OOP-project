@@ -48,13 +48,18 @@ public class Window extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(610, 377);
         buttonsActionsUp.put(new JButton("Connection"), () -> {
-            try {ws.addConnection();}
-            catch (FilterException e) 
-                {System.out.println(e.getMessage());}});
+            try { ws.addConnection(); }
+            catch (FilterException e) {
+                System.out.println(e.getMessage());
+            }  });
         buttonsActionsUp.put(new JButton("Addition"), () -> {ws.addAddition();});
         buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
         buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
-        buttonsActionsUp.put(new JButton("Composite"), () -> {ws.addComposite();});
+        buttonsActionsUp.put(new JButton("Composite"), () -> {
+            try { ws.addComposite(); }
+            catch (Exception e) {
+                WorkSpace.showError("Could not add the composite filter", e);
+            }  });
 
         buttonsActionsDown.put(new JButton("Variable"), 
             () -> {ws.addVariableDeclaration();});
