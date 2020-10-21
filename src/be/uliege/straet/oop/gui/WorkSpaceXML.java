@@ -29,6 +29,7 @@ import be.uliege.straet.oop.filters.DelayFilter;
 import be.uliege.straet.oop.filters.GainFilter;
 import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.NodeData;
+import be.uliege.straet.oop.loader.ValueMapper;
 import be.uliege.straet.oop.loader.Writer;
 import be.uliege.straet.oop.loader.WriterException;
 
@@ -307,7 +308,7 @@ public class WorkSpaceXML {
      */
 	private void getIDandIONumbers(Node n) throws LoaderException {
         
-        NamedNodeMap attributes = n.getAttributes();
+        ValueMapper attributes = new ValueMapper(n);
 
         // get its id
         Node idNode = attributes.getNamedItem("id");
@@ -472,24 +473,23 @@ public class WorkSpaceXML {
      * @param outputs   A `Vector` of `Node`s representing the `DOutputFilters`
      * @param subFilters A `HashMap<String, NodeData>` mapping all the ids to
      *                   their related `NodeData` object.
-     * @throws NumberFormatException        If some number could not be parsed
-     *                                      during the processes
-     * @throws IOException                  As it can instanciate filter 
-     *                                      from other files, all the 
-     *                                      exceptions also thrown by load
-     * @throws SAXException                 Idem
-     * @throws ParserConfigurationException Idem
-     * @throws DOMException                 Idem
+     * @throws LoaderException  If some input or output referencing is invalid.
      */
     private void addIOFilters(Vector<NodeData> inputs, 
-        Vector<NodeData> outputs) {
-        for (NodeData data : inputs)  
+        Vector<NodeData> outputs) throws LoaderException {
+        for (NodeData data : inputs) {
+            if (!data.standaloneRunOk)
+                throw new LoaderException("Input filter is not standalone!");
             data.draggableFilter = ws.addInput(data.x, data.y, 
                 data.orientation, false, data.ioFileName);
+        }
         
-        for (NodeData data : outputs) 
+        for (NodeData data : outputs) {
+            if (!data.standaloneRunOk)
+                throw new LoaderException("Output filter is not standalone!");
             data.draggableFilter = ws.addOutput(data.x, data.y, 
                 data.orientation, false, data.ioFileName);
+        }
         
     }
     

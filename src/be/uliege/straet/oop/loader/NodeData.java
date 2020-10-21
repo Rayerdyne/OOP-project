@@ -59,8 +59,10 @@ public class NodeData {
      *      <li> INPUT_NODE </li>
      */
     public int specialCase = NONE;
-    /** When true, input and output files are correctly specified in the file*/
-    public boolean standaloneRun;
+    /** When true, input or output files are correctly specified in the file,
+     * so that the whole xml file could be run without input and output 
+     * specifications */
+    public boolean standaloneRunOk = true;
 
     // output specific members
     /** The id of the output of that filter */
@@ -246,11 +248,7 @@ public class NodeData {
                 break;
             case Writer.INPUT_POS_NODE_TAG:
                 specialCase = INPUT_NODE;
-                try {
-                    setIOFileName(n, attributes);
-                } catch (LoaderException le) {
-                    standaloneRun = false;
-                }
+                setIOFileName(n, attributes);
                 break;
             case Writer.VARIABLE_NODE_TAG:
                 addVariables(n, attributes, parameters);
@@ -390,11 +388,10 @@ public class NodeData {
             Writer.IO_FILENAME_ATTRIBUTE_NAME);
         
         if (fileNameNode == null) 
-            throw new LoaderException("Could not find " + n.getNodeName() + 
-                " referencing needed to define " + n.getNodeName() + 
-                " filter in the WorkSpace.");
+            standaloneRunOk = false;
+        else 
+            ioFileName = fileNameNode.getNodeValue();
         
-        ioFileName = fileNameNode.getNodeValue();
     }
 
     /**
@@ -413,9 +410,8 @@ public class NodeData {
         specialCase = OUTPUT_CONNECTION;
         setIOFileName(n, attributes);
         Node refNode = attributes.getNamedItem(Writer.REF_ATTRIBUTE_NAME);
-        if (refNode == null)
-            throw new LoaderException("No reference of output to connect" +
-                " provided. Filter id: " + id + ".");
+        if (refNode == null || standaloneRunOk == false) 
+            standaloneRunOk = false;
         String ref = refNode.getNodeValue();
         String[] refparts = ref.split("[.]");
 
@@ -427,9 +423,8 @@ public class NodeData {
         
         fOutputId = refparts[0];
         Node cfOutputNumNode = attributes.getNamedItem("n");
-        if (cfOutputNumNode == null)
-            throw new LoaderException("No composite filter's output " + 
-                "index provided.");
+        if (cfOutputNumNode == null) 
+            standaloneRunOk = false;
     
         try {
             fOutputNum = Integer.valueOf(refparts[1]);
