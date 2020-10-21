@@ -625,7 +625,8 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                 (only to build `CompositeFilter` from different filter)
      * @return                      The `CompositeFilter` that has been built
      * @throws FilterException      When some connection or instanciation could
-     *                              not be made
+     *                              not be made when building the filter 
+     *                              represented by the `WorkSpace`
      */
     public CompositeFilter buildFilter(boolean isRight) 
         throws FilterException {
@@ -957,6 +958,31 @@ public class WorkSpace extends JPanel implements KeyListener {
         WorkSpaceXML wxml = new WorkSpaceXML(this);
         wxml.openFile(fileName);
         openedFileName = fileName;
+    }
+
+    /**
+     * Export the current filter as a standalone filter, i.e. including all the
+     * inner filter included via `CompositeFilter`s.
+     * @throws FilterException      When some connection or instanciation could
+     *                              not be made when building the filter 
+     *                              represented by the `WorkSpace`
+     * @throws WriterException      If the `CompositeFilter` could not be 
+     *                              written in the file
+     */
+    public void exportStandaloneFilter() throws FilterException, 
+        WriterException {
+
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "XML Files", "xml");
+        chooser.setFileFilter(filter);
+        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String fileName = chooser.getSelectedFile().getPath();
+            CompositeFilter cf = buildFilter(true);
+            Writer.writeFilter(cf, fileName);
+        }
     }
 
     /**

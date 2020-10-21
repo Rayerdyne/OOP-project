@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.WriterException;
 
 /**
  * Custom menu with all features of this system...
@@ -70,6 +71,15 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                     () -> { ws.open();           });
         miFile.put(new JMenuItem("Quit"), 
                     () -> { ws.quit();           });
+        miFile.put(new JMenuItem("Export standalone filter"), () -> { 
+            try { ws.exportStandaloneFilter(); }
+            catch (WriterException we) {
+                WorkSpace.showError("The filter could not be written in the " +
+                    "output file", we);
+            } catch (FilterException fe) {
+                WorkSpace.showError("Filter represented by the `WorkSpace` " +
+                    "could not be built", fe);
+            }  });
 
         miRun.put(new JMenuItem("Build filter"), () -> {           
             try { ws.buildFilter(true);	}
