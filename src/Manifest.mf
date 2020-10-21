@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: be.uliege.straet.oop.gui.Window
+Class-Path: audio.jar
+Name: be/uliege/straet/oop/
+Specification-Title: OOP Project extended, academic year 2019-2020
+Specification-Vendor: François Straet
