@@ -63,25 +63,43 @@ public class NodeData {
     public boolean standaloneRun;
 
     // output specific members
+    /** The id of the output of that filter */
     public String fOutputId;
+    /** The number of the output of that filter */
     public int fOutputNum;
+    /** If connected to a `CompositeFilter`'s output, the number of the output
+     * of the `CompositeFilter` it will be connected */
     public int cfOutputNum;
+    /** If input or output filter, the name of the file to read/write */
     public String ioFileName;
 
     // "standard" types members
+    /** The type of the filter (e.g. AdditionFilter, DelayFilter etc.) */
     public String type;
+    /** The unique id of the filter */
     public String id;
+    /** The ids of the parent filters that have an output connected to an 
+     * input of this filter */
     public String[] inputsIds;
+    /** The numbers of output, w.r.t. the parent filters that have an output 
+     * connected to an input of this filter */
     public int[] inputsNums;
-    Loader l;
+    // Loader l;
 
     // variable declaration specific members
+    /** If the filter represents a variable declaration, the name of that 
+     * variable */
     public String variableName;
+    /** If the filter represents a variable declaration, the definition of 
+     * that variable */
     public String variableDefinition;
 
     public int x = 0, y = 0, orientation = 0;
+    /** Wether or not the position of the filter is set, i.e. if the 
+     * coordinates have already been read */
     public boolean isPositionSet = false;
 
+    /** The `WFilter` corresponding to the filter */
     public WFilter filter;
 
     /**
