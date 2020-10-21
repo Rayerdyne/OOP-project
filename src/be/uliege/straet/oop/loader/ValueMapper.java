@@ -1,5 +1,6 @@
 package be.uliege.straet.oop.loader;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -56,6 +57,10 @@ public class ValueMapper {
 
     public Set<Entry<String, Node>> entries() {
         return hm.entrySet();
+    }
+
+    public Collection<Node> values() {
+        return hm.values();
     }
 
     public int getLength() {

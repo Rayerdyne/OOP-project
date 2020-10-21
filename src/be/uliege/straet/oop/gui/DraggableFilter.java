@@ -84,7 +84,7 @@ public class DraggableFilter extends Draggable {
 
     /**
      * Gets the path of a file
-     * @param saveFile  If true, then we select a file for saving (then the 
+     * @param saveFile  If true, select a file for saving (then the 
      * file will be created), else the file should exist.
      * @param extentions Allowed extentions for the file to select.
      * @return  A `String` containing the path of the selected file

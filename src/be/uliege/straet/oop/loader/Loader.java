@@ -158,10 +158,13 @@ public class Loader {
         Node filterNode = doc.getFirstChild();
 
         CompositeFilter f;
+        if (parameters == null)
+            parameters = new HashMap<String, Double>();
 
         try {
             f = filterFromNode(filterNode, parameters, verbose);
         } catch (LoaderException e) { // re-throw with filename info
+            e.printStackTrace();
             throw new LoaderException(e.getMessage() + " File: \"" + fileName + "\".");
         }
 

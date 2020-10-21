@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.DOMException;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
@@ -48,9 +47,20 @@ public class NodeData {
     public static final int LET_STATEMENT = 2;
     public static final int INPUT_NODE = 3;
 
+    /** The `Node` the data is represented */
     public Node node;
+    /** A `DraggableFilter` corresponding to that `Node` */
     public DraggableFilter draggableFilter;
+    /** <p>A code to easily check potential particular types of nodes.</p>
+     * <p>Possible values: </p>
+     * <ul> <li> NONE </li>
+     *      <li> OUTPUT_CONNECTION </li>
+     *      <li> LET_STATEMENT </li>
+     *      <li> INPUT_NODE </li>
+     */
     public int specialCase = NONE;
+    /** When true, input and output files are correctly specified in the file*/
+    public boolean standaloneRun;
 
     // output specific members
     public String fOutputId;
@@ -162,15 +172,16 @@ public class NodeData {
         DOMException, FilterException, ParserConfigurationException,
         SAXException, IOException {
 
-        ValueMapper vm = new ValueMapper(n);
+        ValueMapper attributes = new ValueMapper(n);
         switch (type) {
             case "gain":
-                double gain = getNodeParamValue(vm, "gain", parameters)[0];
+                double gain = getNodeParamValue(attributes, "gain", 
+                                                parameters)[0];
                 filter = new GainFilter(gain);
                 break;
             case "delay":
-                int delay = (int) Math.round(getNodeParamValue(vm, "delay",
-                    parameters)[0]);
+                int delay = (int) Math.round(getNodeParamValue(attributes, 
+                    "delay", parameters)[0]);
                 filter = new DelayFilter(delay);
                 break;
             case "addition":
@@ -183,43 +194,54 @@ public class NodeData {
                 filter = new DifferentiatorFilter();
                 break;
             case "convolution":
-                double[] v = getNodeParamValue(vm, "v", parameters);
+                double[] v = getNodeParamValue(attributes, "v", parameters);
                 filter = new ConvolutionFilter(v);
                 break;
             case "sine_generator": {
-                double frequency = getNodeParamValue(vm, "frequency", parameters)[0];
-                double amplitude = getNodeParamValue(vm, "amplitude", parameters)[0];
+                double frequency = getNodeParamValue(attributes, "frequency", 
+                                                     parameters)[0];
+                double amplitude = getNodeParamValue(attributes, "amplitude", 
+                                                     parameters)[0];
                 filter = new SineGenerator(frequency, amplitude);
                 break; }
             case "square_up_generator": {
-                double frequency = getNodeParamValue(vm, "frequency", parameters)[0];
-                double amplitude = getNodeParamValue(vm, "amplitude", parameters)[0];
+                double frequency = getNodeParamValue(attributes, "frequency", 
+                                                     parameters)[0];
+                double amplitude = getNodeParamValue(attributes, "amplitude", 
+                                                     parameters)[0];
                 filter = new SquareUpGenerator(frequency, amplitude);
                 break; }
             case "square_centered_generator": {
-                double frequency = getNodeParamValue(vm, "frequency", parameters)[0];
-                double amplitude = getNodeParamValue(vm, "amplitude", parameters)[0];
+                double frequency = getNodeParamValue(attributes, "frequency", 
+                                                     parameters)[0];
+                double amplitude = getNodeParamValue(attributes, "amplitude", 
+                                                     parameters)[0];
                 filter = new SquareCenteredGenerator(frequency, amplitude); 
                 break; }
             case "noise_generator": {
-                double amplitude = getNodeParamValue(vm, "amplitude", parameters)[0];
+                double amplitude = getNodeParamValue(attributes, "amplitude", 
+                                                     parameters)[0];
                 filter = new NoiseGenerator(amplitude); 
                 break;}
             case Writer.OUTPUT_NODE_TAG:
-                setOutputMembers(n);
+                setOutputMembers(n, attributes);
                 break;
             case Writer.INPUT_POS_NODE_TAG:
                 specialCase = INPUT_NODE;
-                setIOFileName(n);
+                try {
+                    setIOFileName(n, attributes);
+                } catch (LoaderException le) {
+                    standaloneRun = false;
+                }
                 break;
             case Writer.VARIABLE_NODE_TAG:
-                addVariables(n, parameters);
+                addVariables(n, attributes, parameters);
                 break;
             case "composite":
                 filter = Loader.filterFromNode(n, parameters, verbose);
                 break;
             case "filter":
-                setFilterFromSrc(n, parameters, verbose);
+                setFilterFromSrc(n, attributes, parameters, verbose);
                 break;
 
             default:
@@ -341,11 +363,13 @@ public class NodeData {
      * Sets `ioFileName` member, for `DInputFilter`s and `DOutputFilter`s to
      * recall their file name.
      * @param n                 The `Node` that represents the io filter
+     * @param attributes        A `ValueMapper` containing the attributes of
+     *                          the `Node`
      * @throws LoaderException  If not present
      */
-    public void setIOFileName(Node n) throws LoaderException {
-        Node fileNameNode = n.getAttributes()
-                             .getNamedItem(Writer.IO_FILENAME_ATTRIBUTE_NAME);
+    public void setIOFileName(Node n, ValueMapper attributes) throws LoaderException {
+        Node fileNameNode = attributes.getNamedItem(
+            Writer.IO_FILENAME_ATTRIBUTE_NAME);
         
         if (fileNameNode == null) 
             throw new LoaderException("Could not find " + n.getNodeName() + 
@@ -361,14 +385,16 @@ public class NodeData {
      * filter ouput and another filter output.</p>
      * 
      * @param n                     The node to get data from
+     * @param attributes            A `ValueMapper` containing the attributes of
+     *                              the `Node`
      * @throws LoaderException      If some reference is absent, wrong or 
      *                              ill formatted
      */
-    private void setOutputMembers(Node n) throws LoaderException {
+    private void setOutputMembers(Node n, ValueMapper attributes) 
+        throws LoaderException {
         specialCase = OUTPUT_CONNECTION;
-        setIOFileName(n);
-        Node refNode = n.getAttributes()
-                        .getNamedItem(Writer.REF_ATTRIBUTE_NAME);
+        setIOFileName(n, attributes);
+        Node refNode = attributes.getNamedItem(Writer.REF_ATTRIBUTE_NAME);
         if (refNode == null)
             throw new LoaderException("No reference of output to connect" +
                 " provided. Filter id: " + id + ".");
@@ -382,7 +408,7 @@ public class NodeData {
 
         
         fOutputId = refparts[0];
-        Node cfOutputNumNode = n.getAttributes().getNamedItem("n");
+        Node cfOutputNumNode = attributes.getNamedItem("n");
         if (cfOutputNumNode == null)
             throw new LoaderException("No composite filter's output " + 
                 "index provided.");
@@ -411,6 +437,8 @@ public class NodeData {
      * related to a node representing a filter located in another xml file.</p>
      * 
      * @param n                     The node to get data from
+     * @param attributes            A `ValueMapper` containing the attributes
+     *                              of the `Node`
      * @param parameters            A HashMap with values of the parameters
      *                              introduced in the input file
      * @param verbose               If true, print connections info
@@ -421,12 +449,12 @@ public class NodeData {
      * @throws ParserConfigurationException Idem
      * @throws DOMException                 Idem
      */
-    private void setFilterFromSrc(Node n, 
+    private void setFilterFromSrc(Node n, ValueMapper attributes,
         HashMap<String, Double> parameters, boolean verbose) 
         throws FilterException, DOMException, ParserConfigurationException,
         SAXException, IOException {
 
-        Node srcNode = n.getAttributes().getNamedItem("src");
+        Node srcNode = attributes.getNamedItem("src");
         if (srcNode == null)
             throw new LoaderException("No source file provided " +
                 "for filter. Filter id: \"" + id + "\".");
@@ -436,7 +464,6 @@ public class NodeData {
         HashMap<String, Double> parameters2 = 
             new HashMap<String, Double> (parameters);
         
-        ValueMapper attributes = new ValueMapper (n);
         for (Entry<String, Node> entry : attributes.entries()) {
             Node item = entry.getValue();
             String name = item.getNodeName();
@@ -497,16 +524,17 @@ public class NodeData {
     /**
      * <p>Add all variables definitions in the attributes of a `let` node.</p>
      * @param n                 The node
+     * @param attributes        A `ValueMapper` containing the attributes of
+     *                          the `Node`
      * @param parameters        A HashMap with values of the parameters
      *                          introduced in the input file
      * @throws LoaderException  If some parsing failed.
      */
-    private void addVariables(Node n, HashMap<String, Double> parameters) 
+    private void addVariables(Node n, ValueMapper attributes, 
+        HashMap<String, Double> parameters) 
         throws LoaderException {
         specialCase = LET_STATEMENT;
-        NamedNodeMap attributes = n.getAttributes();
-        for (int i = 0; i < attributes.getLength(); i++) {
-            Node cur = attributes.item(i);
+        for (Node cur : attributes.values()) {
             String name = cur.getNodeName();
             if (name.equals("x") || name.equals("y") ||
                 name.equals("orientation")) 
