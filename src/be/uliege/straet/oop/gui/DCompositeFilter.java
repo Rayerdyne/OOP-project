@@ -64,6 +64,7 @@ public class DCompositeFilter extends DraggableFilter {
 
         color = Color.ORANGE;
 
+        parameterS = WorkSpace.DEF_UNDEFINED_STRING_VALUE;
         if (fileName == null) {
             filterR = new CompositeFilter();
             filterL = new CompositeFilter();

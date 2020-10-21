@@ -47,6 +47,10 @@ public class WorkSpace extends JPanel implements KeyListener {
     public static final Color DEF_BACKGROUND = Color.white;
     public static final Color DEF_FOREGROUND = Color.black;
 
+    /** Value used for filters that need a string as parameter, when that 
+     * parameter has not been set. */
+    public static final String DEF_UNDEFINED_STRING_VALUE = "To be defined";
+
     public static final String TMP_FILE_NAME = "/tmp/filteroutput.wav";
 
     private Color back = DEF_BACKGROUND;
@@ -422,7 +426,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     /** Starts the placing of an input filter at (0, 0), needs focus */
     public void addInput() {
         if (isBusy())  return; 
-        addInput(0, 0, 0, true, "To be defined");
+        addInput(0, 0, 0, true, DEF_UNDEFINED_STRING_VALUE);
     }
 
     /**
@@ -445,7 +449,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     /** Starts the placing of an output filter at (0, 0), needs focus */
     public void addOutput() { 
         if (isBusy())  return; 
-        addOutput(0, 0, 0, true, "To be defined");
+        addOutput(0, 0, 0, true, DEF_UNDEFINED_STRING_VALUE);
      }
 
     /** Starts the placing of a variable declaration.
