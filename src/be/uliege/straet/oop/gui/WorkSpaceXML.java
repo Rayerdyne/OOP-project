@@ -113,7 +113,7 @@ public class WorkSpaceXML {
             if (n.getNodeName() == "#text")     continue;
 
             String typeOfFilter = n.getNodeName();
-            if (typeOfFilter.equals("output")) {
+            if (typeOfFilter.equals(Writer.OUTPUT_NODE_TAG)) {
                 String id = Writer.OUTPUT_ID_PREFIX + 
                     n.getAttributes().getNamedItem("n").getNodeValue();
                 children.put(id, (Element) n);
@@ -137,10 +137,12 @@ public class WorkSpaceXML {
     private void addWSVariables(Element root) {
         for (DVariableDeclaration vd : variables) {
             Element e = doc.createElement(Writer.VARIABLE_NODE_TAG);
-            e.setAttribute("orientation", 
+            e.setAttribute(Writer.ORIENTATION_ATTR_NAME, 
                 Integer.toString(vd.getOrientation()));
-            e.setAttribute("x", Integer.toString(vd.getX()));
-            e.setAttribute("y", Integer.toString(vd.getY()));
+            e.setAttribute(Writer.X_COORD_ATTR_NAME, 
+                           Integer.toString(vd.getX()));
+            e.setAttribute(Writer.Y_COORD_ATTR_NAME, 
+                           Integer.toString(vd.getY()));
             e.setAttribute(vd.getVariableName(), vd.getParameterDefinition()); 
             root.appendChild(e);
         }
@@ -160,10 +162,12 @@ public class WorkSpaceXML {
                 "with id \"" + id + "\".");
             
             Element pos = doc.createElement(Writer.VALUE_NODE_TAG);
-            pos.setAttribute("x", Integer.toString(df.getX()));
-            pos.setAttribute("y", Integer.toString(df.getY()));
-            pos.setAttribute("orientation", 
-                Integer.toString(df.getOrientation()));
+            pos.setAttribute(Writer.X_COORD_ATTR_NAME, 
+                             Integer.toString(df.getX()));
+            pos.setAttribute(Writer.Y_COORD_ATTR_NAME, 
+                             Integer.toString(df.getY()));
+            pos.setAttribute(Writer.ORIENTATION_ATTR_NAME,
+                             Integer.toString(df.getOrientation()));
 
             e.appendChild(pos);
 
@@ -181,12 +185,15 @@ public class WorkSpaceXML {
         for (int i = 0; i < inputFilters.size(); i++){
             DInputFilter dif = inputFilters.elementAt(i);
             Element newE = doc.createElement(Writer.INPUT_POS_NODE_TAG);
-            newE.setAttribute("x", Integer.toString(dif.getX()));
-            newE.setAttribute("y", Integer.toString(dif.getY()));
-            newE.setAttribute("n",Integer.toString(inputFilters.indexOf(dif)));
-            newE.setAttribute("orientation", 
-                Integer.toString(dif.getOrientation()));
-            newE.setAttribute(Writer.IO_FILENAME_ATTRIBUTE_NAME, 
+            newE.setAttribute(Writer.X_COORD_ATTR_NAME,
+                              Integer.toString(dif.getX()));
+            newE.setAttribute(Writer.Y_COORD_ATTR_NAME, 
+                              Integer.toString(dif.getY()));
+            newE.setAttribute(Writer.NB_IOPUTS_ATTR_NAME,
+                              Integer.toString(inputFilters.indexOf(dif)));
+            newE.setAttribute(Writer.ORIENTATION_ATTR_NAME, 
+                              Integer.toString(dif.getOrientation()));
+            newE.setAttribute(Writer.IO_FILENAME_ATTR_NAME, 
                               dif.getParameterDefinition());
             root.appendChild(newE);
         }
@@ -196,15 +203,17 @@ public class WorkSpaceXML {
             String id = Writer.OUTPUT_ID_PREFIX + Integer.toString(i);
             Element e = children.get(id);
             Element pos = doc.createElement(Writer.VALUE_NODE_TAG);
-            pos.setAttribute("x", Integer.toString(dof.getX()));
-            pos.setAttribute("y", Integer.toString(dof.getY()));
-            pos.setAttribute("orientation", 
-                Integer.toString(dof.getOrientation()));
+            pos.setAttribute(Writer.X_COORD_ATTR_NAME,
+                             Integer.toString(dof.getX()));
+            pos.setAttribute(Writer.Y_COORD_ATTR_NAME,
+                             Integer.toString(dof.getY()));
+            pos.setAttribute(Writer.ORIENTATION_ATTR_NAME, 
+                             Integer.toString(dof.getOrientation()));
             e.appendChild(pos);
 
             Element wire = elementFromWire(dof.wireAtInputs().firstElement());
             e.appendChild(wire);
-            e.setAttribute(Writer.IO_FILENAME_ATTRIBUTE_NAME, 
+            e.setAttribute(Writer.IO_FILENAME_ATTR_NAME, 
                            dof.getParameterDefinition());
         }
     }
@@ -222,8 +231,10 @@ public class WorkSpaceXML {
         for (int i = 0; i < fbs.size(); i++) {
             FreeBall fb = fbs.elementAt(i);
             Element fbElm = doc.createElement(Writer.FREE_BALL_NODE_TAG);
-            fbElm.setAttribute("x", Integer.toString(fb.getX()));
-            fbElm.setAttribute("y", Integer.toString(fb.getY()));
+            fbElm.setAttribute(Writer.X_COORD_ATTR_NAME, 
+                               Integer.toString(fb.getX()));
+            fbElm.setAttribute(Writer.Y_COORD_ATTR_NAME, 
+                               Integer.toString(fb.getY()));
 
             e.appendChild(fbElm);
         }
@@ -311,7 +322,7 @@ public class WorkSpaceXML {
         ValueMapper attributes = new ValueMapper(n);
 
         // get its id
-        Node idNode = attributes.getNamedItem("id");
+        Node idNode = attributes.getNamedItem(Writer.ID_ATTR_NAME);
         if (idNode == null)
             throw new LoaderException("No id provided for a composite filter" + 
                 " node.");
@@ -319,8 +330,10 @@ public class WorkSpaceXML {
 
         // Get nbInputs and nbOutputs
         nbInputs = 0; nbOutputs = 0;
-        Node nbInputsNode = attributes.getNamedItem("in");
-        Node nbOutputsNode = attributes.getNamedItem("out");
+        Node nbInputsNode = attributes
+                           .getNamedItem(Writer.NB_INPUTS_ATTR_NAME);
+        Node nbOutputsNode = attributes
+                             .getNamedItem(Writer.NB_OUTPUTS_ATTR_NAME);
         if (nbInputsNode == null)
             throw new LoaderException("Composite filter has no input number" +
                 " specified.");
@@ -426,8 +439,9 @@ public class WorkSpaceXML {
                 for (int j = 0; j < nnm.getLength(); j++) {
                     Node item = nnm.item(j);
                     String name = item.getNodeName();
-                    if (!name.equals("x") && ! name.equals("y") && 
-                        !name.equals("orientation")) {
+                    if (!name.equals(Writer.X_COORD_ATTR_NAME) && 
+                        !name.equals(Writer.Y_COORD_ATTR_NAME) && 
+                        !name.equals(Writer.ORIENTATION_ATTR_NAME)) {
                         
                         try {
                             double value = NodeData.parseStringValue(
@@ -443,11 +457,14 @@ public class WorkSpaceXML {
                         }
                         try {
                             int x = Integer.valueOf(
-                                nnm.getNamedItem("x").getNodeValue());
+                                nnm.getNamedItem(Writer.X_COORD_ATTR_NAME)
+                                   .getNodeValue());
                             int y = Integer.valueOf(
-                                nnm.getNamedItem("y").getNodeValue());
+                                nnm.getNamedItem(Writer.Y_COORD_ATTR_NAME)
+                                   .getNodeValue());
                             int orientation = Integer.valueOf(
-                                nnm.getNamedItem("orientation").getNodeValue());
+                                nnm.getNamedItem(Writer.ORIENTATION_ATTR_NAME)
+                                   .getNodeValue());
                             ws.addVariableDeclaration(x, y, orientation, false, 
                                 name, item.getNodeValue() );
                         } catch (Exception e) { 
@@ -506,17 +523,17 @@ public class WorkSpaceXML {
             String name = entry.getKey();
 
             switch(name) {
-case "gain":    
+case Writer.GAIN_F_NODE_TAG:    
     for (NodeData d : entry.getValue()) 
         d.draggableFilter = ws.addGain(d.x, d.y, d.orientation, false, 
                                        (GainFilter) d.filter);
     break;
-case "delay":   
+case Writer.DELAY_F_NODE_TAG:   
     for (NodeData d : entry.getValue())  
         d.draggableFilter = ws.addDelay(d.x, d.y, d.orientation, false, 
                                         (DelayFilter) d.filter);
     break;
-case "addition":
+case Writer.ADDITION_F_NODE_TAG:
     for (NodeData d : entry.getValue()) 
         d.draggableFilter = ws.addAddition(d.x, d.y, d.orientation, false);
     break;
@@ -649,8 +666,10 @@ default:
         for (int i = 0; i < nbBalls; i++) {
             Node fb = nl.item(2*i + 1);
             NamedNodeMap nnm = fb.getAttributes();
-            x[i] = Integer.parseInt(nnm.getNamedItem("x").getNodeValue());
-            y[i] = Integer.parseInt(nnm.getNamedItem("y").getNodeValue());
+            x[i] = Integer.parseInt(nnm.getNamedItem(Writer.X_COORD_ATTR_NAME)
+                                        .getNodeValue());
+            y[i] = Integer.parseInt(nnm.getNamedItem(Writer.Y_COORD_ATTR_NAME)
+                                        .getNodeValue());
         }
 		return new AbstractMap.SimpleEntry<int[], int[]>(x, y);
 	}

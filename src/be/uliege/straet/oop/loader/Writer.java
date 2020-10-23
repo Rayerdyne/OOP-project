@@ -32,17 +32,43 @@ import be.uliege.straet.oop.filters.BlockException;
 
 public class Writer {
 
-    public static final String DEF_ROOT_ID = "whole_filter";
-    public static final String VARIABLE_NODE_TAG = "let";
-    public static final String VALUE_NODE_TAG = "v";
-    public static final String WIRE_NODE_TAG = "wire";
-    public static final String WIRE_INPUT_ATTR_NAME = "input";
-    public static final String FREE_BALL_NODE_TAG = "fb";
-    public static final String INPUT_POS_NODE_TAG = "input";
-    public static final String OUTPUT_NODE_TAG = "output";
-    public static final String OUTPUT_ID_PREFIX = "output_block_";
-    public static final String REF_ATTRIBUTE_NAME = "ref";
-    public static final String IO_FILENAME_ATTRIBUTE_NAME = "content";
+    public static final String 
+        VARIABLE_NODE_TAG = "let",
+        VALUE_NODE_TAG = "v",
+        WIRE_NODE_TAG = "wire",
+        FREE_BALL_NODE_TAG = "fb",
+        INPUT_POS_NODE_TAG = "input",
+        OUTPUT_NODE_TAG = "output",
+        ADDITION_F_NODE_TAG = "addition",
+        GAIN_F_NODE_TAG = "gain",
+        DELAY_F_NODE_TAG = "delay",
+        INTEGRATOR_F_NODE_TAG = "integrator",
+        DIFFERENTIATOR_F_NODE_TAG = "differentiator",
+        CONVOLUTION_F_NODE_TAG = "convolution",
+        COMPOSITE_F_NODE_TAG = "filter",
+        NESTED_COMPOSITE_NODE_TAG = "composite",
+        SINE_GEN_NODE_TAG = "sine_gen",
+        CENTERED_SQUARE_GEN_NODE_TAG = "centered_square_gen",
+        UP_SQUARE_GEN_NODE_TAG = "up_square_gen",
+        NOISE_GEN_NODE_TAG = "noise_gen",
+        
+        DEF_ROOT_ID = "whole_filter",
+        OUTPUT_ID_PREFIX = "output_block_",
+
+        ID_ATTR_NAME = "id",
+        NB_INPUTS_ATTR_NAME = "in",
+        NB_OUTPUTS_ATTR_NAME = "out",
+        X_COORD_ATTR_NAME = "x",
+        Y_COORD_ATTR_NAME = "y",
+        ORIENTATION_ATTR_NAME = "orientation",
+        REF_ATTR_NAME = "ref",
+        NB_IOPUTS_ATTR_NAME = "n",
+        SRC_FILE_ATTR_NAME = "src",
+        WIRE_INPUT_ATTR_NAME = "input",
+        IO_FILENAME_ATTR_NAME = "content",
+        FREQUENCY_ATTR_NAME = "frequency",
+        AMPLITUDE_ATTR_NAME = "amplitude";
+
     private static int INPUTS_PER_NODE = 2;
     private static int PARAMETERS_PER_NODE = 2;
     // public static void main(String[] args) {
@@ -155,7 +181,7 @@ public class Writer {
             o.setAttribute("n", String.valueOf(output.outputIndex()));
             String outputId = output.source() == null ? 
                                                    cfId : output.source().id();
-            o.setAttribute(REF_ATTRIBUTE_NAME, outputId + "." + output.outputIndex());
+            o.setAttribute(REF_ATTR_NAME, outputId + "." + output.outputIndex());
             e.appendChild(o);
         }
 

@@ -202,7 +202,7 @@ public class Loader {
         NamedNodeMap attributes = n.getAttributes();
 
         // get its id
-        Node idNode = attributes.getNamedItem("id");
+        Node idNode = attributes.getNamedItem(Writer.ID_ATTR_NAME);
         if (idNode == null)
             throw new LoaderException("No id provided for a composite filter" + 
                 " node.");
@@ -210,8 +210,10 @@ public class Loader {
 
         // Get nbInputs and nbOutputs
         int nbInputs = 0, nbOutputs = 0;
-        Node nbInputsNode = attributes.getNamedItem("in");
-        Node nbOutputsNode = attributes.getNamedItem("out");
+        Node nbInputsNode = attributes
+                            .getNamedItem(Writer.NB_INPUTS_ATTR_NAME);
+        Node nbOutputsNode = attributes
+                            .getNamedItem(Writer.NB_OUTPUTS_ATTR_NAME);
         if (nbInputsNode == null)
             throw new LoaderException("Composite filter has no input number" +
                 " specified.");

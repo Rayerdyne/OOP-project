@@ -28,6 +28,7 @@ import be.uliege.straet.oop.filters.DelayFilter;
 import be.uliege.straet.oop.filters.DifferentiatorFilter;
 import be.uliege.straet.oop.filters.GainFilter;
 import be.uliege.straet.oop.filters.IntegratorFilter;
+import be.uliege.straet.oop.filters.NoiseGenerator;
 import be.uliege.straet.oop.filters.SineGenerator;
 import be.uliege.straet.oop.filters.UpSquareGenerator;
 import be.uliege.straet.oop.filters.WFilter;
@@ -542,6 +543,32 @@ public class WorkSpace extends JPanel implements KeyListener {
         addUpSquareGenerator(0, 0, 0, true, new UpSquareGenerator());
     }
 
+    /**
+     * Starts the placing of a noise generator.
+     * @param x     The x coordinate of the filter
+     * @param y     The y coordinate of the filter
+     * @param orientation The orientation of the filter: the filter is oriented
+     *                    "normally" + orientation * 90° clockwise.
+     * @param selected    Wether or not the user is dragging this filter when 
+     *                    it is placed.
+     * @param filter      A `Noisegenerator` that will be used in that 
+     *                    `DNoiseGenerator`
+     */
+    public DraggableFilter addNoiseGenerator(int x, int y, int orientation, 
+        boolean selected, NoiseGenerator filter) {
+        DNoiseGenerator sg = new DNoiseGenerator(x, y, this, 
+            selected, filter);
+        filters.add(sg);
+        return sg;
+    }
+
+    /** Starts the placing of a default noise generator at (0, 0), needs 
+     * focus */
+    public void addNoiseGenerator() {     
+        if (isBusy())  return; 
+        addNoiseGenerator(0, 0, 0, true, new NoiseGenerator());
+    }
+    
     /**
      * Starts the placing of an input filter.
      * @param x     The x coordinate of the filter

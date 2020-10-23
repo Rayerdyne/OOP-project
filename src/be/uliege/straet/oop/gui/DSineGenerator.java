@@ -61,6 +61,7 @@ public class DSineGenerator extends DraggableFilter {
     @Override
     public void paint(Graphics g, Color back, Color fore, double zoom) {
         super.paint(g, back, fore, zoom);
+        g.setColor(Color.BLUE);
         g.drawPolygon(xCorners, yCorners, xCorners.length);
         int ar = WorkSpace.zoom(ARC_RADIUS, zoom);
         int gap = WorkSpace.zoom(GAP, zoom);

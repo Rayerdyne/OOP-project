@@ -136,7 +136,7 @@ public class NodeData {
         if (type.equals(Writer.OUTPUT_NODE_TAG) ||
             type.equals(Writer.INPUT_POS_NODE_TAG)) {
             
-            Node numNode = attributes.getNamedItem("n");
+            Node numNode = attributes.getNamedItem(Writer.NB_IOPUTS_ATTR_NAME);
             if (numNode == null)
                 throw new LoaderException("No " + type + " index provided " + 
                     "for a " + type + " node.");
@@ -144,7 +144,7 @@ public class NodeData {
         }
         else if (!type.equals(Writer.VARIABLE_NODE_TAG)) { 
                                                   // specialCase flag is not set
-            Node idNode = attributes.getNamedItem("id");
+            Node idNode = attributes.getNamedItem(Writer.ID_ATTR_NAME);
             if (idNode == null)
                 throw new LoaderException("No id provided for a " + type
                     + " node.");
@@ -194,52 +194,52 @@ public class NodeData {
 
         ValueMapper attributes = new ValueMapper(n);
         switch (type) {
-            case "gain":
+            case Writer.GAIN_F_NODE_TAG:
                 double gain = getNodeParamValue(attributes, "gain", 
                                                 parameters)[0];
                 filter = new GainFilter(gain);
                 break;
-            case "delay":
+            case Writer.DELAY_F_NODE_TAG:
                 int delay = (int) Math.round(getNodeParamValue(attributes, 
-                    "delay", parameters)[0]);
+                    Writer.DELAY_F_NODE_TAG, parameters)[0]);
                 filter = new DelayFilter(delay);
                 break;
-            case "addition":
+            case Writer.ADDITION_F_NODE_TAG:
                 filter = new AdditionFilter();
                 break;
-            case "integrator": // we could handle the case of fs != 44100
+            case Writer.INTEGRATOR_F_NODE_TAG: // we could handle the case of fs != 44100
                 filter = new IntegratorFilter();
                 break;
-            case "differentiator":
+            case Writer.DIFFERENTIATOR_F_NODE_TAG:
                 filter = new DifferentiatorFilter();
                 break;
-            case "convolution":
+            case Writer.CONVOLUTION_F_NODE_TAG:
                 double[] v = getNodeParamValue(attributes, "v", parameters);
                 filter = new ConvolutionFilter(v);
                 break;
-            case "sine_generator": {
-                double frequency = getNodeParamValue(attributes, "frequency", 
-                                                     parameters)[0];
-                double amplitude = getNodeParamValue(attributes, "amplitude", 
-                                                     parameters)[0];
+            case Writer.SINE_GEN_NODE_TAG: {
+                double frequency = getNodeParamValue(attributes, 
+                    Writer.FREQUENCY_ATTR_NAME, parameters)[0];
+                double amplitude = getNodeParamValue(attributes, 
+                    Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
                 filter = new SineGenerator(frequency, amplitude);
                 break; }
                 //TODO coucou c ici
-            case "square_up_generator": {
-                double frequency = getNodeParamValue(attributes, "frequency", 
-                                                     parameters)[0];
-                double amplitude = getNodeParamValue(attributes, "amplitude", 
-                                                     parameters)[0];
+            case Writer.UP_SQUARE_GEN_NODE_TAG: {
+                double frequency = getNodeParamValue(attributes, 
+                    Writer.FREQUENCY_ATTR_NAME, parameters)[0];
+                double amplitude = getNodeParamValue(attributes, 
+                    Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
                 filter = new SquareUpGenerator(frequency, amplitude);
                 break; }
-            case "square_centered_generator": {
-                double frequency = getNodeParamValue(attributes, "frequency", 
-                                                     parameters)[0];
-                double amplitude = getNodeParamValue(attributes, "amplitude", 
-                                                     parameters)[0];
+            case Writer.CENTERED_SQUARE_GEN_NODE_TAG: {
+                double frequency = getNodeParamValue(attributes, 
+                    Writer.FREQUENCY_ATTR_NAME, parameters)[0];
+                double amplitude = getNodeParamValue(attributes, 
+                    Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
                 filter = new CenteredSquareGenerator(frequency, amplitude); 
                 break; }
-            case "noise_generator": {
+            case Writer.NOISE_GEN_NODE_TAG: {
                 double amplitude = getNodeParamValue(attributes, "amplitude", 
                                                      parameters)[0];
                 filter = new NoiseGenerator(amplitude); 
@@ -254,10 +254,10 @@ public class NodeData {
             case Writer.VARIABLE_NODE_TAG:
                 addVariables(n, attributes, parameters);
                 break;
-            case "composite":
+            case Writer.NESTED_COMPOSITE_NODE_TAG:
                 filter = Loader.filterFromNode(n, parameters, verbose);
                 break;
-            case "filter":
+            case Writer.COMPOSITE_F_NODE_TAG:
                 setFilterFromSrc(n, attributes, parameters, verbose);
                 break;
 
@@ -279,9 +279,12 @@ public class NodeData {
     private void getPositionning(Node n, ValueMapper attributes) 
         throws LoaderException {
         try {
-            x = (int) getNodeParamValue(attributes, "x", null)[0];
-            y = (int) getNodeParamValue(attributes, "y", null)[0];
-            orientation = (int) getNodeParamValue(attributes, "orientation", null)[0];
+            x = (int) getNodeParamValue(
+                attributes, Writer.X_COORD_ATTR_NAME, null)[0];
+            y = (int) getNodeParamValue(
+                attributes, Writer.Y_COORD_ATTR_NAME , null)[0];
+            orientation = (int) getNodeParamValue(attributes, 
+                Writer.ORIENTATION_ATTR_NAME, null)[0];
             // System.out.println("id: " + id + " (x, y) = (" + x + ", " + y + ").");
         } catch (LoaderException le) {
             String m = le.getMessage();
@@ -386,7 +389,7 @@ public class NodeData {
      */
     public void setIOFileName(Node n, ValueMapper attributes) throws LoaderException {
         Node fileNameNode = attributes.getNamedItem(
-            Writer.IO_FILENAME_ATTRIBUTE_NAME);
+            Writer.IO_FILENAME_ATTR_NAME);
         
         if (fileNameNode == null) 
             standaloneRunOk = false;
@@ -410,7 +413,7 @@ public class NodeData {
         throws LoaderException {
         specialCase = OUTPUT_CONNECTION;
         setIOFileName(n, attributes);
-        Node refNode = attributes.getNamedItem(Writer.REF_ATTRIBUTE_NAME);
+        Node refNode = attributes.getNamedItem(Writer.REF_ATTR_NAME);
         if (refNode == null || standaloneRunOk == false) 
             standaloneRunOk = false;
         String ref = refNode.getNodeValue();
@@ -423,7 +426,8 @@ public class NodeData {
 
         
         fOutputId = refparts[0];
-        Node cfOutputNumNode = attributes.getNamedItem("n");
+        Node cfOutputNumNode = attributes
+                               .getNamedItem(Writer.NB_IOPUTS_ATTR_NAME);
         if (cfOutputNumNode == null) 
             standaloneRunOk = false;
     
@@ -468,7 +472,7 @@ public class NodeData {
         throws FilterException, DOMException, ParserConfigurationException,
         SAXException, IOException {
 
-        Node srcNode = attributes.getNamedItem("src");
+        Node srcNode = attributes.getNamedItem(Writer.SRC_FILE_ATTR_NAME);
         if (srcNode == null)
             throw new LoaderException("No source file provided " +
                 "for filter. Filter id: \"" + id + "\".");
@@ -550,8 +554,9 @@ public class NodeData {
         specialCase = LET_STATEMENT;
         for (Node cur : attributes.values()) {
             String name = cur.getNodeName();
-            if (name.equals("x") || name.equals("y") ||
-                name.equals("orientation")) 
+            if (name.equals(Writer.X_COORD_ATTR_NAME) || 
+                name.equals(Writer.Y_COORD_ATTR_NAME) ||
+                name.equals(Writer.ORIENTATION_ATTR_NAME)) 
                 continue;
             variableName = name;
             variableDefinition = cur.getNodeValue();

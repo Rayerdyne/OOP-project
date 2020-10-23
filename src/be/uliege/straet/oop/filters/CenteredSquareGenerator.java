@@ -12,8 +12,8 @@ import java.util.HashMap;
  */
 public class CenteredSquareGenerator extends Generator {
 
-    public static final double DEF_FREQUENCY = 440.0;
-    public static final double DEF_AMPLITUDE = 1.0;
+    public static final double DEF_FREQUENCY = SineGenerator.DEF_FREQUENCY;
+    public static final double DEF_AMPLITUDE = SineGenerator.DEF_AMPLITUDE;
     public static final double DEF_SAMPLING_FREQUENCY = 
         IntegratorFilter.DEF_SAMPLING_FREQUENCY;
 

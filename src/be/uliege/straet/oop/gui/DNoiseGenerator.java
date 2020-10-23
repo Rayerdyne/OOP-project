@@ -3,19 +3,19 @@ package be.uliege.straet.oop.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import be.uliege.straet.oop.filters.CenteredSquareGenerator;
+import be.uliege.straet.oop.filters.NoiseGenerator;
 
-public class DCenteredSquareGenerator extends DraggableFilter {
+public class DNoiseGenerator extends DraggableFilter {
 
     /** semi-height, actually */
     public static final int HEIGHT = 30;
     public static final int WIDTH = 20;
 
-    public static final int SQUARE_SIZE = 8;
-    public static final int GAP = 10;
+    public static final int GAP = 0;
+    public static final int RADIUS = 10;
 
-    public DCenteredSquareGenerator(int x, int y, WorkSpace ws, boolean selected,
-        CenteredSquareGenerator filter) {
+    public DNoiseGenerator(int x, int y, WorkSpace ws, boolean selected,
+        NoiseGenerator filter) {
         super(x, y, ws, selected);
 
         xCorners = new int[4];      yCorners = new int[4];
@@ -37,18 +37,13 @@ public class DCenteredSquareGenerator extends DraggableFilter {
         color = Color.WHITE;
 
         filterR = filter;
-        filterL = new CenteredSquareGenerator(filter.getFrequency(), 
-            filter.getAmplitude(), filter.getSamplingFrequency());
-        parameterD = new double[] { 
-            filter.getFrequency(), filter.getAmplitude(),
-            filter.getSamplingFrequency() };
-        parameterS = Double.toString(parameterD[0]) + ", " +
-                     Double.toString(parameterD[1]) + ", " +
-                     Double.toString(parameterD[2]);
+        filterL = new NoiseGenerator(filter.getAmplitude());
+        parameterD = new double[] { filter.getAmplitude() };
+        parameterS = Double.toString(parameterD[0]);
     }
 
-    public DCenteredSquareGenerator(int x, int y, WorkSpace ws, boolean selected) {
-        this(x, y, ws, selected, new CenteredSquareGenerator());
+    public DNoiseGenerator(int x, int y, WorkSpace ws, boolean selected) {
+        this(x, y, ws, selected, new NoiseGenerator());
     }
 
     @Override
@@ -63,14 +58,20 @@ public class DCenteredSquareGenerator extends DraggableFilter {
         super.paint(g, back, fore, zoom);
         g.setColor(Color.BLUE);
         g.drawPolygon(xCorners, yCorners, xCorners.length);
-        int ss = WorkSpace.zoom(SQUARE_SIZE, zoom);
+
         int gap = WorkSpace.zoom(GAP, zoom);
-        int x0 = x - 3*ss/2;
-        int y0 = y + gap + ss/2;
-        g.drawPolyline(new int[] { x0, x0       , x0 + ss  , x0 + ss  , 
-            x0 + 2*ss, x0 + 2*ss, x0 + 3*ss, x0 + 3*ss},
-                       new int[] { y0, y0 + ss/2, y0 + ss/2, y0 - ss/2,
-            y0 - ss/2, y0 + ss/2, y0 + ss/2, y0 }, 8);
+        int r = WorkSpace.zoom(RADIUS, zoom);
+        int x0 = x;
+        int y0 = y + gap;
+
+        g.drawLine(x0, y0, x0, y0);
+        g.drawLine(x0+r/2, y0, x0+r/2, y0);
+        g.drawLine(x0+r/3, y0+3, x0+r/3, y0+3);
+        g.drawLine(x0-r/2, y0-r/4, x0-r/2, y0-r/4);
+        g.drawLine(x0, y0+3, x0, y0+3);
+        g.drawLine(x0-2, y0, x0-2, y0);
+        g.drawLine(x0-r/3, y0+r, x0-r/3, y0+r);
+        g.drawLine(x0-r/3+3, y0+r-4, x0-r/3+4, y0+r-5);
     }
     
     @Override
@@ -78,7 +79,7 @@ public class DCenteredSquareGenerator extends DraggableFilter {
         if (d.length > 1)
             return;
         parameterD = d;
-        filterR = new CenteredSquareGenerator(d[0], d[1], d[2]);
-        filterL = new CenteredSquareGenerator(d[0], d[1], d[2]);
+        filterR = new NoiseGenerator(d[0]);
+        filterL = new NoiseGenerator(d[0]);
     }
 }

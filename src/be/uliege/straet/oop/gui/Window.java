@@ -35,9 +35,10 @@ public class Window extends JFrame {
                                        new HashMap<JButton, Procedure>();
     private static HashMap<JButton, Procedure> buttonsActionsDown = 
                                        new HashMap<JButton, Procedure>();
-    String[] extraFilters = {
+    private static final String[] extraFilters = {
         "Composite", "Convolution", "Integrator", "Differentiator", 
-        "Sine generator", "Centered square generator", "Up square generator"};
+        "Sine generator", "Centered square generator", "Up square generator",
+        "Noise generator"};
     JComboBox<String> filterComboBox = new JComboBox<String>(extraFilters);
 
     public static void main(String[] args) {
@@ -92,6 +93,7 @@ public class Window extends JFrame {
                 ws.addCenteredSquareGenerator();            break;
             case "Up square generator":
                 ws.addUpSquareGenerator();                  break;
+            case "Noise generator": ws.addNoiseGenerator(); break;
             default:
                 break;
         }
