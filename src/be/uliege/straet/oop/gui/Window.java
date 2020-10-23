@@ -5,10 +5,11 @@ import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JComboBox;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
@@ -30,10 +31,12 @@ public class Window extends JFrame {
     /** It is a `LinkedHashMap` to be able to get the buttons in the order we
      * inserted them.
      */
-    private static LinkedHashMap<JButton, Procedure> buttonsActionsUp = 
-                                       new LinkedHashMap<JButton, Procedure>();
-    private static LinkedHashMap<JButton, Procedure> buttonsActionsDown = 
-                                       new LinkedHashMap<JButton, Procedure>();
+    private static HashMap<JButton, Procedure> buttonsActionsUp = 
+                                       new HashMap<JButton, Procedure>();
+    private static HashMap<JButton, Procedure> buttonsActionsDown = 
+                                       new HashMap<JButton, Procedure>();
+    String[] extraFilters = {"Composite", "Convolution", "Integrator"};
+    JComboBox<String> filterComboBox = new JComboBox<String>(extraFilters);
 
     public static void main(String[] args) {
         Window w = new Window(WINDOW_NAME);
@@ -52,14 +55,12 @@ public class Window extends JFrame {
             catch (FilterException e) {
                 System.out.println(e.getMessage());
             }  });
-        buttonsActionsUp.put(new JButton("Addition"), () -> {ws.addAddition();});
-        buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
-        buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
-        buttonsActionsUp.put(new JButton("Composite"), () -> {
-            try { ws.addComposite(); }
-            catch (Exception e) {
-                WorkSpace.showError("Could not add the composite filter", e);
-            }  });
+            buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
+            buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
+                    buttonsActionsUp.put(new JButton("Other: "), () -> {
+                        addSelectedFilter();
+                    });
+            buttonsActionsUp.put(new JButton("Addition"), () -> {ws.addAddition();});
 
         buttonsActionsDown.put(new JButton("Variable"), 
             () -> {ws.addVariableDeclaration();});
@@ -71,7 +72,28 @@ public class Window extends JFrame {
         new Thread(new RetardatorFocusGiver(ws)).start();
     }
     
-    private void initUi() {
+    private void addSelectedFilter() {
+        String filterType = (String) filterComboBox.getSelectedItem();
+        switch (filterType) {
+            case "Composite":
+                try { 
+                    ws.addComposite(); 
+                } catch (Exception e) {
+                    WorkSpace.showError("Could not add the composite filter", e);
+                }
+                break;
+            case "Convolution": 
+                ws.addConvolution();
+                break;
+            case "Integrator": 
+                ws.addIntegrator();
+                break;
+            default:
+                break;
+        }
+	}
+
+	private void initUi() {
 
         JPanel buttonsPanelUp = new JPanel();
         JPanel buttonsPanelDown = new JPanel();
@@ -96,6 +118,7 @@ public class Window extends JFrame {
             buttonsPanelUp.add(b);
             b.addActionListener(bal);
         }
+        buttonsPanelUp.add(filterComboBox);
         for (JButton b : buttonsActionsDown.keySet()) {
             buttonsPanelDown.add(b);
             b.addActionListener(bal);

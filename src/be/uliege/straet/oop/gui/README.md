@@ -25,6 +25,8 @@ This is the uppermost zone of the window, with four menus: **File**, **View**, *
 | Edit filter   | Press '`e`' key when dragging the filter. Note that editing the filter properties depends on the filter's type |
 | Connect filters | Click the `Connection` button in the tool bar, or press '`space`' to begin the drawing of a connection | 
 
+Note that when placing a new filter, it will have default variables values (e.g. an integrator filter with a default sampling frequency of 44100 Hz). In particular, composite filters are initialized with a empty filter, so that they're invalid. Thus, you must specify a file.
+
 ## 2- Connecting filters
 Of course, to construct the filter, you will need to connect the sub-filters between them. To do so, click the `Connection` button in the tool bar, or simply press '`space`' to begin the drawing of a new connection.
 
@@ -74,7 +76,7 @@ I.e. all the action you can perform on the workspace.
 | Save   | File   | Save current workspace, save as if not saved before. |
  Save as | File   | Save the current workspace in a new xml file. |
 | Open   | File   | Open an existing filter in the workspace. The xml file should be valid and specifiy filters positions. |
-| Export standalone filter | File | Export the filter currently represented by the workspace as a standalone filter. I.e., the composite filters in it are included and there is no need to re-read the file describing them. |
+| Export standalone filter | File | Export the filter currently represented by the workspace as a standalone filter. I.e., the composite filters in it are included and there is no need to re-read the file describing them. It will mainly be used when specifying a filter file for a composite filter. |
 | Quit   | File   | Quit the program. Shortcut: `Ctrl`+`Q`. |
 | Zoom in | View  | Zooms in in the workspace. |
 | Zoom out | View | Zooms out in the workspace. |

@@ -15,6 +15,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
  */
 public class IntegratorFilter implements FeedbackableFilter {
 
+    public static final double DEF_SAMPLING_FREQUENCY = 44100.0;
+
     private double integral;
     private double fs;
 
@@ -31,7 +33,7 @@ public class IntegratorFilter implements FeedbackableFilter {
      * Constructor, uses default sampling frequency 44100 Hz
      */
     public IntegratorFilter() {
-        this(44100.0);
+        this(DEF_SAMPLING_FREQUENCY);
     }
 
 
@@ -76,4 +78,9 @@ public class IntegratorFilter implements FeedbackableFilter {
     public HashMap<String, String> getParameters() {
         return new HashMap<String, String>();
     }
+
+    /**
+     * @return      The sampling frequency, in Hz.
+     */
+    public double getSamplingFrequency() { return fs; }
 }
