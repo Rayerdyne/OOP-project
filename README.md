@@ -30,14 +30,16 @@ I organized my code in three packages, prefixed by `be.uliege.straet.oop`:
 
 Also, here is for convenience ready to copy-paste commands to compile each of the package, and the `src` directory content (... ok that one is not that useful):
 
-```
+```sh
 javac -d bin -cp audio.jar src/be/uliege/straet/oop/filters/*.java
 javac -d bin -cp audio.jar:bin src/be/uliege/straet/oop/loader/*.java
 javac -d bin -cp audio.jar:bin src/be/uliege/straet/oop/gui/*.java
 javac -d bin -cp audio.jar:bin src/*.java
+# Or all at once
+javac -d bin -cp audio.jar $(find . -name "*.java")
 ```
 
-As you can see, the first package has to be built first. The `loader` package also requires the `filters` package to be built, and the `gui` package needs both.
+As you can see, the first package has to be built first. The `loader` package also requires the `filters` and `gui` package to be built. This is a bit strange and not convenient but. You could compile all at a time, as a pro with `find` command.
 
 ----------------------
 # `filter` package

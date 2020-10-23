@@ -17,6 +17,9 @@ import be.uliege.montefiore.oop.audio.FilterException;
  */
 public class DifferentiatorFilter implements WFilter {
 
+    public static final double DEF_SAMPLING_FREQUENCY = 
+        IntegratorFilter.DEF_SAMPLING_FREQUENCY;
+
     private double prev = 0;
     private double fs;
 
@@ -32,7 +35,7 @@ public class DifferentiatorFilter implements WFilter {
      * Constructor, uses default sampling frequency 44100 Hz
      */
     public DifferentiatorFilter() {
-        this(44100.0);
+        this(DEF_SAMPLING_FREQUENCY);
     }
 
     /**
@@ -73,4 +76,9 @@ public class DifferentiatorFilter implements WFilter {
     public HashMap<String, String> getParameters() {
         return new HashMap<String, String>();
     }
+
+    /**
+     * @return      The sampling frequency, in Hz.
+     */
+    public double getSamplingFrequency() { return fs; }
 }

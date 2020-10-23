@@ -24,6 +24,7 @@ import java.util.Vector;
 import be.uliege.straet.oop.filters.CompositeFilter;
 import be.uliege.straet.oop.filters.ConvolutionFilter;
 import be.uliege.straet.oop.filters.DelayFilter;
+import be.uliege.straet.oop.filters.DifferentiatorFilter;
 import be.uliege.straet.oop.filters.GainFilter;
 import be.uliege.straet.oop.filters.IntegratorFilter;
 import be.uliege.straet.oop.filters.WFilter;
@@ -431,6 +432,32 @@ public class WorkSpace extends JPanel implements KeyListener {
     public void addIntegrator() {     
         if (isBusy())  return; 
         addIntegrator(0, 0, 0, true, new IntegratorFilter());
+    }
+
+    /**
+     * Starts the placing of a integrator filter.
+     * @param x     The x coordinate of the filter
+     * @param y     The y coordinate of the filter
+     * @param orientation The orientation of the filter: the filter is oriented
+     *                    "normally" + orientation * 90° clockwise.
+     * @param selected    Wether or not the user is dragging this filter when 
+     *                    it is placed.
+     * @param filter      An `Differentiator` that will be used in that 
+     *                    `DDifferentiatorFilter`
+     */
+    public DraggableFilter addDifferentiator(int x, int y, int orientation, 
+        boolean selected, DifferentiatorFilter filter) {
+        DDifferentiatorFilter df = new DDifferentiatorFilter(x, y, this, 
+            selected, filter);
+        filters.add(df);
+        return df;
+    }
+
+    /** Starts the placing of a default integrator filter at (0, 0), needs 
+     * focus */
+    public void addDifferentiator() {     
+        if (isBusy())  return; 
+        addDifferentiator(0, 0, 0, true, new DifferentiatorFilter());
     }
 
     /**

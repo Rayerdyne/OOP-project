@@ -35,7 +35,8 @@ public class Window extends JFrame {
                                        new HashMap<JButton, Procedure>();
     private static HashMap<JButton, Procedure> buttonsActionsDown = 
                                        new HashMap<JButton, Procedure>();
-    String[] extraFilters = {"Composite", "Convolution", "Integrator"};
+    String[] extraFilters = {
+        "Composite", "Convolution", "Integrator", "Differentiator" };
     JComboBox<String> filterComboBox = new JComboBox<String>(extraFilters);
 
     public static void main(String[] args) {
@@ -82,12 +83,9 @@ public class Window extends JFrame {
                     WorkSpace.showError("Could not add the composite filter", e);
                 }
                 break;
-            case "Convolution": 
-                ws.addConvolution();
-                break;
-            case "Integrator": 
-                ws.addIntegrator();
-                break;
+            case "Convolution":     ws.addConvolution();    break;
+            case "Integrator":      ws.addIntegrator();     break;
+            case "Differentiator":  ws.addDifferentiator(); break;
             default:
                 break;
         }
