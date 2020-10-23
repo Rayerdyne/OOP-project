@@ -11,11 +11,25 @@ import java.util.HashMap;
  */
 public class SineGenerator extends Generator {
 
+    public static final double DEF_FREQUENCY = 440.0;
+    public static final double DEF_AMPLITUDE = 1.0;
+    public static final double DEF_SAMPLING_FREQUENCY = 
+        IntegratorFilter.DEF_SAMPLING_FREQUENCY;
+
     private double amplitude;
     private double omega_0; // to avoid computing each time the same value
 
+
     /**
-     * Consrtuctor with default sampling frequency 44100 Hz
+     * Constructor with default values: DEF_FREQUENCY, DEF_AMPLITUDE and 
+     * DEF_SAMPLING_FREQUENCY
+     */
+    public SineGenerator() {
+        this(DEF_FREQUENCY, DEF_AMPLITUDE, DEF_SAMPLING_FREQUENCY);
+    }
+
+    /**
+     * Constructor with default sampling frequency DEF_SAMPLING_FREQUENCY Hz
      * 
      * @param frequency                 The frequency of sine wave to produce,
      *                                  in Hz
@@ -59,4 +73,14 @@ public class SineGenerator extends Generator {
         hm.put("amplitude", String.valueOf(amplitude));
         return hm;
     }
+
+    /**
+     * @return      The frequency of generated sine wave.
+     */
+    public double getFrequency() { return omega_0 / (2.0 * Math.PI); }
+
+    /**
+     * @return      The amplitude of generated sine wave.
+     */
+    public double getAmplitude() { return amplitude; }
 }

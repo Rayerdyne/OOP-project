@@ -36,10 +36,8 @@ public class DDifferentiatorFilter extends DraggableFilter {
 
         filterR = filter;
         filterL = new DifferentiatorFilter(filter.getSamplingFrequency());
-        parameterD = new double[] { 
-            DifferentiatorFilter.DEF_SAMPLING_FREQUENCY };
-        parameterS = Double.toString(
-            DifferentiatorFilter.DEF_SAMPLING_FREQUENCY);
+        parameterD = new double[] { filter.getSamplingFrequency() };
+        parameterS = Double.toString(filter.getSamplingFrequency());
     }
 
     public DDifferentiatorFilter(int x, int y, WorkSpace ws, boolean selected) {

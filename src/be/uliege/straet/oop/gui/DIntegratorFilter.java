@@ -39,8 +39,8 @@ public class DIntegratorFilter extends DraggableFilter {
 
         filterR = filter;
         filterL = new IntegratorFilter(filter.getSamplingFrequency());
-        parameterD = new double[] { IntegratorFilter.DEF_SAMPLING_FREQUENCY };
-        parameterS = Double.toString(IntegratorFilter.DEF_SAMPLING_FREQUENCY);
+        parameterD = new double[] { filter.getSamplingFrequency() };
+        parameterS = Double.toString(filter.getSamplingFrequency());
     }
 
     public DIntegratorFilter(int x, int y, WorkSpace ws, boolean selected) {

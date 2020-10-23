@@ -36,7 +36,8 @@ public class Window extends JFrame {
     private static HashMap<JButton, Procedure> buttonsActionsDown = 
                                        new HashMap<JButton, Procedure>();
     String[] extraFilters = {
-        "Composite", "Convolution", "Integrator", "Differentiator" };
+        "Composite", "Convolution", "Integrator", "Differentiator", 
+        "Sine generator", "Centered square generator", "Up square generator"};
     JComboBox<String> filterComboBox = new JComboBox<String>(extraFilters);
 
     public static void main(String[] args) {
@@ -50,7 +51,7 @@ public class Window extends JFrame {
     public Window(String name) {
         super(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(610, 377);
+        setSize(710, 377);
         buttonsActionsUp.put(new JButton("Connection"), () -> {
             try { ws.addConnection(); }
             catch (FilterException e) {
@@ -86,6 +87,11 @@ public class Window extends JFrame {
             case "Convolution":     ws.addConvolution();    break;
             case "Integrator":      ws.addIntegrator();     break;
             case "Differentiator":  ws.addDifferentiator(); break;
+            case "Sine generator":  ws.addSineGenerator();  break;
+            case "Centered square generator":  
+                ws.addCenteredSquareGenerator();            break;
+            case "Up square generator":
+                ws.addUpSquareGenerator();                  break;
             default:
                 break;
         }

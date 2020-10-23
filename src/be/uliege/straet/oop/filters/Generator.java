@@ -10,6 +10,9 @@ package be.uliege.straet.oop.filters;
  */
 public abstract class Generator implements FeedbackableFilter {
 
+    public static final double DEF_SAMPLING_FREQUENCY = 
+        IntegratorFilter.DEF_SAMPLING_FREQUENCY;
+
     protected double t = 0;
     protected double dt;
 
@@ -49,5 +52,10 @@ public abstract class Generator implements FeedbackableFilter {
     public void reset() {
         t = 0;
     }
+
+    /**
+     * @return      The sampling frequency, in Hz.
+     */
+    public double getSamplingFrequency() { return 1.0 / dt; }
 
 }

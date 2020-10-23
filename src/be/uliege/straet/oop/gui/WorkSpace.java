@@ -21,12 +21,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Vector;
 
+import be.uliege.straet.oop.filters.CenteredSquareGenerator;
 import be.uliege.straet.oop.filters.CompositeFilter;
 import be.uliege.straet.oop.filters.ConvolutionFilter;
 import be.uliege.straet.oop.filters.DelayFilter;
 import be.uliege.straet.oop.filters.DifferentiatorFilter;
 import be.uliege.straet.oop.filters.GainFilter;
 import be.uliege.straet.oop.filters.IntegratorFilter;
+import be.uliege.straet.oop.filters.SineGenerator;
+import be.uliege.straet.oop.filters.UpSquareGenerator;
 import be.uliege.straet.oop.filters.WFilter;
 import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.Writer;
@@ -357,9 +360,9 @@ public class WorkSpace extends JPanel implements KeyListener {
      */
     public DraggableFilter addConvolution(int x, int y, int orientation, 
         boolean selected, ConvolutionFilter filter) {
-        DConvolutionFilter df = new DConvolutionFilter(x, y, this, selected, filter);
-        filters.add(df);
-        return df;
+        DConvolutionFilter cf = new DConvolutionFilter(x, y, this, selected, filter);
+        filters.add(cf);
+        return cf;
     }
     
     /** Starts the placing of a composite filter of name cfName at (0, 0), 
@@ -382,7 +385,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Starts the placing of a convolution filter.
+     * Starts the placing of a composite filter.
      * @param x     The x coordinate of the filter
      * @param y     The y coordinate of the filter
      * @param orientation The orientation of the filter: the filter is oriented
@@ -404,9 +407,9 @@ public class WorkSpace extends JPanel implements KeyListener {
         FilterException, ParserConfigurationException, SAXException,
         IOException {
         
-        DCompositeFilter df = new DCompositeFilter(x, y, this, selected);
-        filters.add(df);
-        return df;
+        DCompositeFilter cf = new DCompositeFilter(x, y, this, selected);
+        filters.add(cf);
+        return cf;
     }
 
     /**
@@ -422,9 +425,9 @@ public class WorkSpace extends JPanel implements KeyListener {
      */
     public DraggableFilter addIntegrator(int x, int y, int orientation, 
         boolean selected, IntegratorFilter filter) {
-        DIntegratorFilter df = new DIntegratorFilter(x, y, this, selected, filter);
-        filters.add(df);
-        return df;
+        DIntegratorFilter intf = new DIntegratorFilter(x, y, this, selected, filter);
+        filters.add(intf);
+        return intf;
     }
 
     /** Starts the placing of a default integrator filter at (0, 0), needs 
@@ -435,14 +438,14 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Starts the placing of a integrator filter.
+     * Starts the placing of a differentiator filter.
      * @param x     The x coordinate of the filter
      * @param y     The y coordinate of the filter
      * @param orientation The orientation of the filter: the filter is oriented
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      An `Differentiator` that will be used in that 
+     * @param filter      An `DifferentiatorFilter` that will be used in that 
      *                    `DDifferentiatorFilter`
      */
     public DraggableFilter addDifferentiator(int x, int y, int orientation, 
@@ -458,6 +461,85 @@ public class WorkSpace extends JPanel implements KeyListener {
     public void addDifferentiator() {     
         if (isBusy())  return; 
         addDifferentiator(0, 0, 0, true, new DifferentiatorFilter());
+    }
+
+    /**
+     * Starts the placing of a sine generator.
+     * @param x     The x coordinate of the filter
+     * @param y     The y coordinate of the filter
+     * @param orientation The orientation of the filter: the filter is oriented
+     *                    "normally" + orientation * 90° clockwise.
+     * @param selected    Wether or not the user is dragging this filter when 
+     *                    it is placed.
+     * @param filter      A `Sinegenerator` that will be used in that 
+     *                    `DSineGenerator`
+     */
+    public DraggableFilter addSineGenerator(int x, int y, int orientation, 
+        boolean selected, SineGenerator filter) {
+        DSineGenerator sg = new DSineGenerator(x, y, this, 
+            selected, filter);
+        filters.add(sg);
+        return sg;
+    }
+
+    /** Starts the placing of a default sine generator at (0, 0), needs 
+     * focus */
+    public void addSineGenerator() {     
+        if (isBusy())  return; 
+        addSineGenerator(0, 0, 0, true, new SineGenerator());
+    }
+
+    /**
+     * Starts the placing of a centered square generator.
+     * @param x     The x coordinate of the filter
+     * @param y     The y coordinate of the filter
+     * @param orientation The orientation of the filter: the filter is oriented
+     *                    "normally" + orientation * 90° clockwise.
+     * @param selected    Wether or not the user is dragging this filter when 
+     *                    it is placed.
+     * @param filter      A `CenteredSquaregenerator` that will be used in that
+     *                    `DCenteredSquareGenerator`
+     */
+    public DraggableFilter addCenteredSquareGenerator(int x, int y, 
+        int orientation, boolean selected, CenteredSquareGenerator filter) {
+        DCenteredSquareGenerator sg = new DCenteredSquareGenerator(x, y, this,
+            selected, filter);
+        filters.add(sg);
+        return sg;
+    }
+
+    /** Starts the placing of a default centered square generator at (0, 0), 
+     * needs focus */
+    public void addCenteredSquareGenerator() {     
+        if (isBusy())  return; 
+        addCenteredSquareGenerator(0, 0, 0, true, 
+            new CenteredSquareGenerator());
+    }
+
+    /**
+     * Starts the placing of a up square generator.
+     * @param x     The x coordinate of the filter
+     * @param y     The y coordinate of the filter
+     * @param orientation The orientation of the filter: the filter is oriented
+     *                    "normally" + orientation * 90° clockwise.
+     * @param selected    Wether or not the user is dragging this filter when 
+     *                    it is placed.
+     * @param filter      A `UpSquaregenerator` that will be used in that 
+     *                    `DUpSquareGenerator`
+     */
+    public DraggableFilter addUpSquareGenerator(int x, int y, int orientation, 
+        boolean selected, UpSquareGenerator filter) {
+        DUpSquareGenerator sg = new DUpSquareGenerator(x, y, this, 
+            selected, filter);
+        filters.add(sg);
+        return sg;
+    }
+
+    /** Starts the placing of a default up square generator at (0, 0), needs 
+     * focus */
+    public void addUpSquareGenerator() {     
+        if (isBusy())  return; 
+        addUpSquareGenerator(0, 0, 0, true, new UpSquareGenerator());
     }
 
     /**

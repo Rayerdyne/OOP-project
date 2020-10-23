@@ -22,6 +22,7 @@ public class DraggableFilter extends Draggable {
     public static final int STRING = 2;
     public static final int VARIABLE_DECLARATION = 3;
     public static final int FILE_PATH = 4;
+    public static final int MULTIPLE_DOUBLE = 5;
 
     protected Color color = WorkSpace.DEF_FOREGROUND;
     protected FixedBall[] inputs;
@@ -113,8 +114,9 @@ public class DraggableFilter extends Draggable {
 
     /**
      * Sets the property of a filter based on a double argument (i.e., rounded
-     * for the delay filters). --> Will be overriden.
-     * Missing a way to handle the convolution filter.
+     * for the delay filters). 
+     * 
+     * --> Will be overriden.
      * @param d
      */
     public void setParameter(double[] d) {
@@ -140,6 +142,7 @@ public class DraggableFilter extends Draggable {
             case STRING:
                 setParameter(getParameterInput());
                 break;
+            case MULTIPLE_DOUBLE:
             case DOUBLE:
                 String oldValue = parameterS;
                 parameterS = getParameterInput();

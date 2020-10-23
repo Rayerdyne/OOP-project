@@ -224,6 +224,7 @@ public class NodeData {
                                                      parameters)[0];
                 filter = new SineGenerator(frequency, amplitude);
                 break; }
+                //TODO coucou c ici
             case "square_up_generator": {
                 double frequency = getNodeParamValue(attributes, "frequency", 
                                                      parameters)[0];
@@ -236,7 +237,7 @@ public class NodeData {
                                                      parameters)[0];
                 double amplitude = getNodeParamValue(attributes, "amplitude", 
                                                      parameters)[0];
-                filter = new SquareCenteredGenerator(frequency, amplitude); 
+                filter = new CenteredSquareGenerator(frequency, amplitude); 
                 break; }
             case "noise_generator": {
                 double amplitude = getNodeParamValue(attributes, "amplitude", 

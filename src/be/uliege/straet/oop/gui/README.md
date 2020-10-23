@@ -3,7 +3,7 @@
 Here is a not exhaustive (idk, I'm not sure it will be but I'll try) manual of my program - its GUI.
 
 <p align="center">
-    <img src="Screenshot_uptodate.png" />
+    <img src="Screenshot.png" />
 </p>
 
 ### The workspace
