@@ -31,21 +31,18 @@ public class SineGenerator extends Generator {
     /**
      * Constructor with default sampling frequency DEF_SAMPLING_FREQUENCY Hz
      * 
-     * @param frequency                 The frequency of sine wave to produce,
-     *                                  in Hz
-     * @param amplitude                 The amplitude of sine wave to produce
+     * @param frequency     The frequency of sine wave to produce, in Hz
+     * @param amplitude     The amplitude of sine wave to produce
      */
     public SineGenerator(double frequency, double amplitude) {
         this(frequency, amplitude, 44100.0);
     }
 
     /**
-     * Consrtuctor depending on sampling frequency
-     * 
-     * @param frequency                 The frequency of sine wave to produce,
-     *                                  in Hz
-     * @param amplitude                 The amplitude of sine wave to produce
-     * @param fs                        The sampling frequency, in Hz
+     * Consrtuctor depending on sampling frequency.
+     * @param frequency     The frequency of sine wave to produce, in Hz
+     * @param amplitude     The amplitude of sine wave to produce
+     * @param fs            The sampling frequency, in Hz
      */
     public SineGenerator(double frequency, double amplitude, double fs) {
         omega_0 = 2.0 * Math.PI * frequency;
@@ -55,8 +52,7 @@ public class SineGenerator extends Generator {
 
     /**
      * Compute the output, increments t.
-     * 
-     * @param input Remains from Filter interface, unused
+     * @param input         Remains from Filter interface, unused
      */
     public double[] computeOneStep(double[] input) {
     t += dt;

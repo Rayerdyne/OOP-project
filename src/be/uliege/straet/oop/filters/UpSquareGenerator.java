@@ -3,12 +3,8 @@ package be.uliege.straet.oop.filters;
 import java.util.HashMap;
 
 /**
- * <p>INFO0062 - Object-Oriented Programming project.</p>
- *
- * <p>A basic square wave generator, switches from 0 to amplitude and 
- * vice-versa</p>
- *
- * <p>François Straet</p>
+ * A basic square wave generator, switches from 0 to amplitude and 
+ * vice-versa
  */ 
 public class UpSquareGenerator extends Generator {
 
@@ -22,16 +18,15 @@ public class UpSquareGenerator extends Generator {
 
     /**
      * Constructor with default values: DEF_FREQUENCY, DEF_AMPLITUDE and 
-     * DEF_SAMPLING_FREQUENCY
+     * DEF_SAMPLING_FREQUENCY.
      */
     public UpSquareGenerator() {
         this(DEF_FREQUENCY, DEF_AMPLITUDE, DEF_SAMPLING_FREQUENCY);
     }
     
     /**
-     * Constructor with default sampling frequency 44100 Hz
-     * 
-     * @param frequency The frequency of sine wave to produce, in Hz
+     * Constructor with default sampling frequency 44100 Hz.
+     * @param frequency         The frequency of sine wave to produce, in Hz
      * @param amplitude         The amplitude of sine wave to produce
      */
     public UpSquareGenerator(double frequency, double amplitude) {
@@ -39,12 +34,10 @@ public class UpSquareGenerator extends Generator {
     }
 
     /**
-     * Constructor depending on sampling frequency
-     * 
-     * @param frequency                 The frequency of sine wave to produce, 
-     *                                  in Hz
-     * @param amplitude                 The amplitude of sine wave to produce
-     * @param fs                        The sampling frequency, in Hz
+     * Constructor depending on sampling frequency.
+     * @param frequency     The frequency of sine wave to produce, in Hz
+     * @param amplitude     The amplitude of sine wave to produce
+     * @param fs            The sampling frequency, in Hz
      */
     public UpSquareGenerator(double frequency, double amplitude, double fs) {
         this.frequency = frequency;
@@ -54,7 +47,6 @@ public class UpSquareGenerator extends Generator {
 
     /**
      * Compute the output, increments t.
-     * 
      * @param input Remains from Filter interface, unused
      */
     public double[] computeOneStep(double[] input) {
@@ -80,12 +72,12 @@ public class UpSquareGenerator extends Generator {
     }
 
     /**
-     * @return      The frequency of generated sine wave.
+     * @return      The frequency of generated square signal.
      */
     public double getFrequency() { return frequency; }
 
     /**
-     * @return      The amplitude of generated sine wave.
+     * @return      The amplitude of generated square signal.
      */
     public double getAmplitude() { return amplitude; }
 }

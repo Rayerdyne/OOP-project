@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * <p>INFO0062 - Object-Oriented Programming project.</p>
- *
  * <p>A basic noise generator.</p>
- *
- * <p>François Straet</p>
+ * 
+ * <p>Note that the value predicted for sample t+1 (with `incomintOutput` 
+ * method) differs from the value given for next sample (i.e. when time will
+ * have passed). I don't care: it's noise.</p>
  */
 public class NoiseGenerator extends Generator {
 
@@ -25,16 +25,16 @@ public class NoiseGenerator extends Generator {
     }
 
     /**
-     * Constructor
-     * @param amplitude           The amplitude of noise to produce
+     * Constructor.
+     * @param amplitude     The amplitude of noise to produce
      */
     public NoiseGenerator(double amplitude) {
         this.amplitude2 = 2.0 * amplitude;
     }
 
     /**
-     * Compute the output
-     * @param input Remains from Filter interface, unused
+     * Computes the output.
+     * @param input     Remains from `Filter` interface, unused
      */
     public double[] computeOneStep(double[] input) {
     return new double[] { amplitude2 * (random.nextDouble() - 0.5) };
@@ -53,7 +53,7 @@ public class NoiseGenerator extends Generator {
     }
 
     /**
-     * @return The amplitude of generated noise.
+     * @return      The amplitude of generated noise.
      */
     public double getAmplitude() { return amplitude2/2.0; }
 }

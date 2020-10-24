@@ -4,16 +4,13 @@ import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
+/** 
  * <p>This class provides another type of basic block, a simple differentiator,
  * i.e. it returns (n°i+1 - n°i) / dt, where dt is the time step, so that
- * dt = 1 / fs, where fs is the sampling frequency.</p>
+ * dt = 1 / fs, where fs is the sampling frequency.<p>
  * 
  * <p>As expected, if it is applied "alone" on a sound, the output is just 
  * noise. </p>
- * 
- * <p>François Straet</p>
  */
 public class DifferentiatorFilter implements WFilter {
 
@@ -25,14 +22,14 @@ public class DifferentiatorFilter implements WFilter {
 
     /**
      * Constructor.
-     * @param fs                The sampling frequency
+     * @param fs        The sampling frequency
      */
     public DifferentiatorFilter (double fs) {
         this.fs = fs;
     }
 
     /**
-     * Constructor, uses default sampling frequency 44100 Hz
+     * Constructor, uses default sampling frequency 44100 Hz.
      */
     public DifferentiatorFilter() {
         this(DEF_SAMPLING_FREQUENCY);
@@ -40,8 +37,8 @@ public class DifferentiatorFilter implements WFilter {
 
     /**
      * Computes one step of the filter, i.e. returns 
-     * (input - prev) * fs
-     * @param input                 The input to compute.
+     * (input - prev) * fs.
+     * @param input     The input to compute.
      */
     public double[] computeOneStep(double[] input) throws FilterException {
         if (input.length != nbInputs()) {
@@ -56,18 +53,21 @@ public class DifferentiatorFilter implements WFilter {
 
 
     /**
-     * Implementation of nbInputs and nbOutputs...
+     * @return      The number of inputs, i.e. 1
      */
     public int nbInputs() {
         return 1;
     }
 
+    /**
+     * @return      The number of outputs, i.e. 1
+     */
     public int nbOutputs() {
         return 1;
     }
 
     /**
-     * Reset method for filter interface. Resets prev to 0
+     * Reset method for filter interface. Resets prev to 0.
      */
     public void reset() {
         prev = 0;

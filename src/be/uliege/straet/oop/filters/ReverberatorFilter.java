@@ -1,16 +1,12 @@
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
- * <p>This class implements the reverberator, as described in 
- * <a href=http://www.run.montefiore.ulg.ac.be/~grailet/docs/INFO0062/2019-2020/reverberator.pdf">
- * the course webpage</a></p>
- *
- * <p>François Straet</p>
- */
-
 package be.uliege.straet.oop.filters;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
+/** 
+ * This class implements the reverberator, as described in 
+ * <a href="http://www.run.montefiore.ulg.ac.be/~grailet/docs/INFO0062/2019-2020/reverberator.pdf">
+ * the course webpage</a>
+ */
 public class ReverberatorFilter extends CompositeFilter {
 
     AdditionFilter afm = new AdditionFilter();  // middle adder
@@ -81,7 +77,7 @@ public class ReverberatorFilter extends CompositeFilter {
 
     /**
      * connectBi functions:
-     * makes the connections needed to build the ith block.
+     * makes the connections needed to build the i-th part of the whole filter.
      * @throws FilterException      If some connection could not be made.
      */
     private void connectB1() throws FilterException {
@@ -101,6 +97,11 @@ public class ReverberatorFilter extends CompositeFilter {
         B1.connectBlockToOutput(df, 0, 0);
     }
 
+    /**
+     * connectBi functions:
+     * makes the connections needed to build the i-th part of the whole filter.
+     * @throws FilterException      If some connection could not be made.
+     */
     private void connectB2() throws FilterException {
         AllPassFilter apfi = new AllPassFilter(0.25, 2734);       // 62 ms
         AllPassFilter apfo = new AllPassFilter(0.5, 3837, apfi); // 87 ms
@@ -118,6 +119,11 @@ public class ReverberatorFilter extends CompositeFilter {
         B2.connectBlockToOutput(dfl, 0, 0);
     }
 
+    /**
+     * connectBi functions:
+     * makes the connections needed to build the i-th part of the whole filter.
+     * @throws FilterException      If some connection could not be made.
+     */
     private void connectB3() throws FilterException {
         CompositeFilter cf = new CompositeFilter(1, 1);
 
@@ -143,7 +149,7 @@ public class ReverberatorFilter extends CompositeFilter {
     
     /**
      * Return a newly created low-pass filter.
-     * This could alternatively be another class extending CompositeFilter.
+     * This could alternatively be another class extending `CompositeFilter`.
      * @param gain                  The gain used for the filter
      * @param delay                 The delay used for the filter
      * @return                      The newly created filter

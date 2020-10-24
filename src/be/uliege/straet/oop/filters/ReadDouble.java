@@ -1,5 +1,6 @@
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
+package be.uliege.straet.oop.filters;
+
+/** 
  * <p>This class just holds reference to a WriteDouble, but only with a value()
  * method, so that we only can read it.</p>
  * 
@@ -13,11 +14,7 @@
  * 
  * <p>Added: reference to the object holding the associated ReadDouble, and the 
  * correponding output index, for being able to write in xml file.</p>
- * 
- * <p>François Straet</p>
  */
-
-package be.uliege.straet.oop.filters;
 
 public class ReadDouble {
     private boolean isConnectedToInput = false;
@@ -26,19 +23,18 @@ public class ReadDouble {
     private int i;
 
     /**
-     * Constructs a object referencing a value
-     * @param ref                   A reference to the WriteDouble to 'follow'
+     * Constructs a object referencing a value.
+     * @param ref       A reference to the `WriteDouble` to 'follow'
      */
     public ReadDouble(WriteDouble ref) {
         this.ref = ref;
     }
 
     /**
-     * Construct the referencing tool to a WriteDouble
-     * @param ref                   A reference to the WriteDouble to 'follow'
-     * @param source                The block that holds the WriteDouble
-     * @param i                     The index of this WriteDouble regarding 
-     *                              the source.
+     * Construct the referencing tool to a `WriteDouble`.
+     * @param ref       A reference to the WriteDouble to 'follow'
+     * @param source    The block that holds the WriteDouble
+     * @param i         The index of this WriteDouble regarding the source
      */
     public ReadDouble(WriteDouble ref, Block source, int i) {
         this(ref);
@@ -46,13 +42,11 @@ public class ReadDouble {
         this.i = i;
     }
 
-
     /**
      * Constructs a referencing tool, assuming it is an internal filter 
-     * connection to a composite filter's input
-     * @param ref                   A reference to the WriteDouble to 'follow'
-     * @param i                     The index of the input, regarding the 
-     *                              composite filter
+     * connection to a composite filter's input.
+     * @param ref       A reference to the WriteDouble to 'follow'
+     * @param i         The index of the input, regarding the composite filter
      */
     public ReadDouble(WriteDouble ref, int i) {
         this(ref);
@@ -61,28 +55,29 @@ public class ReadDouble {
     }
 
     /**
-     * @return                      The value currently stored in the 
-     *                              referenced WriteDouble
+     * @return      The value currently stored in the referenced `WriteDouble`
      */
     public double value() {
         return ref.value;
     }
 
     /**
-     * @return                      The index of the output regarding the 
-     *                              block that holds it.
+     * @return      The index of the output regarding the block that holds it.
      */
     public int outputIndex() {
         return i;
     }
 
     /**
-     * @return                      The block that holds the WriteDouble.
+     * @return      The `Block` that holds this `WriteDouble`.
      */
     public Block source() {
         return source;
     }
 
+    /**
+     * @return      true if this `WriteDouble` is connected to an input.
+     */
     public boolean connectedToInput() {
         return isConnectedToInput;
     }

@@ -1,15 +1,11 @@
-/** INFO0062 - Object-Oriented Programming
- *  Project.
- * 
- * Exception that will be thrown when something goes wrong in blocks.
- * 
- * François Straet
- */
 
 package be.uliege.straet.oop.filters;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
+/** 
+ * Exception that will be thrown when something goes wrong in blocks.
+ */
 public class BlockException extends FilterException {
     /**
      * To please the compiler...

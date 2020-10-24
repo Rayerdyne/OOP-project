@@ -1,15 +1,3 @@
-/** INFO0062 - Object-Oriented Programming
- *  Project.
- * 
- * This class holds the information that a filter needs to "propagate", i.e.
- * references to its inputs and outputs.
- * 
- * A Block has references to read-only object for each of its inputs, and write
- *  and read objects for its input, in order to avoid instanciating  several 
- * times a read-only reference to the same output.
- * 
- * François Straet
- */
 
 package be.uliege.straet.oop.filters;
 
@@ -21,6 +9,14 @@ import java.util.HashMap;
 import be.uliege.montefiore.oop.audio.FilterException;
 import be.uliege.straet.oop.loader.Writer;
 
+/** 
+ * <p>This class holds the information that a filter needs to "propagate", i.e.
+ * references to its inputs and outputs.</p>
+ * 
+ * <p>A Block has references to read-only object for each of its inputs, and 
+ * write and read objects for its input, in order to avoid instanciating  
+ * several times a read-only reference to the same output.</p>
+ */
 public class Block {
     private static final int SLEEPING = 0;
     private static final int WAIT_INPUT = 1;
@@ -47,7 +43,7 @@ public class Block {
 
     /**
      * Contructor.
-     * @param filter                The filter associated
+     * @param filter                The filter associated ot the `Block`
      */
     public Block(WFilter filter) throws BlockException {
         this(filter, null);
@@ -56,7 +52,7 @@ public class Block {
     /**
      * Contructor.
      * @param filter                The filter associated
-     * @param id                    The id given to the Block
+     * @param id                    The id given to the `Block`
      * @throws BlockException       If something went wrong, i.e. the class 
      *                              is not found, or the filter is null.
      */
@@ -99,22 +95,12 @@ public class Block {
             idInUse.add(id);
         }
 
-        // System.out.println("dabou: " + this.id);
-
         state = SLEEPING;
     }
 
     /**
-     * <p>Parents of a Blocks</p>
-     * @return  A vector containing all the parents of the Block
-     *
-    public Vector<Block> parents() {
-        return this.parents;
-    }*/
-
-    /**
-     * <p>Returns the name of the node for representing the filter contained 
-     * in the Block</p>
+     * Returns the name of the node for representing the filter contained 
+     * in the `Block`.
      * @return                  The name for the xml node
      * @throws BlockException   If the class name has not been found
      */
@@ -123,14 +109,14 @@ public class Block {
     }
 
     /**
-     * @return                  The filter contained in this Block
+     * @return      The filter contained in this `Block`
      */
     public WFilter filter() {
         return filter;
     }
 
     /**
-     * Refreshes the input with new values referenced in inputRefs
+     * Refreshes the input with new values referenced in inputRefs.
      */
     private void refreshInput() {
         for (int i = 0; i < filter.nbInputs(); i++) {
@@ -139,9 +125,9 @@ public class Block {
     }
 
     /**
-     * Returns a reference to a ReadDouble containing the o-th output.
-     * @param o                 The index of output to return a reference to
-     * @return                  The ReadDouble to the o-th output
+     * Returns a reference to a `ReadDouble` containing the o-th output.
+     * @param o     The index of output to return a reference to
+     * @return      The ReadDouble to the o-th output
      */
     public ReadDouble outputRead(int o) throws BlockException {
         
@@ -150,15 +136,14 @@ public class Block {
     }
 
     /**
-     * Returns the Block current state.
-     * @return                  The Block current state
+     * @return      The `Block` current state
      */
     private int state() {
         return state;
     }
 
     /**
-     * Resets the Block state to SLEEPING, at the beginning of each 
+     * Resets the `Block` state to SLEEPING, at the beginning of each 
      * computation of output.
      */
     public void resetState() {
@@ -167,18 +152,18 @@ public class Block {
 
     /**
      * Wether or not the Blocks contains a class implementing 
-     * FeedbackableFilter.
-     * @return                      true when FeedbackableFilter, else false
+     * `FeedbackableFilter`.
+     * @return      true when `FeedbackableFilter`, else false
      */
     private boolean isFeedbackableFilter() {
         return isFeedbackableFilter;
     }
 
     /**
-     * Connects output of another Block, as an input of this (Block).
-     * @param b1                    The Block to connect
-     * @param o1                    The index of the output of the Block
-     * @param i2                    The index of the input of this Block 
+     * Connects output of another `Block`, as an input of this (Block).
+     * @param b1                    The `Block` to connect
+     * @param o1                    The index of the output of the `Block`
+     * @param i2                    The index of the input of this `Block` 
      *                              filter (this)
      * @throws BlockException       If the connection could not be done, e.g.
      *                              the input-output index are invalid.
@@ -195,9 +180,9 @@ public class Block {
     }
 
     /**
-     * Connects the i1 input of the Block to an arbitrary ReadDouble input,
-     * in order to connect a Block to the input of the composite filter.
-     * @param input                 The ReadDouble to connect
+     * Connects the i1 input of the `Block` to an arbitrary ReadDouble input,
+     * in order to connect a `Block` to the input of the composite filter.
+     * @param input                 The `ReadDouble` to connect
      * @param i1                    The index of the input we connect.
      * @throws BlockException       If the connection could not be done, e.g.
      *                              the input-output index are invalid.
@@ -222,9 +207,9 @@ public class Block {
 
     /**
      * Computes one step of the whole "Block diagram", and returns a vector
-     * containing the Blocks that will have to be updated.
-     * @param updateAfter               A vector of Block containing the Blocks
-     *                                  that will have to be updated.
+     * containing the `Block`s that will have to be updated.
+     * @param updateAfter               A vector of `Block` containing the 
+     *                                  `Block`s that will have to be updated.
      * @throws BlockException           If something impossible occured in the
      *                                  connections (impossible feedback loop,
      *                                  no input connection...)
@@ -294,25 +279,25 @@ public class Block {
     }
 
     /**
-     * @return          The id associated to this Block
+     * @return      The id associated to this `Block`
      */
     public String id() {  return this.id;  }
 
     /**
-     * @return          The number of inputs of the filter contained in this 
-     *                  Block
+     * @return      The number of inputs of the filter contained in this 
+     *              `Block`
      */
     public int nbInputs() { return filter.nbInputs(); }
 
     /**
-     * @return          The number of outputs of the filter contained in this 
-     *                  Block
+     * @return      The number of outputs of the filter contained in this
+     *                  `Block`
      */
     public int nbOutputs() { return filter.nbOutputs(); }
 
     /**
-     * @return          i-th reference to ReadDouble describing the i-th input 
-     *                  of the Block.
+     * @return      i-th reference to `ReadDouble` describing the i-th input of
+     *              `Block`.
      */
     public ReadDouble input(int i) throws BlockException {
         if (i >= inputRefs.length)
@@ -322,8 +307,8 @@ public class Block {
     }
 
     /**
-     * @return          i-th reference to ReadDouble describing the i-th 
-     *                  output of the Block.
+     * @return      i-th reference to `ReadDouble` describing the i-th output
+     *              of the `Block`.
      */
     public ReadDouble output(int i) throws BlockException {
         if (i >= outputRefs.length)
@@ -350,7 +335,7 @@ public class Block {
     }
 
     /**
-     * <p>Returns the name in xml files associated to an instance name</p>
+     * Returns the name in xml files associated to an instance name.
      * @param s                 
      * @return                  The name to describe that instance in xml files
      * @throws BlockException   If s is not found

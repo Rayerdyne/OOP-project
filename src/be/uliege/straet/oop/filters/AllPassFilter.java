@@ -2,12 +2,8 @@ package be.uliege.straet.oop.filters;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** INFO0062 - Object-Oriented Programming
- *  Project.
- * 
- * This class implements an all-pass filter used for the reverberator
- *
- * François Straet
+/** 
+ * This class implements an all-pass filter used for the reverberator.
  */
 public class AllPassFilter extends CompositeFilter {
 
@@ -19,7 +15,7 @@ public class AllPassFilter extends CompositeFilter {
     AdditionFilter afb = new AdditionFilter();
 
     /**
-     * Constructs a classic all-pass filter given its delay and its gain
+     * Constructs a classic all-pass filter given its delay and its gain.
      * @param gain                  The gain to use
      * @param delay                 The delay to use
      * @throws FilterException      If some filter could not be instanciated
@@ -38,7 +34,7 @@ public class AllPassFilter extends CompositeFilter {
      * reverberator.
      * @param gain                  The gain to use
      * @param delay                 The delay to use
-     * @param inner                 The inner composite filter to nest in
+     * @param inner                 The inner `CompositeFilter` to nest in
      * @throws FilterException      If some filter could not be instanciated
      */
     public AllPassFilter (double gain, int delay, CompositeFilter inner) 
@@ -59,7 +55,7 @@ public class AllPassFilter extends CompositeFilter {
     }
 
     /**
-     * Connects what is common between nested and normal allpass filter
+     * Connects what is common between nested and normal allpass filter.
      * @param gain                  The gain used
      * @param delay                 The delay used
      * @throws FilterException      If some filter could not be instanciated

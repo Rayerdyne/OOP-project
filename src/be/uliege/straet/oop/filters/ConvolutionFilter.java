@@ -5,12 +5,9 @@ import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
- * <p>This filter represents a delay filter, i.e. it shifts its input by a 
- * constant number of samples.</p>
- * 
- * <p>François Straet</p>
+/** 
+ * This filter represents a delay filter, i.e. it shifts its input by a 
+ * constant number of samples.
  */
 public class ConvolutionFilter implements WFilter {
 
@@ -23,7 +20,7 @@ public class ConvolutionFilter implements WFilter {
     
     /**
      * Constructor.
-     * @param v                         The vector to convolute with
+     * @param v     The vector to convolute with
      */
     public ConvolutionFilter (double[] v) {
         values = new double[v.length];
@@ -33,7 +30,7 @@ public class ConvolutionFilter implements WFilter {
     }
 
     /**
-     * Constructor, uses default vector DEF_VECTOR
+     * Constructor, uses default vector DEF_VECTOR.
      */
     public ConvolutionFilter() {
         this(DEF_VECTOR);
@@ -67,12 +64,15 @@ public class ConvolutionFilter implements WFilter {
     }
 
     /**
-     * Implementation of nbInputs and nbOutputs...
+     * @return      The number of inputs, i.e. 1.
      */
     public int nbInputs() {
         return 1;
     }
 
+    /**
+     * @return      The number of outputs, i.e. 1.
+     */
     public int nbOutputs() {
         return 1;
     }
@@ -99,7 +99,9 @@ public class ConvolutionFilter implements WFilter {
         return hm;
     }
 
-
+    /**
+     * @return      The vector of doubles the fitler convolutes with.
+     */
     public double[] getVector() { return v;  }
 
 }

@@ -7,19 +7,16 @@ import java.util.Collection;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
- * <p>Composite filter class, to build and hold "block diagrams" of filters.
- * </p>
- * 
- * <p>François Straet</p>
+/**
+ * Composite filter class, to build and hold "block diagrams" of filters.
  */
  public class CompositeFilter implements WFilter {
 
     private int nbInputs = 0, nbOutputs = 0;
     private HashMap<WFilter, Block> blocks;
-    private Vector<Block> outputBlocks; // blocks connected to output, starting 
-                                        // point when computing output.
+    /** blocks connected to output, starting point when computing output */
+    private Vector<Block> outputBlocks;  
+
     private boolean[] isOutputConnected;
     private ReadDouble[] outputRefs;
     private WriteDouble[] inputObjs;
@@ -64,10 +61,11 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * `DCompositeFilter` whose file representing the desired filter has not 
      * been set.
      */
-    public CompositeFilter() {
+    public CompositeFilter() {}
 
-    }
-
+    /**
+     * @return      All the `Block`s contained in that `CompositeFilter`
+     */
     public Collection<Block> blocks() {
         return this.blocks.values();
     }
@@ -76,7 +74,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * Adds a block to the composite filter (unconnected). Does nothing if the
      * filter is already addded.
      * @param f                     The filter to add.
-     * @throws FilterException      If the Block could not be instanciated
+     * @throws FilterException      If the `Block` could not be instanciated
      */
     public void addBlock(WFilter f) throws FilterException {
         if (!blocks.containsKey(f)) {
@@ -88,8 +86,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * Adds a block with an id to the composite filter (unconnected). Does 
      * nothing if the filter is already addded.
      * @param f                     The filter to add.
-     * @param id                    The id of the Block to create
-     * @throws FilterException      If the Block could not be instanciated
+     * @param id                    The id of the `Block` to create
+     * @throws FilterException      If the `Block` could not be instanciated
      */
     public void addBlock(WFilter f, String id) throws FilterException {
         if (!blocks.containsKey(f)) {
@@ -200,7 +198,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
     }
 
     /**
-     * Gets the blocks corresponding to a given filter.
+     * Gets the `Block` corresponding to a given filter.
      * @param f                     The filter to get the corresponding block
      * @throws FilterException      If the filter could not be found, i.e. it
      *                              has not been added
@@ -231,16 +229,14 @@ import be.uliege.montefiore.oop.audio.FilterException;
     }
 
     /**
-     * @return                      The number of inputs of the composite 
-     *                              filter
+     * @return      The number of inputs of the composite filter
      */
     public int nbInputs() {
         return nbInputs;
     }
 
     /**
-     * @return                      The number of outputs of the composite
-     *                              filter
+     * @return      The number of outputs of the composite filter
      */
     public int nbOutputs() {
         return nbOutputs;
@@ -248,7 +244,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
     /**
      * @param i                 The index of the output we want to get
-     * @return                  A ReadDouble to the i-th output of the filter
+     * @return                  A `ReadDouble` to the i-th output of the filter
      * @throws FilterException  If index exceeds the output count.
      */
     public ReadDouble output(int i) throws FilterException {
@@ -260,7 +256,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
     /**
      * Reset method for filter interface, i.e. resets all filters present in
-     * the composite filter (even if they are not connected)
+     * the composite filter (even if they are not connected).
      */
     public void reset() {
         blocks.forEach((f, b) -> {

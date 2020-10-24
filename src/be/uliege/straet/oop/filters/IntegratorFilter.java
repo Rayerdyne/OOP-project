@@ -4,14 +4,11 @@ import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
- * <p>This class provides another type of primitive block, a simple integrator.
+/** 
+ * This class provides another type of primitive block, a simple integrator.
  * It computs the integral by the trapeze method, so that it adds at each step
  * input * dt,  where dt is the time step, so that dt = 1 / fs, where fs is the
- * sampling frequency.</p>
- * 
- * <p>François Straet</p>
+ * sampling frequency.
  */
 public class IntegratorFilter implements FeedbackableFilter {
 
@@ -30,7 +27,7 @@ public class IntegratorFilter implements FeedbackableFilter {
     }
 
     /**
-     * Constructor, uses default sampling frequency 44100 Hz
+     * Constructor, uses default sampling frequency 44100 Hz.
      */
     public IntegratorFilter() {
         this(DEF_SAMPLING_FREQUENCY);
@@ -39,7 +36,7 @@ public class IntegratorFilter implements FeedbackableFilter {
 
     /**
      * Computes one step of the filter, i.e. returns this.gain * input.
-     * @param input                 The input to compute.
+     * @param input     The input to compute.
      */
     public double[] computeOneStep(double[] input) throws FilterException {
         if (input.length != nbInputs()) {
@@ -51,21 +48,23 @@ public class IntegratorFilter implements FeedbackableFilter {
         return new double[] { integral };
     }
 
-
     /**
-     * Implementation of nbInputs and nbOutputs...
+     * @return      The number of inputs, i.e. 1.
      */
     public int nbInputs() {
         return 1;
     }
 
+    /**
+     * @return      The number of outputs, i.e. 1.
+     */
     public int nbOutputs() {
         return 1;
     }
 
     /**
      * Reset method for filter interface. In this case, resets the integral
-     * value to 0
+     * value to 0.
      */
     public void reset() {
         integral = 0;

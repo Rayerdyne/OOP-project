@@ -5,12 +5,9 @@ import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
- * <p>This filter represents the GainFilter, i.e. it scales its input by a 
- * constant number.</p>
- *
- * <p>François Straet</p>
+/** 
+ * This filter represents the GainFilter, i.e. it scales its input by a 
+ * constant number.
  */
 public class GainFilter implements WFilter {
 
@@ -27,7 +24,7 @@ public class GainFilter implements WFilter {
     }
 
     /**
-     * Constructor with default gain value of DEF_GAIN
+     * Constructor with default gain value of DEF_GAIN.
      */
     public GainFilter() {
         this(DEF_GAIN);
@@ -49,14 +46,14 @@ public class GainFilter implements WFilter {
 
 
     /**
-     * @return                      The number of inputs, i.e. 1.
+     * @return      The number of inputs, i.e. 1.
      */
     public int nbInputs() {
         return 1;
     }
 
     /**
-     * @return                      The number of outputs, i.e. 1.
+     * @return      The number of outputs, i.e. 1.
      */
     public int nbOutputs() {
         return 1;

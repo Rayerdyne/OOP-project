@@ -5,19 +5,16 @@ import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
 
-/** <p>INFO0062 - Object-Oriented Programming project.</p>
- * 
- * <p>This filter represents a delay filter, i.e. it shifts its input by a 
- * constant number of samples.</p>
- * 
- * <p>François Straet</p>
+/** 
+ * This filter represents a delay filter, i.e. it shifts its input by a 
+ * constant number of samples.
  */
 public class DelayFilter implements FeedbackableFilter {
     public static final int DEF_SHIFT = 22000;
 
     private double[] values;
-    private int index;  // as we store inputs in an circular array, the index
-                        // we are reading at.
+    /** As data is stored in a circular array, index we are reading at */
+    private int index;  
     
     /**
      * Constructor.
@@ -31,14 +28,14 @@ public class DelayFilter implements FeedbackableFilter {
     }
 
     /**
-     * Constructor with default shift of DEF_SHIFT
+     * Constructor with default shift of DEF_SHIFT.
      */
     public DelayFilter() {
         this(DEF_SHIFT);
     }
 
     /**
-     * <p>Computes one step of the filter, i.e.<ul> 
+     * <p>Computes one step of the filter, i.e.:<ul> 
      * <li> Reads the value stored at current position, ans store it in output
      * </li>
      * <li> Increment index and place the input there</li>
@@ -62,14 +59,14 @@ public class DelayFilter implements FeedbackableFilter {
     }
 
     /**
-     * @return                      The number of inputs, i.e. 1.
+     * @return      The number of inputs, i.e. 1.
      */
     public int nbInputs() {
         return 1;
     }
 
     /**
-     * @return                      The number of outputs, i.e. 1.
+     * @return      The number of outputs, i.e. 1.
      */
     public int nbOutputs() {
         return 1;
@@ -87,8 +84,8 @@ public class DelayFilter implements FeedbackableFilter {
     }
 
     /**
-     * Returns the incoming value, to handle feeback in CompositeFilter
-     * @return                      The next output of the filter
+     * Returns the incoming value, to handle feeback in `CompositeFilter`.
+     * @return      The next output of the filter
      */
     public double[] incomingOutput() {
         return new double[] { values[index] };
@@ -100,5 +97,9 @@ public class DelayFilter implements FeedbackableFilter {
         return hm;
     }
 
+    /**
+     * @return      Returns the number of samples the `DelayFilter` shifts its
+     *              input by
+     */
     public int getShift() { return values.length; }
 }
