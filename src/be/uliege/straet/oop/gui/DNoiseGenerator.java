@@ -14,6 +14,14 @@ public class DNoiseGenerator extends DraggableFilter {
     public static final int GAP = 0;
     public static final int RADIUS = 10;
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param filter A `NoiseGenerator` that will be used in that filter
+     */
     public DNoiseGenerator(int x, int y, WorkSpace ws, boolean selected,
         NoiseGenerator filter) {
         super(x, y, ws, selected);
@@ -42,6 +50,13 @@ public class DNoiseGenerator extends DraggableFilter {
         parameterS = Double.toString(parameterD[0]);
     }
 
+    /**
+     * Constructor with default `NoiseGenerator`.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DNoiseGenerator(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws, selected, new NoiseGenerator());
     }

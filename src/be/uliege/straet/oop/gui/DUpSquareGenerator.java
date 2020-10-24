@@ -14,6 +14,14 @@ public class DUpSquareGenerator extends DraggableFilter {
     public static final int SQUARE_SIZE = 8;
     public static final int GAP = 10;
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param filter A `DUpSquareGenerator` that will be used in that filter
+     */
     public DUpSquareGenerator(int x, int y, WorkSpace ws, boolean selected,
         UpSquareGenerator filter) {
         super(x, y, ws, selected);
@@ -47,6 +55,13 @@ public class DUpSquareGenerator extends DraggableFilter {
                      Double.toString(parameterD[2]);
     }
 
+    /**
+     * Constructor with default `UpSquareGenerator`.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DUpSquareGenerator(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws, selected, new UpSquareGenerator());
     }

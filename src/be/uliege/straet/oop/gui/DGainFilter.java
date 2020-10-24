@@ -9,6 +9,14 @@ public class DGainFilter extends DraggableFilter {
     public static final int HEIGHT = 21;
     public static final int WIDTH = 34; 
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param filter A `GainFilter` that will be used in that filter
+     */
     public DGainFilter(int x, int y, WorkSpace ws, boolean selected, 
         GainFilter filter) {
         super(x, y, ws, selected);
@@ -38,6 +46,13 @@ public class DGainFilter extends DraggableFilter {
         parameterS = Double.toString(GainFilter.DEF_GAIN);
     }
 
+    /**
+     * Constructor with default `GainFilter`.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DGainFilter(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws, selected, new GainFilter());
     }

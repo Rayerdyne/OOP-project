@@ -11,6 +11,14 @@ public class DDifferentiatorFilter extends DraggableFilter {
     public static final int HEIGHT = 30;
     public static final int WIDTH = 20;
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param filter A `DifferentiatorFilter` that will be used in that filter
+     */
     public DDifferentiatorFilter(int x, int y, WorkSpace ws, boolean selected,
         DifferentiatorFilter filter) {
         super(x, y, ws, selected);
@@ -40,6 +48,13 @@ public class DDifferentiatorFilter extends DraggableFilter {
         parameterS = Double.toString(filter.getSamplingFrequency());
     }
 
+    /**
+     * Constructor with default `DifferentiatorFilter`.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DDifferentiatorFilter(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws, selected, new DifferentiatorFilter());
     }

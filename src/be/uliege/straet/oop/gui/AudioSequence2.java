@@ -26,13 +26,24 @@ import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * <p>Decompiled (by Procyon v0.5.36) version of `AudioSequence` to add the 
+ * ability to have multiple input files.</p>
+ * <p>If one input is "too short" comparing to the others, it'll put zeros.</p>
+ */
 public class AudioSequence2 {
 
     private short[] leftChannel;
     private short[] rightChannel;
     private AudioFormat format;
 
-    /*  I modified this constructor...  */
+    /**
+     * Constructor.
+     * @param pathname      The path to the file to open and load in this 
+     *                      `AudioSequence`
+     * @throws AudioSequenceException   If the input file could not be opened 
+     *                                  or loaded
+     */
     public AudioSequence2(final String pathname) throws AudioSequenceException {
         try {
             if (!pathname.endsWith(".csv")) {
@@ -88,6 +99,13 @@ public class AudioSequence2 {
         }
     }
     
+    /**
+     * Filters the array with given `Filter`.
+     * @param array     The sequence of number to filter
+     * @param filter    The `Filter` to apply
+     * @throws FilterException      If the `Filter` could not process the 
+     *                              input.
+     */
     private static void filter(final short[] array, final Filter filter) 
         throws FilterException {
         for (int i = 0; i < array.length; ++i) {
@@ -96,24 +114,41 @@ public class AudioSequence2 {
         filter.reset();
     }
     
+    /**
+     * Filters the left and the right channels of the `AudioSequence` with 
+     * given `Filter`.
+     * @param filter                The `Filter` to apply
+     * @throws FilterException      If the `Filter` could not process the 
+     *                              input.
+     */
     public void filter(final Filter filter) throws FilterException {
         filter(this.leftChannel, filter);
         filter(this.rightChannel, filter);
     }
 
-    /* <My added stuff> */
+    /**
+     * (I added this method)
+     * @return      The right channel of the `AudioSequence`
+     */
     public short[] getRightChannel() {
         /*for (int i = 0; i < 500; i++) {
             System.out.print("  " + rightChannel[444444 + i]);
         }*/
         return rightChannel;}
+    /**
+     * (I added this method)
+     * @return      The right channel of the `AudioSequence`
+     */
     public short[] getLeftChannel() {   return leftChannel;   }
+    /**
+     * @return      The number of the samples in that `AudioSequence`
+     */
     public long getSize() {  return leftChannel.length;  }
 
     /**
-     * Get the incoming right or left channels values
+     * <p>Get the incoming right or left channels values.</p>
      * 
-     * If we exceed the audiosequence's lenght, then we return 0.
+     * <p>If we exceed the audiosequence's lenght, then we return 0.</p>
      * @param i         The index of the value we want
      * @param isRight   If true, we return the value for the right channel, 
      *                  otherwise the value of the left channel
@@ -127,7 +162,7 @@ public class AudioSequence2 {
     }
 
     /**
-     * Sets a value of the audio sequence (in order to save some memory)
+     * Sets a value of the audio sequence (in order to save some memory).
      * @param i         The index of the value we want to set
      * @param isRight   If true, we modify the right channel, the left 
      *                  otherwise
@@ -141,7 +176,11 @@ public class AudioSequence2 {
     }
     /* </My added stuff> */
     
-    /*  I modified this function...  */
+    /**
+     * Outputs the computed output to a file.
+     * @param pathname      The path to the file to output to
+     * @throws AudioSequenceException   If we have a problem with the files...
+     */
     public void output(final String pathname) throws AudioSequenceException {
         try {
             if (!pathname.endsWith(".csv")) {

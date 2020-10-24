@@ -6,11 +6,11 @@ public class DOutputFilter extends DraggableFilter {
     public static final int RADIUS = 34; 
 
     /**
-     * Constructs a filter that represents an output
-     * @param x             Initial x coordinate
-     * @param y             Initial y coordinate
-     * @param ws            The `WorkSpace` the filter belongs to
-     * @param selected      Wether or not the filter is initally selected
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
      * @param oFileName     The name of the file in which the output will be 
      *                      written
      */

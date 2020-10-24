@@ -16,6 +16,10 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
 import be.uliege.straet.oop.filters.CompositeFilter;
 
+/**
+ * This class will run in parallel in order to compute some filter's output
+ * alongside having the reactive gui.
+ */
 public class Computer implements Runnable {
 
     public static final int SAMPLING_FREQUENCY = 44100;
@@ -57,11 +61,10 @@ public class Computer implements Runnable {
     private short[][] leftChannels;
 
     /**
-     * Constructs a Computer.
-     * 
-     * @param inputs An array of AudioSequence2 that will be inputted to the
-     *               composite filter
-     * @param cf     The CompositeFilter we want to apply to the inputs
+     * Constructs a `Computer`.
+     * @param inputs   An array of `AudioSequence2` that will be inputted to 
+     *                 the `CompositeFilter`
+     * @param cf     The `CompositeFilter` we want to apply to the inputs
      * @param type   Sets the type of computation to do: PLAY_AUDIO, 
      *               COMPUTE_FILE or APPLY_TO_VOICE
      * @throws ComputationException If the number of inputs mismatch the number
@@ -93,11 +96,10 @@ public class Computer implements Runnable {
     }
 
     /**
-     * Constructs a Computer.
-     * 
-     * @param inputs   An array of AudioSequence2 that will be inputted to the
-     *                 composite filter
-     * @param cf       The CompositeFilter we want to apply to the inputs
+     * Constructs a `Computer`
+     * @param inputs   An array of `AudioSequence2` that will be inputted to 
+     *                 the `CompositeFilter`
+     * @param cf       The `CompositeFilter` we want to apply to the inputs
      * @param filename The name of the output wav file
      * @throws ComputationException If the number of inputs mismatch the number
      *                              AudioSequences.
@@ -112,6 +114,16 @@ public class Computer implements Runnable {
                 "than one sound.");
     }
 
+    /**
+     * Construcs a `Computer`, for applying the filter to a voice sample.
+     * @param inputs An array of `AudioSequence2` that will be inputted to the
+     *               composite filter
+     * @param cfR    The right `CompositeFilter`, to apply to the voice.
+     * @param cfL    The left `CompositeFilter`, to apply to the voice.
+     * @param remote An array of `int`s, remote value representing the 
+     *               computation's state.
+     * @throws ComputationException     If something goes wrong...
+     */
     public Computer(AudioSequence2[] inputs, CompositeFilter cfR, 
         CompositeFilter cfL, int[] remote) throws ComputationException {
 
@@ -150,6 +162,10 @@ public class Computer implements Runnable {
         }
     }
 
+    /**
+     * Computes the output based on the inputs described by the input filters
+     * and writes it to the file(s) specified by the output filters.
+     */
     public void runFile() {
         setChannels();
 
@@ -238,6 +254,9 @@ public class Computer implements Runnable {
         cfL.reset();
     }
 
+    /**
+     * Computes the output of the filter applied on a voice sample.
+     */
     public void runVoice() {
         // Assume that the TargetDataLine, line, has already
         // been obtained and opened.
@@ -272,6 +291,15 @@ public class Computer implements Runnable {
         runAudio(true);
     }
 
+    /**
+     * Computes one step of the given, right or left filter on the given input.
+     * @param i         The index of the step
+     * @param isRight   If we compute the step of right or left filter. If 
+     *                  true, we compute the step of the right filter.
+     * @return          The output of the filter at that step.
+     * @throws FilterException  If the computation of the output raises an
+     *                          `Exception`.
+     */
     private short computeOneStep(long i, boolean isRight) 
         throws FilterException {
 
@@ -298,6 +326,10 @@ public class Computer implements Runnable {
         }
     }
 
+    /**
+     * Handles the changes of behaviour requested while computing the output,
+     * e.g. pausing the play, aborting...
+     */
     public synchronized int manageRequests() {
         if (abort)
             return ABORT;
@@ -312,11 +344,21 @@ public class Computer implements Runnable {
         return CONTINUE;
     }
 
+    /** Pauses the play of the output. */
     public synchronized void pause()  {  paused = true;    }
+    /** Starts the play of the output. */
     public synchronized void play()   {  paused = false;   }
+    /** Toggles the paused state of the output. */
     public synchronized void toggle() {  paused = !paused; }
+    /** Stops the play of the output. */
     public synchronized void end()    {  abort = true;     }
+    /**
+     * @return      Wether or not the play of the ouptut is paused
+     */
     public boolean isAudioPaused()    {  return paused;    }
 
+    /**
+     * @return      The size in number of sample of the audio
+     */
     public long getAudioSize() {  return audioSize;  }
 }

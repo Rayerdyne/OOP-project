@@ -14,6 +14,14 @@ public class DIntegratorFilter extends DraggableFilter {
     public static final int SYMBOL_HEIGHT = 20;
     public static final int SYMBOL_RADIUS = 8;
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param filter A `IntegratorFilter` that will be used in that filter
+     */
     public DIntegratorFilter(int x, int y, WorkSpace ws, boolean selected,
         IntegratorFilter filter) {
         super(x, y, ws, selected);
@@ -43,6 +51,13 @@ public class DIntegratorFilter extends DraggableFilter {
         parameterS = Double.toString(filter.getSamplingFrequency());
     }
 
+    /**
+     * Constructor with default `IntegratorFilter`.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DIntegratorFilter(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws, selected, new IntegratorFilter());
     }

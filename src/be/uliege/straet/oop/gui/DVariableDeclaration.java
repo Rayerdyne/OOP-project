@@ -13,12 +13,29 @@ public class DVariableDeclaration extends DraggableFilter {
     private double variableValue;
     private String variableDefinition;
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param varName   The name of the parameter the "filter" will hold
+     * @param varDefinition     The definition of the parameter the "filter"
+     *                          will hold
+     */
     public DVariableDeclaration(int x, int y, WorkSpace ws, boolean selected,
         String varName, String varDefinition) {
         this(x, y, ws, selected);
         change(varName, varDefinition);
         } 
 
+    /**
+     * Constructor with undefined parameter name and definition.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DVariableDeclaration(int x, int y, WorkSpace ws, boolean selected) {
         super(x, y, ws, selected);
         
@@ -69,6 +86,12 @@ public class DVariableDeclaration extends DraggableFilter {
         ws.repaint();
     }
 
+    /**
+     * Edits this parameter, and triggers refresh on all parameters already
+     * set.
+     * @param newVarName
+     * @param newVarDefinition
+     */
     private void change(String newVarName, String newVarDefinition) {
         double d[];
         try {
@@ -89,7 +112,13 @@ public class DVariableDeclaration extends DraggableFilter {
                                     " (" + variableValue + ")";
     }
 
+    /**
+     * @return      The name of the parameter held in this "filter"
+     */
     public String getVariableName() { return variableName; }
+    /**
+     * @return      The value of the parameter held in this "filter"
+     */
     public double getVariableValue() { return refreshVariableValue(); }
     @Override
     public String getParameterDefinition() {  return variableDefinition; }

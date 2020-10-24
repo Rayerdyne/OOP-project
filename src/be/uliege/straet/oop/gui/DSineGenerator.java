@@ -14,6 +14,14 @@ public class DSineGenerator extends DraggableFilter {
     public static final int ARC_RADIUS = 8;
     public static final int GAP = 0;
 
+    /**
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     * @param filter A `DSineGenerator` that will be used in that filter
+     */
     public DSineGenerator(int x, int y, WorkSpace ws, boolean selected,
         SineGenerator filter) {
         super(x, y, ws, selected);
@@ -48,6 +56,13 @@ public class DSineGenerator extends DraggableFilter {
 
     }
 
+    /**
+     * Constructor with default `SineGenerator`.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
+     */
     public DSineGenerator(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws, selected, new SineGenerator());
     }

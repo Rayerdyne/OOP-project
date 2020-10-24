@@ -10,11 +10,11 @@ public class DInputFilter extends DraggableFilter {
     private AudioSequence2 audioSequence;
 
     /**
-     * Constructs a filter that represents an input
-     * @param x             Initial x coordinate
-     * @param y             Initial y coordinate
-     * @param ws            The `WorkSpace` the filter belongs to
-     * @param selected      Wether or not the filter is initally selected
+     * Constructor.
+     * @param x     The x coordinate of the filter to place in the `WorkSpace`
+     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param ws    The `WorkSpace` it belongs to
+     * @param selected  If true, the user is currently dragging this filter
      * @param iFileName     The name of the file in which the input will be 
      *                      read 
      */
@@ -49,8 +49,18 @@ public class DInputFilter extends DraggableFilter {
         audioSequence = new AudioSequence2(parameterS);
     }
 
+    /**
+     * @return  The `AudioSequence2` represented by this input filter
+     */
     public AudioSequence2 getAudioSequence() {  return audioSequence;  }
 
+    /**
+     * x coordinates of vertices of regular polygon.
+     * @param n     The number of sides of the plolygon
+     * @param r     The radius of the polygon
+     * @return      An array of int containing the x coordinates of a regular
+     *              polygon of radius r with n sides
+     */
     public static int[] xRegPolygon(int n, int r) {
         int[] x = new int[n];
         for (int i = 0; i < n; i++) {
@@ -59,6 +69,13 @@ public class DInputFilter extends DraggableFilter {
         }
         return x;
     }
+    /**
+     * y coordinates of vertices of regular polygon.
+     * @param n     The number of sides of the plolygon
+     * @param r     The radius of the polygon
+     * @return      An array of int containing the y coordinates of a regular
+     *              polygon of radius r with n sides
+     */
     public static int[] yRegPolygon(int n, int r) {
         int[] y = new int[n];
         for (int i = 0; i < n; i++) {
