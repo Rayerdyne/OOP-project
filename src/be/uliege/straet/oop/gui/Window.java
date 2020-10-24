@@ -53,17 +53,17 @@ public class Window extends JFrame {
         super(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(710, 377);
+        buttonsActionsUp.put(new JButton("Other: "), () -> {
+                addSelectedFilter();
+            });
+        buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
+        buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
         buttonsActionsUp.put(new JButton("Connection"), () -> {
             try { ws.addConnection(); }
             catch (FilterException e) {
                 System.out.println(e.getMessage());
             }  });
-            buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
-            buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
-                    buttonsActionsUp.put(new JButton("Other: "), () -> {
-                        addSelectedFilter();
-                    });
-            buttonsActionsUp.put(new JButton("Addition"), () -> {ws.addAddition();});
+        buttonsActionsUp.put(new JButton("Addition"), () -> {ws.addAddition();});
 
         buttonsActionsDown.put(new JButton("Variable"), 
             () -> {ws.addVariableDeclaration();});

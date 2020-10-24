@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 public class Block {
     private static final int SLEEPING = 0;
@@ -268,7 +269,8 @@ public class Block {
      */
     private void moveOn() throws BlockException {
         if (!isFeedbackableFilter)
-            throw new BlockException("Tried to move on without input on a non-delay Block.");
+            throw new BlockException("Tried to move on without input on a " +
+                "non-delay Block.");
         
         double[] incoming = feedbackableFilter.incomingOutput();
         for (int i = 0; i < filter.nbOutputs(); i++)
@@ -333,17 +335,18 @@ public class Block {
 
     static {
         nameMap = new HashMap<String, String>();
-        nameMap.put("CompositeFilter"         , "composite");
-        nameMap.put("AdditionFilter"          , "addition");
-        nameMap.put("DelayFilter"             , "delay");
-        nameMap.put("GainFilter"              , "gain");
-        nameMap.put("ConvolutionFilter"       , "convolution");
-        nameMap.put("DifferentiatorFilter"    , "differentiator");
-        nameMap.put("IntegratorFilter"        , "integrator");
-        nameMap.put("NoiseGenerator"          , "noise_generator");
-        nameMap.put("SineGenerator"           , "sine_generator");
-        nameMap.put("SquareUpGenerator"       , "square_up_generator");
-        nameMap.put("SquareCenteredGenerator" , "square_centered_generator");
+        nameMap.put("CompositeFilter"      , Writer.NESTED_COMPOSITE_NODE_TAG);
+        nameMap.put("AdditionFilter"       , Writer.ADDITION_F_NODE_TAG);
+        nameMap.put("DelayFilter"          , Writer.DELAY_F_NODE_TAG);
+        nameMap.put("GainFilter"           , Writer.GAIN_F_NODE_TAG);
+        nameMap.put("ConvolutionFilter"    , Writer.CONVOLUTION_F_NODE_TAG);
+        nameMap.put("DifferentiatorFilter" , Writer.DIFFERENTIATOR_F_NODE_TAG);
+        nameMap.put("IntegratorFilter"     , Writer.INTEGRATOR_F_NODE_TAG);
+        nameMap.put("NoiseGenerator"       , Writer.NOISE_GEN_NODE_TAG);
+        nameMap.put("SineGenerator"        , Writer.SINE_GEN_NODE_TAG);
+        nameMap.put("UpSquareGenerator"    , Writer.UP_SQUARE_GEN_NODE_TAG);
+        nameMap.put("CenteredSquareGenerator", 
+            Writer.CENTERED_SQUARE_GEN_NODE_TAG);
     }
 
     /**

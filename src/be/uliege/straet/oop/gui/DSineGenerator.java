@@ -45,6 +45,7 @@ public class DSineGenerator extends DraggableFilter {
         parameterS = Double.toString(parameterD[0]) + ", " +
                      Double.toString(parameterD[1]) + ", " +
                      Double.toString(parameterD[2]);
+
     }
 
     public DSineGenerator(int x, int y, WorkSpace ws, boolean selected) {
@@ -71,8 +72,6 @@ public class DSineGenerator extends DraggableFilter {
     
     @Override
     public void setParameter(double[] d) {
-        if (d.length > 1)
-            return;
         parameterD = d;
         filterR = new SineGenerator(d[0], d[1], d[2]);
         filterL = new SineGenerator(d[0], d[1], d[2]);

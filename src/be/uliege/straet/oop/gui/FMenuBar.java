@@ -45,13 +45,13 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                 WorkSpace.showError("Could not add connection", e); 
             }  });
         miAdd.put(new JMenuItem("Output filter"), 
-                    () -> {  ws.addOutput();  });
+                    () -> {  ws.addOutput();    });
         miAdd.put(new JMenuItem("Gain filter"),
-                    () -> { ws.addGain();        });
+                    () -> { ws.addGain();       });
         miAdd.put(new JMenuItem("Input filter"), 
-                    () -> {  ws.addInput();  });
+                    () -> {  ws.addInput();     });
         miAdd.put(new JMenuItem("Delay filter"),
-                    () -> { ws.addDelay();       });
+                    () -> { ws.addDelay();      });
         miAdd.put(new JMenuItem("Composite filter"), 
             () -> {
             try { ws.addComposite(); }
@@ -59,9 +59,27 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                 WorkSpace.showError("Could not add the composite filter.", e);
             }  });
         miAdd.put(new JMenuItem("Addition filter"), 
-                    () -> { ws.addAddition();    });
+                    () -> { ws.addAddition();       });
         miAdd.put(new JMenuItem("Convolution filter"), 
                     () -> { ws.addConvolution();    });
+        miAdd.put(new JMenuItem("Composite filter"), () -> {
+            try { ws.addComposite(); }
+            catch (Exception e) {
+                WorkSpace.showError("Owww you got a BIG problem (should NOT " + 
+                    "happen)", e);
+            }  });
+        miAdd.put(new JMenuItem("Integrator filter"), 
+                    () -> { ws.addIntegrator();                 });
+        miAdd.put(new JMenuItem("Differentiator filter"), 
+                    () -> { ws.addDifferentiator();             });
+        miAdd.put(new JMenuItem("Sine generator"), 
+                    () -> { ws.addSineGenerator();              });
+        miAdd.put(new JMenuItem("Centered square generator"), 
+                    () -> { ws.addCenteredSquareGenerator();    });
+        miAdd.put(new JMenuItem("Up square generator"), 
+                    () -> { ws.addUpSquareGenerator();          });
+        miAdd.put(new JMenuItem("Noise generator"), 
+                    () -> { ws.addNoiseGenerator();             });
 
         miFile.put(new JMenuItem("Save"), 
                     () -> { ws.save();           });
