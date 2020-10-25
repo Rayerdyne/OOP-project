@@ -5,23 +5,38 @@ import java.awt.Point;
 import java.awt.Graphics;
 
 /**
- * This class represents a draggable ball that will guide the wires beteween
- * the different connection between filters.
+ * This class represents a draggable ball that will guide, "checkpoints" the 
+ * wires between the different connection between filters.
  */
 public class FreeBall extends Draggable {
 
     public static int BALL_RADIUS = 20;
     private Wire wire;
 
+    /**
+     * Constructor of a `FreeBall` at coordinates (0, 0).
+     * @param ws        The `WorkSpace` this `FreeBall` belongs to
+     * @param wire      The `Wire` this `FreeBall` is a checkpoint of
+     */
     public FreeBall(WorkSpace ws, Wire wire) {
         this(0, 0, ws, wire);
     }
 
+    /**
+     * Constructor of a `FreeBall` at coordinates (x, y).
+     * @param x         The x coordinate of the `FreeBall`
+     * @param y         The y coordinate of the `FreeBall`
+     * @param ws        The `WorkSpace` this `FreeBall` belongs to
+     * @param wire      The `Wire` this `FreeBall` is a checkpoint of
+     */
     public FreeBall(int x, int y, WorkSpace ws, Wire wire) {
         super(x, y, ws);
         this.wire = wire;
     }
 
+    /**
+     * @return      The `Wire` this `FreeBall` belongs to
+     */
     public Wire wire() { return wire; }
 
     @Override

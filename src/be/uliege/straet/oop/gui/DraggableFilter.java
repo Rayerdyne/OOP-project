@@ -15,6 +15,9 @@ import be.uliege.straet.oop.filters.WFilter;
 import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.NodeData;
 
+/**
+ * Superclass for the representations of the filters in the `WorkSpace`.
+ */
 public class DraggableFilter extends Draggable {
 
     public static final int NONE = 0;
@@ -35,17 +38,42 @@ public class DraggableFilter extends Draggable {
     private Vector<Wire> inConnectedWires = new Vector<Wire>();
     private Vector<Wire> outConnectedWires = new Vector<Wire>();
 
+    /**
+     * Constructs a `DraggableFilter` in `WorkSpace` at coordinates (x, y).
+     * @param x         x coordinate
+     * @param y         y coordinate
+     * @param ws        The `WorkSpace` the `Draggable` belongs to
+     */
     public DraggableFilter(int x, int y, WorkSpace ws) {
         super(x, y, ws);
     }
 
+    /**
+     * Constructs a `Draggable` that will be selected for positioning in given
+     * `WorkSpace`.
+     * @param x         The x coordinate
+     * @param y         The y coordinate
+     * @param ws        The `WorkSpace`
+     * @param selected  Wether or not the `Draggable` is selected wen created. 
+     */
     public DraggableFilter(int x, int y, WorkSpace ws, boolean selected) {
         super(x, y, ws, selected);
     }
 
+    /**
+     * @return      An array of `FixedBall`s that are the inputs of this filter
+     */
     public FixedBall[] inputs() { return inputs; }
+    /**
+     * @return      An array of `FixedBall`s that are the outputs of this filter
+     */
     public FixedBall[] outputs() { return outputs; }
 
+    /**
+     * Translates the filter.
+     * @param x     The change in x coordinate
+     * @param y     The change in y coordinate
+     */
     public void translateBox(int x, int y) {
         for (FixedBall fb : inputs) 
             fb.translate(x, y);
@@ -58,25 +86,36 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Returns the name of the parameter that characterizes the filter, i.e. 
-     * "gain", "delay", etc.
-     * Obviously, it sould be overriden.
+     * <p>Returns the name of the parameter that characterizes the filter, 
+     * i.e. "gain", "delay", etc.</p>
+     * <p>Obviously, it sould be overriden.</p>
      * @return      The name of the parameter
      */
     public String getParameterInfo() { return "Should not be visible"; }
 
+    /**
+     * @return      The definition of the parameter of this filter, i.e. the 
+     *              initial `String` that may contain a parameter's name
+     */
     public String getParameterDefinition() {  return parameterS;  }
 
     /**
-     * Returns the parameter type of the filter:
-     * - NONE or
-     * - DOUBLE or 
-     * - STRING
+     * <p>Returns the parameter type of the filter:<ul>
+     * <li>NONE or </li>
+     * <li>DOUBLE or</li> 
+     * <li>STRING or</li>
+     * <li>VARIABLE_DECLARATION or</li>
+     * <li>FILE_MATH or</li>
+     * <li>MULTIPLE_DOUBLE</li>
+     * </ul></p>
+     * <p>Will have to be overriden.</p>
+     * @return      The type of parameter of the filter
      */
     public int getParameterType() { return NONE; }
 
     /**
-     * Shows the dialog and returns the entered String.
+     * Shows the dialog and returns the entered `String`.
+     * @return      The `String` entered in the input dialog, `null` if none
      */
     public String getParameterInput() {
         return JOptionPane.showInputDialog("Enter new " 
@@ -84,11 +123,11 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Gets the path of a file
+     * Gets the path of a file.
      * @param saveFile  If true, select a file for saving (then the 
-     * file will be created), else the file should exist.
-     * @param extentions Allowed extentions for the file to select.
-     * @return  A `String` containing the path of the selected file
+     *                  file will be created), else the file should exist
+     * @param extentions    Allowed extentions for the file to select.
+     * @return              A `String` containing the path of the selected file
      */
     public String getFilePathInput(boolean saveFile, String... extentions) {
         JFileChooser chooser = new JFileChooser();
@@ -113,22 +152,20 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Sets the property of a filter based on a double argument (i.e., rounded
-     * for the delay filters). 
-     * 
-     * --> Will be overriden.
-     * @param d
+     * <p>Sets the property of a filter based on a double argument (i.e., 
+     * rounded for the delay filters). </p>
+     * <p>Will have to be overriden.</p>
+     * @param d     The array of parameters to set to this filter
      */
     public void setParameter(double[] d) {
         parameterD = d;
     }
 
     /**
-     * Sets the property of a filter based on a String argument that will be 
-     * parsed in double (i.e., rounded for the delay filters).
-     * --> Will be overriden.
-     * Missing a way to handle the convolution filter.
-     * @param s The String containing the value of the parameter.
+     * <p>Sets the property of a filter based on a String argument that will be
+     * parsed in double (i.e., rounded for the delay filters).</p>
+     * <p>Will have to be overriden.</p>
+     * @param s The `String` containing the definition of the parameter.
      */
     public void setParameter(String s) {
         if (s != null)
@@ -172,7 +209,7 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Parse a double[] from a String.
+     * Parse a `double[]` from a `String`.
      * @param s             The `String` to parse
      * @param parameters    A set of parameters
      * @return              The parsed array of double
@@ -190,6 +227,11 @@ public class DraggableFilter extends Draggable {
         return d;
     }
 
+    /**
+     * Refreshes the values of the parameters, needed when, for example, a
+     * parameter is changed from one value to another, so that the parameters
+     * of this filter has to be updated.
+     */
     public void refreshValue() {
         if (!dependsOnVariables(this))
             return;
@@ -207,9 +249,9 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * @param df  A `DraggableFilter` instance
-     * @return  Wether or not this instance should be updated after some 
-     *          changes made to already existing variables.
+     * @param df    A `DraggableFilter` instance
+     * @return      Wether or not this instance should be updated after some 
+     *              changes made to already existing variables.
      */
     private boolean dependsOnVariables(DraggableFilter df) {
         return !(df instanceof DInputFilter  ||
@@ -296,6 +338,12 @@ public class DraggableFilter extends Draggable {
             ws.delete(fb);
     }
 
+    /**
+     * Adds a connected `Wire` to this filter.
+     * @param wire      The `Wire` to add
+     * @param atInput   Wether or not the `Wire` is connected to one input of 
+     *                  this filter
+     */
     public void addConnectedWire(Wire wire, boolean atInput) {
         if (atInput)
             inConnectedWires.add(wire);

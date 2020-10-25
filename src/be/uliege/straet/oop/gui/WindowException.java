@@ -1,5 +1,8 @@
 package be.uliege.straet.oop.gui;
 
+/**
+ * Exception type that will be raised if something goes wrong in the window.
+ */
 public class WindowException extends Exception {
    /**
      * To please the compiler...

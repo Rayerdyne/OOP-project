@@ -5,7 +5,9 @@ import javax.swing.JOptionPane;
 import java.awt.Color;
 
 /**
- * Part of Unrelated thing inside this project
+ * <p>Part of Unrelated thing inside this project xD.</p>
+ * <p>This class is a checkpoint of the drawing, with the ability so set the
+ * interpolating method (linear or cubic) for the next points.</p>
  */
 public class NothingFilter extends DraggableFilter {
 
@@ -13,10 +15,24 @@ public class NothingFilter extends DraggableFilter {
     private boolean nextInterpMethodIsLin = true; 
     private double timeStamp;
 
+    /**
+     * Constructor.
+     * @param ws        The `WorkSpace` this `NothingFilter` belongs to
+     * @param nextInterpMethodIsLin If true, next interpolation method is 
+     *                              linear, else it's cubic
+     */
     public NothingFilter(WorkSpace ws, boolean nextInterpMethodIsLin) {
         this(0, 0, ws, nextInterpMethodIsLin);
     }
 
+    /**
+     * Constructor.
+     * @param x         The x coordinate of this `NothingFilter`
+     * @param y         The y coordinate of this `NothingFilter`
+     * @param ws        The `WorkSpace` this belongs to
+     * @param nextInterpMethodIsLin If true, next interpolation method is 
+     *                              linear, else it's cubic
+     */
     public NothingFilter(int x, int y, WorkSpace ws, 
         boolean nextInterpMethodIsLin) {
         super(x, y, ws, true);
@@ -46,10 +62,17 @@ public class NothingFilter extends DraggableFilter {
         selected = true;
     }
 
+    /**
+     * @return      Wether or not the next interpolation method is linear
+     */
     public boolean getNextInterpMethodIsLin() {
         return nextInterpMethodIsLin;
     }
 
+    /**
+     * @return      The time stamp of this `NothingFilter`, i.e. the time at 
+     *              wich the drawing will at this point.
+     */
     public double getTimeStamp() {
         return timeStamp;
     }

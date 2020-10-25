@@ -12,8 +12,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
 import be.uliege.straet.oop.loader.WriterException;
 
 /**
- * Custom menu with all features of this system...
- * (FilterMenBar)
+ * Custom menu bar with all features of this system...
+ * (FilterMenuBar)
  */
 public class FMenuBar extends JMenuBar implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -34,6 +34,10 @@ public class FMenuBar extends JMenuBar implements ActionListener {
     JMenu menuAdd = new JMenu("Add");
     HashMap<JMenuItem, Procedure> miAdd = new HashMap<JMenuItem, Procedure>();
 
+    /**
+     * Constructor.
+     * @param ws        The `WorkSpace` the menu bar is linked to
+     */
     public FMenuBar(WorkSpace ws) {
         super();
         this.ws = ws;

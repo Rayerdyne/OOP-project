@@ -7,9 +7,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * This class represents a ball that connects an input or an output to a given
- * filter.
- * Input will be green, and output blue.
+ * <p>This class represents a ball that connects an input or an output to a 
+ * given filter.</p>
+ * <p>Input `FixedBall`s will be green, and output ones blue.</p>
  */
 public class FixedBall implements MouseListener, Locatable {
 
@@ -26,7 +26,7 @@ public class FixedBall implements MouseListener, Locatable {
     private double prevZoom;
 
     /**
-     * Constructs a `FixedBall`
+     * Constructor.
      * @param x         The x coordinate
      * @param y         The y coordinate
      * @param isInput   Wether or not the `FixedBall` is the input of a filter
@@ -57,11 +57,21 @@ public class FixedBall implements MouseListener, Locatable {
         this(x, y, isInput, owner, 0);
     }
 
+    /**
+     * Translates this `FixedBall`.
+     * @param x     The change in x coordinate
+     * @param y     The change in y coordinate
+     */
     public void translate(int x, int y) {
         this.x += x;
         this.y += y;
     }
 
+    /**
+     * Paints this `FixedBall` on a `Graphics` with zoom factor.
+     * @param g         The `Graphics`
+     * @param zoom      The zoom factor
+     */
     public void paint(Graphics g, double zoom) {
         g.setColor(isInput ? INPUT_COLOR : OUTPUT_COLOR);
         int r = WorkSpace.zoom(FreeBall.BALL_RADIUS, zoom);
@@ -99,23 +109,48 @@ public class FixedBall implements MouseListener, Locatable {
     @Override public int getX() { return x; }
     @Override public int getY() { return y; }
 
+    /**
+     * Sets the x coordinate of this `FixedBall`.
+     * @param x     The x coordinate
+     */
     public void setX(int x) { this.x = x; }
+
+    /**
+     * Sets the y coordinate of this `FixedBall`.
+     * @param y     The y coordinate
+     */
     public void setY(int y) { this.y = y; }
 
-    public DraggableFilter owner() { return owner; }
-    public boolean isConnected() { return isConnected; }
-    public void setConnected(boolean connected) { isConnected = connected; }
     /**
-     * @return Wether or not the `FixedBall` is the input of a filter.
+     * @return      The `DraggableFilter` that owns this `FixedBall`
+     */
+    public DraggableFilter owner() { return owner; }
+
+    /**
+     * @return      Wether or not this `FixedBall` is connected to at least one
+     *              `Wire`
+     */
+    public boolean isConnected() { return isConnected; }
+
+    /**
+     * @param connected     The state of the connection to set to this 
+     *                      `FixedBall`
+     */
+    public void setConnected(boolean connected) { isConnected = connected; }
+
+    /**
+     * @return  Wether or not the `FixedBall` represents an input of the filter
+     *          it belongs to
      */
     public boolean isInput() { return isInput; }
     /**
-     * @return The index of the `FixedBall` as an input or output
+     * @return  Wether or not the `FixedBall` represents an output of the 
+     *          filter it belongs to
      */
     public int index() { return index; }
 
     /**
-     * Sets the highlight policy of this `FixedBall`
+     * Sets the highlight policy of this `FixedBall`.
      * @param isHighlightied    Wether or not this `FixedBall` is highlighted
      */
     public void setHighlighted(boolean isHighlited) { 

@@ -1,8 +1,8 @@
 package be.uliege.straet.oop.gui;
 
 /**
- * Reapeatedly sends repaint messages to a WorkSpace object, when a Draggable
- * object is selected.
+ * Reapeatedly sends repaint messages to a WorkSpace object, when a `Draggable`
+ * object is selected and dragged.
  */
 public class Updater extends Thread {
     private WorkSpace ws;
@@ -11,13 +11,18 @@ public class Updater extends Thread {
     private Wire wire;
     public static final int FPS = 30;
 
+    /**
+     * Constructor.
+     * @param ws        The `WorkSpace` this `Updater` updates
+     * @param hasWire   Wether or not we are drawing a `Wire`
+     */
     private Updater(WorkSpace ws, boolean hasWire) {
         this.ws = ws;
         this.hasWire = hasWire;
     }
 
     /**
-     * Builds an `Updater` that will make the `WorkSpace` to be repainted
+     * Constructs an `Updater` that will make the `WorkSpace` to be repainted
      * until the `Draggable` is released.
      * @param ws    The `WorkSpace`
      * @param d     The `Draggable`

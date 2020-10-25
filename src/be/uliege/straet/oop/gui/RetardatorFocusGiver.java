@@ -9,10 +9,18 @@ public class RetardatorFocusGiver implements Runnable {
 
     public WorkSpace ws;
 
+    /**
+     * Constructor.
+     * @param ws        The `WorkSpace` this will give the focus to
+     */
     public RetardatorFocusGiver(WorkSpace ws) {
         this.ws = ws;
     }
 
+    /**
+     * Sleeps TO_WAIT milliseconds then makes the `WorkSpace` request the 
+     * focus.
+     */
     public void run() {
         // System.out.println("Starting to wait");
         try {

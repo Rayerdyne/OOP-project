@@ -16,7 +16,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
 import javax.swing.JButton;
 
 /**
- * Holds the whole window
+ * Holds the whole window of the PROGRAM !
  */
 public class Window extends JFrame {
     /**
@@ -47,6 +47,7 @@ public class Window extends JFrame {
     }
 
     /**
+     * Contructor.
      * @param name The name of the window
      */
     public Window(String name) {
@@ -75,6 +76,9 @@ public class Window extends JFrame {
         new Thread(new RetardatorFocusGiver(ws)).start();
     }
     
+    /**
+     * Adds a filter of the type selected in the combo box.
+     */
     private void addSelectedFilter() {
         String filterType = (String) filterComboBox.getSelectedItem();
         switch (filterType) {
@@ -99,6 +103,9 @@ public class Window extends JFrame {
         }
 	}
 
+    /**
+     * Initializes the user interface of the window.
+     */
 	private void initUi() {
 
         JPanel buttonsPanelUp = new JPanel();
@@ -114,12 +121,7 @@ public class Window extends JFrame {
                     todo.run();
                 }
             };
-        // for (int i = 0; i < buttonsActions.size(); i++) {
-        //     JButton b = buttonsActions.
-        //     buttonsPanel.add(b);
-        //     b.addActionListener(bal);
 
-        // }
         for (JButton b : buttonsActionsUp.keySet()) {
             buttonsPanelUp.add(b);
             b.addActionListener(bal);

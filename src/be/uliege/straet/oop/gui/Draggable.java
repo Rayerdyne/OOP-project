@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * Represents something that can be drag and dropped in the WorkSpace.
+ * Represents something that can be dragged and dropped in the WorkSpace.
  */
 public class Draggable implements MouseListener, KeyListener, Locatable {
 
@@ -36,10 +36,10 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     protected int r = 30;
 
     /**
-     * Constructs a Draggable living in WorkSpace ws and in (x, y)
-     * @param x         X coordinate
-     * @param y         Y coordinate
-     * @param ws        The WorkSpace
+     * Constructs a `Draggable` in `WorkSpace` at coordinates (x, y).
+     * @param x         x coordinate
+     * @param y         y coordinate
+     * @param ws        The `WorkSpace` the `Draggable` belongs to
      */
     public Draggable(int x, int y, WorkSpace ws) {
         this.x = x;
@@ -52,8 +52,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a Draggable object living in WorkSpace ws
-     * @param ws        The WorkSpace
+     * Constructs a `Draggable` in `WorkSpace`
+     * @param ws        The `WorkSpace`
      */
     public Draggable(WorkSpace ws) {
         this(30, 30, ws);
@@ -63,12 +63,12 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a Draggable that will be selected for positioning, living in
-     * WorkSpace ws.
-     * @param x         The x coordinate of the element
-     * @param y         The y coordinate of the element
-     * @param ws        The WorkSpace
-     * @param selected  Wether or not the Draggable is selected wen created. 
+     * Constructs a `Draggable` that will be selected for positioning in given
+     * `WorkSpace`.
+     * @param x         The x coordinate
+     * @param y         The y coordinate
+     * @param ws        The `WorkSpace`
+     * @param selected  Wether or not the `Draggable` is selected wen created. 
      *                  Basically, it will be true, because we won't place the
      *                  filters statically.
      */
@@ -84,11 +84,11 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Paints the `Draggable`
-     * @param g     The `Graphics` object to paint on it
-     * @param back  The background `Color`
-     * @param fore  The foreground `Color`
-     * @param zoom  The zooming factor
+     * Paints the `Draggable`.
+     * @param g         The `Graphics` object to paint on it
+     * @param back      The background `Color`
+     * @param fore      The foreground `Color`
+     * @param zoom      The zooming factor
      */
     public void paint(Graphics g, Color back, Color fore, double zoom) {
         if (selected)
@@ -111,19 +111,27 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
         // g.drawOval(x - r, y - r, 2*r, 2*r);
     }
 
+    /**
+     * Paints the `Draggable` with `WorkSpace` zoom factor.
+     * @param g         The `Graphics` object to paint on it
+     * @param back      The background `Color`
+     * @param fore      The foreground `Color`
+     */
     public void paint(Graphics g, Color back, Color fore) {
         paint(g, back, fore, ws.zoomFactor());
     }
 
     /**
-     * @return Wether or not the Draggable element is selected
+     * @return      Wether or not the `Draggable` element is selected, i.e. if 
+     *              the user is dragging it
+     *          
      */
     public boolean isSelected() {
         return selected;
     }
 
     /**
-     * Updates the x, y, (mainly, when this is selected)
+     * Updates the x, y coordinates of the `Draggable` (when this is selected)
      */
     public void updatePosition() {
         Point pos = ws.getMousePosition();
@@ -143,7 +151,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Rotates the `Draggable`
+     * Rotates the `Draggable` 90° clockwise
      */
     public void rotate() {
         for (int i = 0; i < xCorners.length; i++) {
@@ -161,7 +169,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
         orientation = (orientation + 1) % 4;
     }
 
-    /** Get the orientation of the object
+    /** 
+     * Get the orientation of the object.
      * @return  The orientation of the object (ROT_{0, 90, 180, 270});
      */
     public int getOrientation() {
@@ -169,16 +178,16 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Delete this from its `WorkSpace`
+     * Delete this from its `WorkSpace`.
      */
     public void delete() {
         ws.delete(this);
     }
 
     /**
-     * Edits the current 'thing', i.e., does nothing if it's not a filter, and
-     * opens the input dialog otherwise, e.g. for setting the delay.
-     * Will be overriden xD
+     * <p>Edits the current 'thing', i.e., does nothing if it's not a filter, 
+     * and opens the input dialog otherwise, e.g. for setting the delay.</p>
+     * <p>Will be overriden xD</p>
      */
     public void edit() {}
     

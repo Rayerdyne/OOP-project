@@ -34,9 +34,10 @@ import be.uliege.straet.oop.loader.Writer;
 import be.uliege.straet.oop.loader.WriterException;
 
 /**
- * This class aims to let the file WorkSpace.java smaller.
- * It will handle all the stuff needed to read-write in xml files.
- * (... it uses instance variables for saving and not for openning, it's bad)
+ * <p>This class aims to let the file WorkSpace.java smaller.</p>
+ * <p>It will handle all the stuff needed to read-write in xml files.</p>
+ * <p>(... it uses instance variables for saving and not for openning, it's 
+ * bad)</p>
  */
 public class WorkSpaceXML {
 
@@ -66,8 +67,8 @@ public class WorkSpaceXML {
      * @param variables     The array of the variables declarations 
      * @param filters       The array of the 'active' filters of the 
      *                      `WorkSpace`
-     * @param inputFilters  The array of the input filters
-     * @param outputFilters The array of the output filters
+     * @param inputFilters  The vector of the input filters
+     * @param outputFilters The vector of the output filters
      */
     public WorkSpaceXML(CompositeFilter cfR, 
         Vector<DVariableDeclaration> variables, 
@@ -83,8 +84,8 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Constructor for opening files
-     * @param ws    The `WorkSpace` we load the contents in.
+     * Constructor for opening files.
+     * @param ws    The `WorkSpace` we load the contents in
      */
     public WorkSpaceXML(WorkSpace ws) {
         this.ws = ws;
@@ -131,7 +132,7 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the data relative to the variables definitions in the `WorkSpace`
+     * Adds the data relative to the variables definitions in the `WorkSpace`.
      * @param root      The `Element` at the root of the `Document` (doc)
      */
     private void addWSVariables(Element root) {
@@ -150,7 +151,7 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the data relative to the filters in the `WorkSpace`
+     * Adds the data relative to the filters in the `WorkSpace`.
      * @param root      The `Element` at the root of the `Document` (doc)
      */
     private void addWSFilters(Element root) throws WriterException {
@@ -178,7 +179,7 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the data relative to the in-out filters in the `WorkSpace`
+     * Adds the data relative to the in-out filters in the `WorkSpace`.
      * @param root      The `Element` at the root of the `Document` (doc)
      */
     private void addWSIOFilters(Element root) {
@@ -242,46 +243,6 @@ public class WorkSpaceXML {
     }
 
     /**
-     * <p>Parses the value represented by a String, whose variable parameters 
-     * are mapped in parameters.</p>
-     * <p>Only combinations of sums and products are supported.</p>
-     * <p>Have a copied-pasted version in `NodeData`.</p>
-     * @param s                     The String to be parsed
-     * @param parameters            A HashMap mapping variable parameters
-     *                              to their value
-     * @return                      The parsed value
-     * @throws NumberFormatException In case of invalid expression, such as
-     *                              inexisting variable.
-     * /
-    public static double parseStringValue(String s, 
-        HashMap<String, Double> parameters) throws NumberFormatException {
-
-        double value = 0.0;
-        String[] parts_add = s.split("[+]");
-        for (String addTerm: parts_add) {
-            double toAdd = 1.0;
-            String[] parts_mul = addTerm.split("[\\*]");
-            
-            for (String mulTerm: parts_mul) {
-                try {
-                    double d = Double.valueOf(mulTerm);
-                    toAdd *= d;
-                }
-                catch (NumberFormatException e) {
-                    Double elm = parameters.get(mulTerm.trim());
-                    if (elm == null)
-                        throw new NumberFormatException("Could not parse " + 
-                        "String \"" + s + "\" into value.");
-                    toAdd *= elm;
-                }
-            } // for mulTerm in parts_add
-            value += toAdd;
-        }
-        return value;
-    }*/
-
-
-    /**
      * Opens a file in the `WorkSpace` ws (member of the object). 
      * @param fileName      The name of the file to open.
      * @throws NumberFormatException        If some number could not be parsed
@@ -294,7 +255,9 @@ public class WorkSpaceXML {
      * @throws DOMException                 Idem
      */
     public void openFile(String fileName) throws ParserConfigurationException,
-        SAXException, IOException, NumberFormatException, DOMException, FilterException {
+        SAXException, IOException, NumberFormatException, DOMException, 
+        FilterException {
+
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setIgnoringComments(true);
         DocumentBuilder db = dbf.newDocumentBuilder();
@@ -314,8 +277,8 @@ public class WorkSpaceXML {
 
 	/**
      * Gets the id of the whole filter and the numbers of inputs and outputs.
-     * @param node  The node that contains the filter's data
-     * @throws LoaderException If something could not be parsed.
+     * @param node      The node that contains the filter's data
+     * @throws LoaderException If something could not be parsed
      */
 	private void getIDandIONumbers(Node n) throws LoaderException {
         
@@ -512,9 +475,9 @@ public class WorkSpaceXML {
     
     /**
      * Adds to the `WorkSpace` all the other filters (i.e., neither input, 
-     * output or parameter.)
-     * @param sorted    The `HashMap` containing the vectors of nodes.
-     * @throws LoaderException  If some type could not be recognized.
+     * output or parameter).
+     * @param sorted    The `HashMap` containing the vectors of nodes
+     * @throws LoaderException  If some type could not be recognized
      */
     private void addFilters(HashMap<String, Vector<NodeData>> sorted) 
         throws LoaderException {
@@ -574,10 +537,10 @@ default:
     
     /**
      * Adds the `Wire`s represented in one node to connect it.
-     * @param sorted    The `HashMap` containing the vectors of nodes.
-     * @throws FilterException  If some connection could not be made.
+     * @param sorted    The `HashMap` containing the vectors of nodes
+     * @throws FilterException  If some connection could not be made
      * @throws NumberFormatException If some index of the filter could not be
-     *                               parsed.
+     *                               parsed
      */
     private void addWires(HashMap<String, Vector<NodeData>> sorted) 
         throws NumberFormatException, FilterException {
@@ -602,9 +565,9 @@ default:
      * Adds a single `Wire` to the `WorkSpace`.
      * @param node  The `Node` that represents the `Wire`
      * @param data  `NodeData` related to the filter that inputs the `Wire`
-     *              output.
+     *              output
      * @throws NumberFormatException If the index of the filter could not be
-     *                               parsed.
+     *                               parsed
      * @throws FilterException      If some connection could not be made
      */
     private void addWire(Node node, NodeData data) 
@@ -656,6 +619,13 @@ default:
         ws.addConnection(origin, dest, xy.getKey(), xy.getValue());
 	}
 
+    /**
+     * Gets the arrays of coordinates of the `FreeBall`s that are checkpoints
+     * of `Node` n, assumed to be a `Wire` node/
+     * @param node      The `Node`
+     * @return          An `Entry<int[], int[]>` containing the array of x 
+     *                  coordinate as key and of y coordinate as value
+     */
 	private Entry<int[], int[]> getXY(Node node) {
         NodeList nl = node.getChildNodes();
         // We eploit the fact that the 'interesting' nodes and #text nodes 
