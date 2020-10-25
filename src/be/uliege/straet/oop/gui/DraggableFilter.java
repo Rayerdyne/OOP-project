@@ -5,12 +5,18 @@ import java.util.Vector;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.io.IOException;
 import java.awt.Graphics;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.w3c.dom.DOMException;
+import org.xml.sax.SAXException;
+
+import be.uliege.montefiore.oop.audio.FilterException;
 import be.uliege.straet.oop.filters.WFilter;
 import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.NodeData;
@@ -235,11 +241,22 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Refreshes the values of the parameters, needed when, for example, a
+     * <p>Refreshes the values of the parameters, needed when, for example, a
      * parameter is changed from one value to another, so that the parameters
-     * of this filter has to be updated.
+     * of this filter has to be updated.</p>
+     * <p>Is overriden in {@code DCompositeFilter} as it has to reload the file
+     * initially loaded with previous values of parameters.</p>
+     * @throws LoaderException      Exception raised when we reload a file that
+     *                              describes a {code CompositeFilter}.
+     * @throws DOMException         Idem
+     * @throws FilterException      Idem
+     * @throws ParserConfigurationException     Idem
+     * @throws SAXException         Idem
+     * @throws IOException          Idem
      */
-    public void refreshValue() {
+    public void refreshValue() throws LoaderException, DOMException, 
+        FilterException, ParserConfigurationException, SAXException, 
+        IOException {
         if (!dependsOnVariables(this))
             return;
 

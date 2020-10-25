@@ -144,5 +144,16 @@ public class DCompositeFilter extends DraggableFilter {
                                 e);
         }
     }
+
+    @Override
+    public void refreshValue() throws LoaderException, DOMException, 
+        FilterException, ParserConfigurationException, SAXException, 
+        IOException {
+
+        HashMap<String, Double> parameterSet = ws.getParameterSet();
+        filterR = Loader.load(parameterS, parameterSet, false);
+        filterL = Loader.load(parameterS, parameterSet, false);
+        return;
+    }
     
 }

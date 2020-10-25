@@ -54,6 +54,8 @@ These are not filters, but declaration of some variables. When editing a declara
 
 The parameter's definition, as well as all filter's parameters that are numerical values, should be valid. It is able to parse simple combination of sums and products, that is, for example, `3 * 6 + 8` is correct, but not `3 * 6 - 7`, what can be replaced by `3 * 6 + -7`, as we can parse negative values =). We can also include parameters in the definitions: `2 * frequency + 2`, one single definition may contain more than one parameter.
 
+Parameter will used to read the `CompositeFilter`s from files. E.g., if you declare a variable `f` with a valid value, then you add a `CompositeFilter` from a file which needs a variable called `f`, the value found in `f` will be used.
+
 - Convolution filter
 
 As the convolution require a vector as variable, you'll have to specify it when editing (...). To do so, when editing such a filter, you will have to enter all the values, separated by a '`,`'.

@@ -1083,7 +1083,6 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * Refreshes the list of variables, the names and the values.
-     * TODO: reload files loaded with the parameters of the workspace
      */
     public void refreshVariablesValues() {
         for (int i = 0; i < variables.size(); i++) {
@@ -1091,7 +1090,14 @@ public class WorkSpace extends JPanel implements KeyListener {
             parameterSet.put(vd.getVariableName(), vd.getVariableValue());
         }
         for (DraggableFilter df : filters) {
-            df.refreshValue();
+            try {
+				df.refreshValue();
+            } catch (DOMException | FilterException | 
+                     ParserConfigurationException | SAXException | 
+                     IOException e) {
+                showError("Could not reload some file: parameters needed are" +
+                    "no longer valid (bugs may happen now man, be happy)", e);
+			}
         }
     } 
 
