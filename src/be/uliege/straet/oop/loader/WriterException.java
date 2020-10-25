@@ -1,10 +1,8 @@
 package be.uliege.straet.oop.loader;
 
 /**
- * Exception that will be thrown when something goes wrong during the 
+ * Exception that will be raised when something goes wrong during the 
  * process of writing a composite filter in a file.
- * 
- * François Straet
  */
 public class WriterException extends Exception {
     /**

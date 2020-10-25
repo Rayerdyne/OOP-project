@@ -20,11 +20,7 @@ import org.xml.sax.SAXException;
 
 import be.uliege.montefiore.oop.audio.*;
 
-/** <p>INFO0062 - Object-Oriented Programming
- *  Project.</p>
- * 
- * <p>ADDITIONNAL</p>
- * 
+/** 
  * <p> This class is designed to parse a composite filter from a file. These 
  * will have to follow xml standard, see exemple.xml for a working example.
  * </p>
@@ -37,15 +33,16 @@ import be.uliege.montefiore.oop.audio.*;
  *  <li> a main, that parses a file and apply it to a .wav file. </li>
  *  <li> a `load` method, wich takes the name of the file to parse in argument 
  *     and returns a CompositeFilter.</li></ul></p>
- * 
- * <p> A more detailed description of the structure that xml files have to 
- * follow can be found in ./xml/Structure.md </p>
- * 
- * François Straet
  */
 public class Loader {
     /**
      * See README.md for description.
+     */
+
+    /**
+     * Entry point for class `Loader`.
+     * Don't use that -> no help
+     * @param args
      */
     public static void main(String[] args) {
         String fileName = "test.xml";
@@ -123,7 +120,6 @@ public class Loader {
      * 
      * <p>Note: it will have to read files so that it also throws IOExceptions,
      * ParserConfigurationExceptions and SAXExceptions.</p>
-     * 
      * @param fileName                  The location of file to read
      * @param parameters                A HashMap with values of the variable 
      *                                  parameters introduced in the input file
@@ -172,10 +168,7 @@ public class Loader {
     }
 
     /**
-     * <p> Builds a composite filter represented at a node and its children 
-     * </p>
-     * /!\ Almost copied-pasted version in `WorkSpaceXML.loadWSFromNode` method
-     * 
+     * Builds a composite filter represented at a node and its children 
      * @param n                 The node to make a filter from
      * @param parameters        A HashMap with values of the variable 
      *                          parameters introduced in the input file
@@ -250,8 +243,7 @@ public class Loader {
     }
 
     /**
-     * <p> Connects all subfilters to its corresponding composite filter. </p>
-     * 
+     * Connects all subfilters to its corresponding composite filter. 
      * @param cf                        The composite filter to "fill"
      * @param cfId                      The id of the composite filter
      * @param subFilters                Data to filters to connect
@@ -309,7 +301,7 @@ public class Loader {
     }
 
     /**
-     * <p> Connect one input of node described in sfData </p>
+     * Connect one input of node described in sfData. 
      * @param sfData        The data related to the filter we are connecting
      * @param cf            The composite filter
      * @param cfId          The id of the associated domposite filter

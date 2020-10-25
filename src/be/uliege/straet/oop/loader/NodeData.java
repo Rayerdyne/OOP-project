@@ -105,8 +105,7 @@ public class NodeData {
     public WFilter filter;
 
     /**
-     * <p> Builds a NodeData based on the given node. </p>
-     * 
+     * Builds a NodeData based on the given node.
      * @param n          The node to process
      * @param parameters A HashMap with values of the parameters introduced 
      *                   in the input file
@@ -172,7 +171,6 @@ public class NodeData {
      * <li> specialCase set to true, fOuputNum, fOuputId, cfOutputNum 
      * in case of a node representing an output connection to a composite 
      * filter.</li></ul></p>
-     * 
      * @param n                     The node to extract data
      * @param parameters            A HashMap with values of the parameters
      *                              introduced in the input file
@@ -268,13 +266,12 @@ public class NodeData {
     }
 
     /**
-     * <p> Gets the x and y coordinates and orientation if present in the node.
-     * </p>
-     * @param n The node to get its position and orientation
+     * Gets the x and y coordinates and orientation if present in the node.
+     * @param n          The node to get its position and orientation
      * @param attributes The `ValueMapper` that contains the data of the `Node`
-     *                   we are interested in.
+     *                   we are interested in
      * @throws LoaderException If some value is not valid, but not when it is 
-     *                         absent.
+     *                         absent
      */
     private void getPositionning(Node n, ValueMapper attributes) 
         throws LoaderException {
@@ -300,11 +297,10 @@ public class NodeData {
      * commas. </p>
      * <p>Parses an expression made of '+' and '*', use "+ -1" for 
      * substractions.</p>
-     * 
      * @param vm                    A ValueMapper listing the attributes of the
-     *                              Node.
+     *                              Node
      * @param valueName             The name of the value to get, i.e. the 
-     *                              one of the attribute.
+     *                              one of the attribute
      * @param parameters            A HashMap with values of the parameters 
      *                              introduced in the xml input file
      * @return                      The values contained (array >1 if 
@@ -344,7 +340,6 @@ public class NodeData {
      * <p>Parses the value represented by a String, whose variable parameters 
      * are mapped in parameters.</p>
      * <p>Only combinations of sums and products are supported.</p>
-     * <p>Have a copied-pasted version in `WorkSpace`.</p>
      * @param s                     The String to be parsed
      * @param parameters            A HashMap mapping variable parameters
      *                              to their value
@@ -399,10 +394,9 @@ public class NodeData {
     }
 
     /**
-     * <p>For the simplicity of getTypeContent method, sets the members 
+     * For the simplicity of getTypeContent method, sets the members 
      * related to a node representing a connection beween a composite 
-     * filter ouput and another filter output.</p>
-     * 
+     * filter ouput and another filter output.
      * @param n                     The node to get data from
      * @param attributes            A `ValueMapper` containing the attributes of
      *                              the `Node`
@@ -451,9 +445,8 @@ public class NodeData {
     }
 
     /**
-     * <p>For the simplicity of getTypeContent method, sets the members 
-     * related to a node representing a filter located in another xml file.</p>
-     * 
+     * For the simplicity of getTypeContent method, sets the members 
+     * related to a node representing a filter located in another xml file.
      * @param n                     The node to get data from
      * @param attributes            A `ValueMapper` containing the attributes
      *                              of the `Node`
@@ -500,8 +493,8 @@ public class NodeData {
     }
 
     /**
-     * <p>Reads attributes and sets the inputs data (the id and corresponding
-     * numbers).</p>
+     * Reads attributes and sets the inputs data (the id and corresponding
+     * numbers).
      * @param attributes        The NamedNodeMap to read inputs from
      * @throws LoaderException  If something goes wrong, mainly, ill-
      *                          formatted data or no data.
@@ -540,12 +533,12 @@ public class NodeData {
     } // getInputsRefs method
 
     /**
-     * <p>Add all variables definitions in the attributes of a `let` node.</p>
+     * Add all variables definitions in the attributes of a `let` node.
      * @param n                 The node
      * @param attributes        A `ValueMapper` containing the attributes of
      *                          the `Node`
-     * @param parameters        A HashMap with values of the parameters
-     *                          introduced in the input file
+     * @param parameters        A `HashMap<String, Double>` with values of the
+     *                          parameters introduced in the input file
      * @throws LoaderException  If some parsing failed.
      */
     private void addVariables(Node n, ValueMapper attributes, 

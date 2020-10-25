@@ -298,6 +298,7 @@ public class Block {
     /**
      * @return      i-th reference to `ReadDouble` describing the i-th input of
      *              `Block`.
+     * @throws BlockException   If the index exceeds the array length.
      */
     public ReadDouble input(int i) throws BlockException {
         if (i >= inputRefs.length)
@@ -309,6 +310,7 @@ public class Block {
     /**
      * @return      i-th reference to `ReadDouble` describing the i-th output
      *              of the `Block`.
+     * @throws BlockException   If the index exceeds the array length.
      */
     public ReadDouble output(int i) throws BlockException {
         if (i >= outputRefs.length)

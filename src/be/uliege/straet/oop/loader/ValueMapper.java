@@ -9,6 +9,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * Class to handle properly the fact that we can specify attributes either in
+ * the tag or in the "{@code Writer.VALUE_NODE_TAG}" children attributes.
+ */
 public class ValueMapper {
     private HashMap<String, Node> hm;
 
@@ -16,6 +20,10 @@ public class ValueMapper {
         hm = new HashMap<String, Node>();
     }
 
+    /**
+     * Constructor.
+     * @param n     The `Node` we fetch its attributes
+     */
     public ValueMapper(Node n) {
         this();
         addAllNNM(n.getAttributes());
@@ -28,6 +36,10 @@ public class ValueMapper {
         }
     }
 
+    /**
+     * Adds all the entries of a `NamedNodeMap`.
+     * @param nnm   The `NamedNodeMap`
+     */
     public void addAllNNM(NamedNodeMap nnm) {
         if (nnm == null)
             return;
@@ -51,18 +63,32 @@ public class ValueMapper {
         }
     }
 
+    /**
+     * @return      The value associated to the key {@code name}.
+     */
     public Node getNamedItem(String name) {
         return hm.get(name);
     }
 
+    /**
+     * @return      A `Set<Entry<String, Node>>` containing all the entries in
+     *              this `ValueMapper`
+     */
     public Set<Entry<String, Node>> entries() {
         return hm.entrySet();
     }
 
+    /**
+     * @return      A `Collection<Node>` containing all the values stored in
+     *              this `ValueMapper`
+     */
     public Collection<Node> values() {
         return hm.values();
     }
 
+    /**
+     * @return      The number of entries in this `ValueMapper`
+     */
     public int getLength() {
         return hm.size();
     }

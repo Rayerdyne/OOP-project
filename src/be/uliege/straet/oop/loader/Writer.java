@@ -30,6 +30,11 @@ import be.uliege.montefiore.oop.audio.FilterException;
 import be.uliege.straet.oop.filters.Block;
 import be.uliege.straet.oop.filters.BlockException;
 
+/**
+ * <p>Class reponsible of the writing of a `CompositeFilter` to a file.</p>
+ * <p>It will hold all the constant `String`s for the nodes tags, attributes 
+ * names etc. </p>
+ */
 public class Writer {
 
     public static final String 
@@ -87,6 +92,11 @@ public class Writer {
         writeDocument(documentFromFilter(cf), fileName);
     }
 
+    /**
+     * Constructs a `Document` from a `CompositeFilter`.
+     * @param cf        The `CompositeFilter`
+     * @return          The `Document` that has been built
+     */
     public static Document documentFromFilter(CompositeFilter cf) 
         throws WriterException {
 
@@ -110,7 +120,7 @@ public class Writer {
     }
 
     /**
-     * Write a `Document` to a xml file  
+     * Write a `Document` to a xml file. 
      * @param docmument         The `Document`
      * @param fileName          The name of the file to write
      * @throws WriterException  If someting went wrong
@@ -139,9 +149,9 @@ public class Writer {
     }
 
     /**
-     * Adds a filter to the Document
-     * @param cf                The CompositeFilter to add
-     * @param d                 The Document
+     * Adds a filter to the `Document`.
+     * @param cf                The `CompositeFilter` to add
+     * @param d                 The `Document`
      * @throws BlockException   If we could not determine some filter's type
      * @throws WriterException  If some-sub-CompositeFilter is ill-formatted
      */
@@ -155,13 +165,14 @@ public class Writer {
     }
 
     /**
-     * Append filters present in CompositeFilter cf to an element
-     * @param cf                The CompositeFilter
-     * @param cfId              The id associated to the CompositeFilter
-     * @param e                 The Element
-     * @param d                 The associated Document
+     * Append filters present in `CompositeFilter` cf to an element
+     * @param cf                The `CompositeFilter`
+     * @param cfId              The id associated to the `CompositeFilter`
+     * @param e                 The `Element`
+     * @param d                 The associated `Document`
      * @throws BlockException   If we could not determine some filter's type
-     * @throws WriterException  If some sub-CompositeFilter is ill-formatted
+     * @throws WriterException  If some sub-{@code CompositeFilter} is 
+     *                          ill-formatted
      */
     private static void appendFilters(CompositeFilter cf, String cfId,
         Element e, Document d) throws BlockException, WriterException {
@@ -191,6 +202,17 @@ public class Writer {
         }
     }
 
+    /**
+     * Builds an `Element` from a `Block` in the `CompositeFilter`.
+     * @param b     The `Block`
+     * @param cfId  The id of the `CompositeFilter`
+     * @param d     The `Document` to create the `Element` for
+     * @return      The newly built `Element`
+     * @throws BlockException   If a class name could not be found for the 
+     *                          `Block` or an index exceeds the array's size
+     * @throws WriterException  If a composite `Block` does not contains a 
+     *                          `CompositeFilter` (???)
+     */
     private static Element elementFromBlock(Block b, String cfId,
         Document d) throws BlockException, WriterException {
         Element x = d.createElement(b.type());
