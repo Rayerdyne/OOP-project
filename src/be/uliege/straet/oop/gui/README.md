@@ -68,6 +68,10 @@ This filter import another filter that has **one** input and **one** output in t
 
 The limitation to filters with one input and one input is only because I didn't implemented mechaninsm to handle this, I plan to do this for future versions.
 
+- Wave generators
+
+These will require you to specify multiple variables, typically the frequency, the amplitude and a sampling frequency. When editing, you'll have to enter these values separated with commas, in order. Also, ommitting the sampling frequency is allowed, and is the same as specifying the default one.
+
 ## 4- Actions
 I.e. all the action you can perform on the workspace.
 

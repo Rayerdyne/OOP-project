@@ -70,7 +70,7 @@ public class DNoiseGenerator extends DraggableFilter {
 
     @Override
     public String getParameterInfo() 
-        {  return "frequency, amplitude and sampling frequency (in order)";  }
+        {  return "amplitude of noise";  }
 
     @Override
     public void paint(Graphics g, Color back, Color fore, double zoom) {

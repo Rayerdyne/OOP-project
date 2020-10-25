@@ -76,7 +76,8 @@ public class DUpSquareGenerator extends DraggableFilter {
 
     @Override
     public String getParameterInfo() 
-        {  return "frequency, amplitude and sampling frequency (in order)";  }
+        {  return "frequency, amplitude [and sampling frequency] (in order, " +
+                  "separated by commas)";  }
 
     @Override
     public void paint(Graphics g, Color back, Color fore, double zoom) {
@@ -95,10 +96,11 @@ public class DUpSquareGenerator extends DraggableFilter {
     
     @Override
     public void setParameter(double[] d) {
-        if (d.length > 1)
-            return;
-        parameterD = d;
-        filterR = new UpSquareGenerator(d[0], d[1], d[2]);
-        filterL = new UpSquareGenerator(d[0], d[1], d[2]);
+        double[] e = new double[3];
+        e[0] = d[0];    e[1] = d[1];
+        e[2] = d.length >= 3 ? d[2] : UpSquareGenerator.DEF_SAMPLING_FREQUENCY;
+        parameterD = e;
+        filterR = new UpSquareGenerator(e[0], e[1], e[2]);
+        filterL = new UpSquareGenerator(e[0], e[1], e[2]);
     }
 }

@@ -76,7 +76,8 @@ public class DSineGenerator extends DraggableFilter {
 
     @Override
     public String getParameterInfo() 
-        {  return "frequency, amplitude and sampling frequency (in order)";  }
+        {  return "frequency, amplitude [and sampling frequency] (in order, " +
+                  "separated by commas)";  }
 
     @Override
     public void paint(Graphics g, Color back, Color fore, double zoom) {
@@ -91,8 +92,11 @@ public class DSineGenerator extends DraggableFilter {
     
     @Override
     public void setParameter(double[] d) {
-        parameterD = d;
-        filterR = new SineGenerator(d[0], d[1], d[2]);
-        filterL = new SineGenerator(d[0], d[1], d[2]);
+        double[] e = new double[3];
+        e[0] = d[0];    e[1] = d[1];
+        e[2] = d.length >= 3 ? d[2] : SineGenerator.DEF_SAMPLING_FREQUENCY;
+        parameterD = e;
+        filterR = new SineGenerator(e[0], e[1], e[2]);
+        filterL = new SineGenerator(e[0], e[1], e[2]);
     }
 }
