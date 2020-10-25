@@ -55,7 +55,7 @@ public class DraggableFilter extends Draggable {
      * given {@code WorkSpace}.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param ws        The{@code WorkSpace}
+     * @param ws        The {@code WorkSpace}
      * @param selected  Wether or not the {@code Draggable} is selected wen 
      *                  created
      */

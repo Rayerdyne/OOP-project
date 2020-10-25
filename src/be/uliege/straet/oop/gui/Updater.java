@@ -24,8 +24,8 @@ public class Updater extends Thread {
     /**
      * Constructs an {@code Updater} that will make the {@code WorkSpace} to be
      * repainted until the {@code Draggable} is released.
-     * @param ws    The{@code WorkSpace}
-     * @param d     The{@code Draggable}
+     * @param ws    The {@code WorkSpace}
+     * @param d     The {@code Draggable}
      */
     public Updater(WorkSpace ws, Draggable d) {
         this(ws, false);
@@ -35,8 +35,8 @@ public class Updater extends Thread {
     /**
      * Builds an {@code Updater} that will make the {@code WorkSpace} to be 
      * repainted until the {@code Wire} is complete.
-     * @param ws    The{@code WorkSpace}
-     * @param d     The{@code Wire}
+     * @param ws    The {@code WorkSpace}
+     * @param d     The {@code Wire}
      */
     public Updater(WorkSpace ws, Wire wire) {
         this(ws, true);

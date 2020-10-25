@@ -1,10 +1,3 @@
-/**
- * OOP: project ?
- * 
- * This class is designed to write an instance of CompositeFilter into a XML
- * file parsable by the Loader class.
- */
-
 package be.uliege.straet.oop.loader;
 
 import java.io.File;
@@ -94,7 +87,7 @@ public class Writer {
 
     /**
      * Constructs a {@code Document} from a {@code CompositeFilter}.
-     * @param cf        The{@code CompositeFilter}
+     * @param cf        The {@code CompositeFilter}
      * @return          The {@code Document} that has been built
      */
     public static Document documentFromFilter(CompositeFilter cf) 
@@ -121,7 +114,7 @@ public class Writer {
 
     /**
      * Write a {@code Document} to a xml file. 
-     * @param docmument         The{@code Document}
+     * @param docmument         The {@code Document}
      * @param fileName          The name of the file to write
      * @throws WriterException  If someting went wrong
      */
@@ -151,7 +144,7 @@ public class Writer {
     /**
      * Adds a filter to the {@code Document}.
      * @param cf                The {@code CompositeFilter} to add
-     * @param d                 The{@code Document}
+     * @param d                 The {@code Document}
      * @throws BlockException   If we could not determine some filter's type
      * @throws WriterException  If some-sub-CompositeFilter is ill-formatted
      */
@@ -166,11 +159,11 @@ public class Writer {
 
     /**
      * Append filters present in {@code CompositeFilter} cf to an element
-     * @param cf                The{@code CompositeFilter}
+     * @param cf                The {@code CompositeFilter}
      * @param cfId              The id associated to the 
      *                          {@code CompositeFilter}
      * @param e                 The {@code Element}
-     * @param d                 The associated{@code Document}
+     * @param d                 The associated {@code Document}
      * @throws BlockException   If we could not determine some filter's type
      * @throws WriterException  If some sub-{@code CompositeFilter} is 
      *                          ill-formatted
@@ -208,9 +201,9 @@ public class Writer {
      * Builds an {@code Element} from a {@code Block} in the 
      * {@code CompositeFilter}.
      * @param b     The {@code Block}
-     * @param cfId  The id of the{@code CompositeFilter}
+     * @param cfId  The id of the {@code CompositeFilter}
      * @param d     The {@code Document} to create the {@code Element} for
-     * @return      The newly built{@code Element}
+     * @return      The newly built {@code Element}
      * @throws BlockException   If a class name could not be found for the 
      *                          {@code Block} or an index exceeds the array's 
      *                          size

@@ -38,7 +38,7 @@ public class ValueMapper {
 
     /**
      * Adds all the entries of a {@code NamedNodeMap}.
-     * @param nnm   The{@code NamedNodeMap}
+     * @param nnm   The {@code NamedNodeMap}
      */
     public void addAllNNM(NamedNodeMap nnm) {
         if (nnm == null)
@@ -87,7 +87,7 @@ public class ValueMapper {
     }
 
     /**
-     * @return      The number of entries in this{@code ValueMapper}
+     * @return      The number of entries in this {@code ValueMapper}
      */
     public int getLength() {
         return hm.size();

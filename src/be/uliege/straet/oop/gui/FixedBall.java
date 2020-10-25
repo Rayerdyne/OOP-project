@@ -72,7 +72,7 @@ public class FixedBall implements MouseListener, Locatable {
 
     /**
      * Paints this {@code FixedBall} on a {@code Graphics} with zoom factor.
-     * @param g         The{@code Graphics}
+     * @param g         The {@code Graphics}
      * @param zoom      The zoom factor
      */
     public void paint(Graphics g, double zoom) {
@@ -125,7 +125,8 @@ public class FixedBall implements MouseListener, Locatable {
     public void setY(int y) { this.y = y; }
 
     /**
-     * @return      The {@code DraggableFilter} that owns this{@code FixedBall}
+     * @return      The {@code DraggableFilter} that owns this 
+     *              {@code FixedBall}
      */
     public DraggableFilter owner() { return owner; }
 

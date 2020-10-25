@@ -53,8 +53,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a {@code Draggable} in{@code WorkSpace}
-     * @param ws        The{@code WorkSpace}
+     * Constructs a {@code Draggable} in {@code WorkSpace}
+     * @param ws        The {@code WorkSpace}
      */
     public Draggable(WorkSpace ws) {
         this(30, 30, ws);
@@ -68,7 +68,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
      * given {@code WorkSpace}.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param ws        The{@code WorkSpace}
+     * @param ws        The {@code WorkSpace}
      * @param selected  Wether or not the {@code Draggable} is selected wen 
      *                  created. Basically, it will be true, because we won't
      *                  place the filters statically.
@@ -87,8 +87,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     /**
      * Paints the {@code Draggable}.
      * @param g         The {@code Graphics} object to paint on it
-     * @param back      The background{@code Color}
-     * @param fore      The foreground{@code Color}
+     * @param back      The background {@code Color}
+     * @param fore      The foreground {@code Color}
      * @param zoom      The zooming factor
      */
     public void paint(Graphics g, Color back, Color fore, double zoom) {
@@ -115,8 +115,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     /**
      * Paints the {@code Draggable} with {@code WorkSpace} zoom factor.
      * @param g         The {@code Graphics} object to paint on it
-     * @param back      The background{@code Color}
-     * @param fore      The foreground{@code Color}
+     * @param back      The background {@code Color}
+     * @param fore      The foreground {@code Color}
      */
     public void paint(Graphics g, Color back, Color fore) {
         paint(g, back, fore, ws.zoomFactor());

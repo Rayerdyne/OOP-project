@@ -572,7 +572,7 @@ default:
 
     /**
      * Adds a single {@code Wire} to the {@code WorkSpace}.
-     * @param node  The {@code Node} that represents the{@code Wire}
+     * @param node  The {@code Node} that represents the {@code Wire}
      * @param data  {@code NodeData} related to the filter that inputs the
      *              {@code Wire} output
      * @throws NumberFormatException If the index of the filter could not be

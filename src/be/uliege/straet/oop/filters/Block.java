@@ -43,7 +43,7 @@ public class Block {
 
     /**
      * Contructor.
-     * @param filter                The filter associated ot the{@code Block}
+     * @param filter                The filter associated ot the {@code Block}
      */
     public Block(WFilter filter) throws BlockException {
         this(filter, null);
@@ -52,7 +52,7 @@ public class Block {
     /**
      * Contructor.
      * @param filter                The filter associated
-     * @param id                    The id given to the{@code Block}
+     * @param id                    The id given to the {@code Block}
      * @throws BlockException       If something went wrong, i.e. the class 
      *                              is not found, or the filter is null.
      */
@@ -109,7 +109,7 @@ public class Block {
     }
 
     /**
-     * @return      The filter contained in this{@code Block}
+     * @return      The filter contained in this {@code Block}
      */
     public WFilter filter() {
         return filter;
@@ -280,7 +280,7 @@ public class Block {
     }
 
     /**
-     * @return      The id associated to this{@code Block}
+     * @return      The id associated to this {@code Block}
      */
     public String id() {  return this.id;  }
 

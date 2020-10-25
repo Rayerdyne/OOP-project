@@ -42,8 +42,8 @@ public class Wire implements MouseListener {
     /**
      * Paints the {@code Wire} on a {@code Graphics}.
      * @param g         The {@code Graphics} object to draw on
-     * @param back      The background{@code Color}
-     * @param fore      The foreground{@code Color}
+     * @param back      The background {@code Color}
+     * @param fore      The foreground {@code Color}
      */
     public void paint(Graphics g, Color back, Color fore, double zoom) {
         if (points.size() >= 2) {
@@ -68,7 +68,7 @@ public class Wire implements MouseListener {
     
     /**
      * Sets one end of the {@code Wire}.
-     * @param origin        The{@code FixedBall}
+     * @param origin        The {@code FixedBall}
      */
     public void setFirst(FixedBall fb) {
         if (fb.isInput())
@@ -87,7 +87,7 @@ public class Wire implements MouseListener {
 
     /**
      * Sets the second end of a {@code Wire}.
-     * @param destination       The{@code FixedBall}
+     * @param destination       The {@code FixedBall}
      * @return                  Wether or not we could successfully add the
      *                          second end
      */
@@ -115,7 +115,7 @@ public class Wire implements MouseListener {
     /**
      * Gets the {@code FixedBall} that has been selected first (to draw the 
      * wire dynamically and see it when drawing).
-     * @return  The{@code FixedBall}
+     * @return  The {@code FixedBall}
      */
     public FixedBall firstEnd() {
         if (input == null)
@@ -150,10 +150,10 @@ public class Wire implements MouseListener {
         ws.repaint();
     }
 
-    @Override public void mousePressed(MouseEvent e) {}
-    @Override public void mouseReleased(MouseEvent e){}
-    @Override public void mouseEntered(MouseEvent e) {}
-    @Override public void mouseExited(MouseEvent e) {}
+    @Override public void mousePressed(MouseEvent e)  {}
+    @Override public void mouseReleased(MouseEvent e) {}
+    @Override public void mouseEntered(MouseEvent e)  {}
+    @Override public void mouseExited(MouseEvent e)   {}
 
     /**
      * @return      The end of this {@code Wire} that is an input w.r.t. to its
@@ -175,7 +175,7 @@ public class Wire implements MouseListener {
 
     /**
      * @return      A {@code Vector<FreeBall>} containing all the
-     *              {@code FreeBall}s that are checkpoints of this{@code Wire}
+     *              {@code FreeBall}s that are checkpoints of this {@code Wire}
      */
     public Vector<FreeBall> freeBalls() { return freeBalls; }
 }

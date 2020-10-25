@@ -5,11 +5,11 @@ package be.uliege.straet.oop.gui;
  */
 public interface Locatable {
     /**
-     * @return      The x coordinate of the{@code Object}
+     * @return      The x coordinate of the {@code Object}
      */
     public int getX();
     /**
-     * @return      The y coordinate of the{@code Object}
+     * @return      The y coordinate of the {@code Object}
      */
     public int getY();    
 }

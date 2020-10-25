@@ -28,8 +28,8 @@ public class NothingFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x         The x coordinate of this{@code NothingFilter}
-     * @param y         The y coordinate of this{@code NothingFilter}
+     * @param x         The x coordinate of this {@code NothingFilter}
+     * @param y         The y coordinate of this {@code NothingFilter}
      * @param ws        The {@code WorkSpace} this belongs to
      * @param nextInterpMethodIsLin If true, next interpolation method is 
      *                              linear, else it's cubic

@@ -241,7 +241,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * @return The current state of the{@code WorkSpace}
+     * @return The current state of the {@code WorkSpace}
      */
     public int getState() {
         return state;
@@ -734,7 +734,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      * Adds a {@code FreeBall} to the elements of the {@code WorkSpace}.
      * @param x    The x coordinate
      * @param y    The y coordinate
-     * @param wire The {@code Wire} that owns this{@code FreeBall}
+     * @param wire The {@code Wire} that owns this {@code FreeBall}
      */
     public void addFreeBall(int x, int y, Wire wire) {
         if (wire.isComplete())
@@ -800,7 +800,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * @return      The zoom factor of this{@code WorkSpace}
+     * @return      The zoom factor of this {@code WorkSpace}
      */
     public double zoomFactor() {
         return zoom;
@@ -826,7 +826,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      * @return              The {@code CompositeFilter} that has been built
      * @throws FilterException      When some connection or instanciation could
      *                              not be made when building the filter 
-     *                              represented by the{@code WorkSpace}
+     *                              represented by the {@code WorkSpace}
      */
     public CompositeFilter buildFilter(boolean isRight) 
         throws FilterException {
@@ -918,7 +918,7 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * Returns the {@code DraggableFilter} that owns this {@code FixedBall}.
-     * @param fb The{@code FixedBall}
+     * @param fb The {@code FixedBall}
      * @return The {@code DraggableFilter} that owns the {@code FixedBall}, 
      *          {@code null} if it could not be found.
      */
@@ -1191,7 +1191,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      * inner filter included via {@code CompositeFilter}s.
      * @throws FilterException      When some connection or instanciation could
      *                              not be made when building the filter 
-     *                              represented by the{@code WorkSpace}
+     *                              represented by the {@code WorkSpace}
      * @throws WriterException      If the {@code CompositeFilter} could not be
      *                              written in the file
      */

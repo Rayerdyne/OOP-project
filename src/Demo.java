@@ -15,7 +15,7 @@ class Demo {
             appyReverb(args[1], args[2]);
         }
 
-        else if (args.length >= 2){
+        else if (args.length >= 2) {
             applyEcho(args[0], args[1]);
         }
 

@@ -275,7 +275,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
     /**
      * Gets the unique id associated to a filter.
-     * @param f     The{@code WFilter}
+     * @param f     The {@code WFilter}
      * @return      The id      
      */
     public String idOf(WFilter f) {

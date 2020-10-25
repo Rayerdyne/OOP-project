@@ -25,8 +25,8 @@ public class FreeBall extends Draggable {
 
     /**
      * Constructor of a {@code FreeBall} at coordinates (x, y).
-     * @param x         The x coordinate of the{@code FreeBall}
-     * @param y         The y coordinate of the{@code FreeBall}
+     * @param x         The x coordinate of the {@code FreeBall}
+     * @param y         The y coordinate of the {@code FreeBall}
      * @param ws        The {@code WorkSpace} this {@code FreeBall} belongs to
      * @param wire      The {@code Wire} this {@code FreeBall} is a checkpoint
      *                  of
@@ -61,7 +61,7 @@ public class FreeBall extends Draggable {
     @Override
     public void delete() {
         ws.delete(wire);
-        // {@code FreeBall}s must be deleted alongside with their{@code Wire}
+        // {@code FreeBall}s must be deleted alongside with their {@code Wire}
         ws.delete(this);
     }
 
