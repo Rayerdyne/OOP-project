@@ -25,7 +25,7 @@ public class DCompositeFilter extends DraggableFilter {
      * Constructs a `DCompositeFilter`
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      * @param fileName  The name of the file representing the `CompositeFilter`
      * @throws FilterException              If an error occured when 
@@ -79,10 +79,10 @@ public class DCompositeFilter extends DraggableFilter {
 
     /**
      * Constructs a `DCompositeFilter`, with initially invalid 
-     * `CompositeFilter` in it
+     * {@code CompositeFilter} in it
      * @param x     The x coordinate of the filter
      * @param y     The y coordinate of the filter
-     * @param ws    The `WorkSpace` the filter belongs to
+     * @param ws    The {@code WorkSpace} the filter belongs to
      * @param selected  Wether or not the filter is selected and dragged ad the
      *                  moment of the instanciation.
      * @param fileName  The name of the file representing the `CompositeFilter`

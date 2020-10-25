@@ -13,7 +13,7 @@ public class Updater extends Thread {
 
     /**
      * Constructor.
-     * @param ws        The `WorkSpace` this `Updater` updates
+     * @param ws        The {@code WorkSpace} this {@code Updater} updates
      * @param hasWire   Wether or not we are drawing a `Wire`
      */
     private Updater(WorkSpace ws, boolean hasWire) {
@@ -22,8 +22,8 @@ public class Updater extends Thread {
     }
 
     /**
-     * Constructs an `Updater` that will make the `WorkSpace` to be repainted
-     * until the `Draggable` is released.
+     * Constructs an {@code Updater} that will make the {@code WorkSpace} to be repainted
+     * until the {@code Draggable} is released.
      * @param ws    The `WorkSpace`
      * @param d     The `Draggable`
      */
@@ -33,8 +33,8 @@ public class Updater extends Thread {
     }
 
     /**
-     * Builds an `Updater` that will make the `WorkSpace` to be repainted
-     * until the `Wire` is complete.
+     * Builds an {@code Updater} that will make the {@code WorkSpace} to be repainted
+     * until the {@code Wire} is complete.
      * @param ws    The `WorkSpace`
      * @param d     The `Wire`
      */

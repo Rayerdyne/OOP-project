@@ -27,7 +27,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * <p>Decompiled (by Procyon v0.5.36) version of `AudioSequence` to add the 
+ * <p>Decompiled (by Procyon v0.5.36) version of {@code AudioSequence} to add the 
  * ability to have multiple input files.</p>
  * <p>If one input is "too short" comparing to the others, it'll put zeros.</p>
  */
@@ -100,10 +100,10 @@ public class AudioSequence2 {
     }
     
     /**
-     * Filters the array with given `Filter`.
+     * Filters the array with given {@code Filter}.
      * @param array     The sequence of number to filter
-     * @param filter    The `Filter` to apply
-     * @throws FilterException      If the `Filter` could not process the 
+     * @param filter    The {@code Filter} to apply
+     * @throws FilterException      If the {@code Filter} could not process the 
      *                              input.
      */
     private static void filter(final short[] array, final Filter filter) 
@@ -115,10 +115,10 @@ public class AudioSequence2 {
     }
     
     /**
-     * Filters the left and the right channels of the `AudioSequence` with 
-     * given `Filter`.
-     * @param filter                The `Filter` to apply
-     * @throws FilterException      If the `Filter` could not process the 
+     * Filters the left and the right channels of the {@code AudioSequence} with 
+     * given {@code Filter}.
+     * @param filter                The {@code Filter} to apply
+     * @throws FilterException      If the {@code Filter} could not process the 
      *                              input.
      */
     public void filter(final Filter filter) throws FilterException {

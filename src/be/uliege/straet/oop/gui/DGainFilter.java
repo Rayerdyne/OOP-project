@@ -13,9 +13,9 @@ public class DGainFilter extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A `GainFilter` that will be used in that filter
+     * @param filter A {@code GainFilter} that will be used in that filter
      */
     public DGainFilter(int x, int y, WorkSpace ws, boolean selected, 
         GainFilter filter) {
@@ -47,10 +47,10 @@ public class DGainFilter extends DraggableFilter {
     }
 
     /**
-     * Constructor with default `GainFilter`.
+     * Constructor with default {@code GainFilter}.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
     public DGainFilter(int x, int y, WorkSpace ws, boolean selected) {

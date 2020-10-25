@@ -31,7 +31,7 @@ import be.uliege.montefiore.oop.audio.*;
  * 
  * <p> The class provides two static methods: <ul>
  *  <li> a main, that parses a file and apply it to a .wav file. </li>
- *  <li> a `load` method, wich takes the name of the file to parse in argument 
+ *  <li> a {@code load} method, wich takes the name of the file to parse in argument 
  *     and returns a CompositeFilter.</li></ul></p>
  */
 public class Loader {
@@ -40,7 +40,7 @@ public class Loader {
      */
 
     /**
-     * Entry point for class `Loader`.
+     * Entry point for class {@code Loader}.
      * Don't use that -> no help
      * @param args
      */

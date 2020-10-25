@@ -47,9 +47,9 @@ public class NodeData {
     public static final int LET_STATEMENT = 2;
     public static final int INPUT_NODE = 3;
 
-    /** The `Node` the data is represented */
+    /** The {@code Node} the data is represented */
     public Node node;
-    /** A `DraggableFilter` corresponding to that `Node` */
+    /** A {@code DraggableFilter} corresponding to that {@code Node} */
     public DraggableFilter draggableFilter;
     /** <p>A code to easily check potential particular types of nodes.</p>
      * <p>Possible values: </p>
@@ -70,7 +70,7 @@ public class NodeData {
     /** The number of the output of that filter */
     public int fOutputNum;
     /** If connected to a `CompositeFilter`'s output, the number of the output
-     * of the `CompositeFilter` it will be connected */
+     * of the {@code CompositeFilter} it will be connected */
     public int cfOutputNum;
     /** If input or output filter, the name of the file to read/write */
     public String ioFileName;
@@ -101,7 +101,7 @@ public class NodeData {
      * coordinates have already been read */
     public boolean isPositionSet = false;
 
-    /** The `WFilter` corresponding to the filter */
+    /** The {@code WFilter} corresponding to the filter */
     public WFilter filter;
 
     /**
@@ -268,7 +268,7 @@ public class NodeData {
     /**
      * Gets the x and y coordinates and orientation if present in the node.
      * @param n          The node to get its position and orientation
-     * @param attributes The `ValueMapper` that contains the data of the `Node`
+     * @param attributes The {@code ValueMapper} that contains the data of the `Node`
      *                   we are interested in
      * @throws LoaderException If some value is not valid, but not when it is 
      *                         absent
@@ -375,10 +375,10 @@ public class NodeData {
     }
 
     /**
-     * Sets `ioFileName` member, for `DInputFilter`s and `DOutputFilter`s to
+     * Sets {@code ioFileName} member, for {@code DInputFilter}s and {@code DOutputFilter}s to
      * recall their file name.
-     * @param n                 The `Node` that represents the io filter
-     * @param attributes        A `ValueMapper` containing the attributes of
+     * @param n                 The {@code Node} that represents the io filter
+     * @param attributes        A {@code ValueMapper} containing the attributes of
      *                          the `Node`
      * @throws LoaderException  If not present
      */
@@ -398,7 +398,7 @@ public class NodeData {
      * related to a node representing a connection beween a composite 
      * filter ouput and another filter output.
      * @param n                     The node to get data from
-     * @param attributes            A `ValueMapper` containing the attributes of
+     * @param attributes            A {@code ValueMapper} containing the attributes of
      *                              the `Node`
      * @throws LoaderException      If some reference is absent, wrong or 
      *                              ill formatted
@@ -448,7 +448,7 @@ public class NodeData {
      * For the simplicity of getTypeContent method, sets the members 
      * related to a node representing a filter located in another xml file.
      * @param n                     The node to get data from
-     * @param attributes            A `ValueMapper` containing the attributes
+     * @param attributes            A {@code ValueMapper} containing the attributes
      *                              of the `Node`
      * @param parameters            A HashMap with values of the parameters
      *                              introduced in the input file
@@ -533,11 +533,11 @@ public class NodeData {
     } // getInputsRefs method
 
     /**
-     * Add all variables definitions in the attributes of a `let` node.
+     * Add all variables definitions in the attributes of a {@code let} node.
      * @param n                 The node
-     * @param attributes        A `ValueMapper` containing the attributes of
+     * @param attributes        A {@code ValueMapper} containing the attributes of
      *                          the `Node`
-     * @param parameters        A `HashMap<String, Double>` with values of the
+     * @param parameters        A {@code HashMap<String, Double>} with values of the
      *                          parameters introduced in the input file
      * @throws LoaderException  If some parsing failed.
      */

@@ -31,8 +31,8 @@ import be.uliege.straet.oop.filters.Block;
 import be.uliege.straet.oop.filters.BlockException;
 
 /**
- * <p>Class reponsible of the writing of a `CompositeFilter` to a file.</p>
- * <p>It will hold all the constant `String`s for the nodes tags, attributes 
+ * <p>Class reponsible of the writing of a {@code CompositeFilter} to a file.</p>
+ * <p>It will hold all the constant {@code String}s for the nodes tags, attributes 
  * names etc. </p>
  */
 public class Writer {
@@ -81,7 +81,7 @@ public class Writer {
     // }
 
     /**
-     * Writes a `CompositeFilter` to a xml file
+     * Writes a {@code CompositeFilter} to a xml file
      * @param cf                The `CompositeFilter to write
      * @param fileName          The name of the file to create
      * @throws WriterException  If something went wrong
@@ -93,9 +93,9 @@ public class Writer {
     }
 
     /**
-     * Constructs a `Document` from a `CompositeFilter`.
+     * Constructs a {@code Document} from a {@code CompositeFilter}.
      * @param cf        The `CompositeFilter`
-     * @return          The `Document` that has been built
+     * @return          The {@code Document} that has been built
      */
     public static Document documentFromFilter(CompositeFilter cf) 
         throws WriterException {
@@ -120,7 +120,7 @@ public class Writer {
     }
 
     /**
-     * Write a `Document` to a xml file. 
+     * Write a {@code Document} to a xml file. 
      * @param docmument         The `Document`
      * @param fileName          The name of the file to write
      * @throws WriterException  If someting went wrong
@@ -149,8 +149,8 @@ public class Writer {
     }
 
     /**
-     * Adds a filter to the `Document`.
-     * @param cf                The `CompositeFilter` to add
+     * Adds a filter to the {@code Document}.
+     * @param cf                The {@code CompositeFilter} to add
      * @param d                 The `Document`
      * @throws BlockException   If we could not determine some filter's type
      * @throws WriterException  If some-sub-CompositeFilter is ill-formatted
@@ -165,7 +165,7 @@ public class Writer {
     }
 
     /**
-     * Append filters present in `CompositeFilter` cf to an element
+     * Append filters present in {@code CompositeFilter} cf to an element
      * @param cf                The `CompositeFilter`
      * @param cfId              The id associated to the `CompositeFilter`
      * @param e                 The `Element`
@@ -203,15 +203,15 @@ public class Writer {
     }
 
     /**
-     * Builds an `Element` from a `Block` in the `CompositeFilter`.
+     * Builds an {@code Element} from a {@code Block} in the {@code CompositeFilter}.
      * @param b     The `Block`
      * @param cfId  The id of the `CompositeFilter`
-     * @param d     The `Document` to create the `Element` for
+     * @param d     The {@code Document} to create the {@code Element} for
      * @return      The newly built `Element`
      * @throws BlockException   If a class name could not be found for the 
-     *                          `Block` or an index exceeds the array's size
-     * @throws WriterException  If a composite `Block` does not contains a 
-     *                          `CompositeFilter` (???)
+     *                          {@code Block} or an index exceeds the array's size
+     * @throws WriterException  If a composite {@code Block} does not contains a 
+     *                          {@code CompositeFilter} (???)
      */
     private static Element elementFromBlock(Block b, String cfId,
         Document d) throws BlockException, WriterException {

@@ -13,7 +13,7 @@ public class DInputFilter extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      * @param iFileName     The name of the file in which the input will be 
      *                      read 
@@ -50,7 +50,7 @@ public class DInputFilter extends DraggableFilter {
     }
 
     /**
-     * @return  The `AudioSequence2` represented by this input filter
+     * @return  The {@code AudioSequence2} represented by this input filter
      */
     public AudioSequence2 getAudioSequence() {  return audioSequence;  }
 

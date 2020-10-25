@@ -100,7 +100,7 @@ public class Block {
 
     /**
      * Returns the name of the node for representing the filter contained 
-     * in the `Block`.
+     * in the {@code Block}.
      * @return                  The name for the xml node
      * @throws BlockException   If the class name has not been found
      */
@@ -125,7 +125,7 @@ public class Block {
     }
 
     /**
-     * Returns a reference to a `ReadDouble` containing the o-th output.
+     * Returns a reference to a {@code ReadDouble} containing the o-th output.
      * @param o     The index of output to return a reference to
      * @return      The ReadDouble to the o-th output
      */
@@ -136,14 +136,14 @@ public class Block {
     }
 
     /**
-     * @return      The `Block` current state
+     * @return      The {@code Block} current state
      */
     private int state() {
         return state;
     }
 
     /**
-     * Resets the `Block` state to SLEEPING, at the beginning of each 
+     * Resets the {@code Block} state to SLEEPING, at the beginning of each 
      * computation of output.
      */
     public void resetState() {
@@ -152,7 +152,7 @@ public class Block {
 
     /**
      * Wether or not the Blocks contains a class implementing 
-     * `FeedbackableFilter`.
+     * {@code FeedbackableFilter}.
      * @return      true when `FeedbackableFilter`, else false
      */
     private boolean isFeedbackableFilter() {
@@ -161,9 +161,9 @@ public class Block {
 
     /**
      * Connects output of another `Block`, as an input of this (Block).
-     * @param b1                    The `Block` to connect
+     * @param b1                    The {@code Block} to connect
      * @param o1                    The index of the output of the `Block`
-     * @param i2                    The index of the input of this `Block` 
+     * @param i2                    The index of the input of this {@code Block} 
      *                              filter (this)
      * @throws BlockException       If the connection could not be done, e.g.
      *                              the input-output index are invalid.
@@ -180,9 +180,9 @@ public class Block {
     }
 
     /**
-     * Connects the i1 input of the `Block` to an arbitrary ReadDouble input,
-     * in order to connect a `Block` to the input of the composite filter.
-     * @param input                 The `ReadDouble` to connect
+     * Connects the i1 input of the {@code Block} to an arbitrary ReadDouble input,
+     * in order to connect a {@code Block} to the input of the composite filter.
+     * @param input                 The {@code ReadDouble} to connect
      * @param i1                    The index of the input we connect.
      * @throws BlockException       If the connection could not be done, e.g.
      *                              the input-output index are invalid.
@@ -207,9 +207,9 @@ public class Block {
 
     /**
      * Computes one step of the whole "Block diagram", and returns a vector
-     * containing the `Block`s that will have to be updated.
-     * @param updateAfter               A vector of `Block` containing the 
-     *                                  `Block`s that will have to be updated.
+     * containing the {@code Block}s that will have to be updated.
+     * @param updateAfter               A vector of {@code Block} containing the 
+     *                                  {@code Block}s that will have to be updated.
      * @throws BlockException           If something impossible occured in the
      *                                  connections (impossible feedback loop,
      *                                  no input connection...)
@@ -296,8 +296,8 @@ public class Block {
     public int nbOutputs() { return filter.nbOutputs(); }
 
     /**
-     * @return      i-th reference to `ReadDouble` describing the i-th input of
-     *              `Block`.
+     * @return      i-th reference to {@code ReadDouble} describing the i-th input of
+     *              {@code Block}.
      * @throws BlockException   If the index exceeds the array length.
      */
     public ReadDouble input(int i) throws BlockException {
@@ -308,8 +308,8 @@ public class Block {
     }
 
     /**
-     * @return      i-th reference to `ReadDouble` describing the i-th output
-     *              of the `Block`.
+     * @return      i-th reference to {@code ReadDouble} describing the i-th output
+     *              of the {@code Block}.
      * @throws BlockException   If the index exceeds the array length.
      */
     public ReadDouble output(int i) throws BlockException {

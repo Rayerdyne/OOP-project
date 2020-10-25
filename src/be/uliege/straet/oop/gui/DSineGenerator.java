@@ -18,9 +18,9 @@ public class DSineGenerator extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A `DSineGenerator` that will be used in that filter
+     * @param filter A {@code DSineGenerator} that will be used in that filter
      */
     public DSineGenerator(int x, int y, WorkSpace ws, boolean selected,
         SineGenerator filter) {
@@ -57,10 +57,10 @@ public class DSineGenerator extends DraggableFilter {
     }
 
     /**
-     * Constructor with default `SineGenerator`.
+     * Constructor with default {@code SineGenerator}.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
     public DSineGenerator(int x, int y, WorkSpace ws, boolean selected) {

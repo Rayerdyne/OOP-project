@@ -18,9 +18,9 @@ public class DCenteredSquareGenerator extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A `CenteredSquareGenerator` that will be used in that 
+     * @param filter A {@code CenteredSquareGenerator} that will be used in that 
      *               filter
      */
     public DCenteredSquareGenerator(int x, int y, WorkSpace ws, boolean selected,
@@ -57,10 +57,10 @@ public class DCenteredSquareGenerator extends DraggableFilter {
     }
 
     /**
-     * Constructor with default `CenteredSquareGenerator`.
+     * Constructor with default {@code CenteredSquareGenerator}.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
     public DCenteredSquareGenerator(int x, int y, WorkSpace ws, boolean selected) {

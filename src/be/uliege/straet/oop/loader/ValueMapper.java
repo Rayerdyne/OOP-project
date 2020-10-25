@@ -22,7 +22,7 @@ public class ValueMapper {
 
     /**
      * Constructor.
-     * @param n     The `Node` we fetch its attributes
+     * @param n     The {@code Node} we fetch its attributes
      */
     public ValueMapper(Node n) {
         this();
@@ -37,7 +37,7 @@ public class ValueMapper {
     }
 
     /**
-     * Adds all the entries of a `NamedNodeMap`.
+     * Adds all the entries of a {@code NamedNodeMap}.
      * @param nnm   The `NamedNodeMap`
      */
     public void addAllNNM(NamedNodeMap nnm) {
@@ -71,7 +71,7 @@ public class ValueMapper {
     }
 
     /**
-     * @return      A `Set<Entry<String, Node>>` containing all the entries in
+     * @return      A {@code Set<Entry<String, Node>>} containing all the entries in
      *              this `ValueMapper`
      */
     public Set<Entry<String, Node>> entries() {
@@ -79,7 +79,7 @@ public class ValueMapper {
     }
 
     /**
-     * @return      A `Collection<Node>` containing all the values stored in
+     * @return      A {@code Collection<Node>} containing all the values stored in
      *              this `ValueMapper`
      */
     public Collection<Node> values() {

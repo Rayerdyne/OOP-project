@@ -36,7 +36,7 @@ public class FMenuBar extends JMenuBar implements ActionListener {
 
     /**
      * Constructor.
-     * @param ws        The `WorkSpace` the menu bar is linked to
+     * @param ws        The {@code WorkSpace} the menu bar is linked to
      */
     public FMenuBar(WorkSpace ws) {
         super();
@@ -99,7 +99,7 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                 WorkSpace.showError("The filter could not be written in the " +
                     "output file", we);
             } catch (FilterException fe) {
-                WorkSpace.showError("Filter represented by the `WorkSpace` " +
+                WorkSpace.showError("Filter represented by the {@code WorkSpace} " +
                     "could not be built", fe);
             }  });
 

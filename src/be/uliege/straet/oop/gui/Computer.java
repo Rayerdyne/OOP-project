@@ -61,10 +61,10 @@ public class Computer implements Runnable {
     private short[][] leftChannels;
 
     /**
-     * Constructs a `Computer`.
-     * @param inputs   An array of `AudioSequence2` that will be inputted to 
+     * Constructs a {@code Computer}.
+     * @param inputs   An array of {@code AudioSequence2} that will be inputted to 
      *                 the `CompositeFilter`
-     * @param cf     The `CompositeFilter` we want to apply to the inputs
+     * @param cf     The {@code CompositeFilter} we want to apply to the inputs
      * @param type   Sets the type of computation to do: PLAY_AUDIO, 
      *               COMPUTE_FILE or APPLY_TO_VOICE
      * @throws ComputationException If the number of inputs mismatch the number
@@ -97,9 +97,9 @@ public class Computer implements Runnable {
 
     /**
      * Constructs a `Computer`
-     * @param inputs   An array of `AudioSequence2` that will be inputted to 
+     * @param inputs   An array of {@code AudioSequence2} that will be inputted to 
      *                 the `CompositeFilter`
-     * @param cf       The `CompositeFilter` we want to apply to the inputs
+     * @param cf       The {@code CompositeFilter} we want to apply to the inputs
      * @param filename The name of the output wav file
      * @throws ComputationException If the number of inputs mismatch the number
      *                              AudioSequences.
@@ -116,11 +116,11 @@ public class Computer implements Runnable {
 
     /**
      * Construcs a `Computer`, for applying the filter to a voice sample.
-     * @param inputs An array of `AudioSequence2` that will be inputted to the
+     * @param inputs An array of {@code AudioSequence2} that will be inputted to the
      *               composite filter
      * @param cfR    The right `CompositeFilter`, to apply to the voice.
      * @param cfL    The left `CompositeFilter`, to apply to the voice.
-     * @param remote An array of `int`s, remote value representing the 
+     * @param remote An array of {@code int}s, remote value representing the 
      *               computation's state.
      * @throws ComputationException     If something goes wrong...
      */
@@ -198,7 +198,7 @@ public class Computer implements Runnable {
     /**
      * Plays the audio after the filter has been applied.
      * @param areChannelsSet    If true, does not loads the short arrays from 
-     *                          the `AudioSequence`s, an duse them as they are.
+     *                          the {@code AudioSequence}s, an duse them as they are.
      */
     public void runAudio(boolean areChannelsSet) {
         if (!areChannelsSet)
@@ -246,7 +246,7 @@ public class Computer implements Runnable {
             }
 
         } catch (LineUnavailableException e) {
-            WorkSpace.showError("Recieved `LineUnavailibleException`.", e);
+            WorkSpace.showError("Recieved {@code LineUnavailibleException}.", e);
         } catch (FilterException e) {
             WorkSpace.showError("Could not compute step.", e);
         }
@@ -298,7 +298,7 @@ public class Computer implements Runnable {
      *                  true, we compute the step of the right filter.
      * @return          The output of the filter at that step.
      * @throws FilterException  If the computation of the output raises an
-     *                          `Exception`.
+     *                          {@code Exception}.
      */
     private short computeOneStep(long i, boolean isRight) 
         throws FilterException {

@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 /**
  * <p>This class represents a ball that connects an input or an output to a 
  * given filter.</p>
- * <p>Input `FixedBall`s will be green, and output ones blue.</p>
+ * <p>Input {@code FixedBall}s will be green, and output ones blue.</p>
  */
 public class FixedBall implements MouseListener, Locatable {
 
@@ -17,7 +17,7 @@ public class FixedBall implements MouseListener, Locatable {
     public static final Color OUTPUT_COLOR = Color.blue;
 
     private int x, y;
-    /** the index of the `FixedBall` as an input or output */
+    /** the index of the {@code FixedBall} as an input or output */
     private final int index;
     private boolean isInput;
     private DraggableFilter owner;
@@ -29,9 +29,9 @@ public class FixedBall implements MouseListener, Locatable {
      * Constructor.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param isInput   Wether or not the `FixedBall` is the input of a filter
+     * @param isInput   Wether or not the {@code FixedBall} is the input of a filter
      * @param owner     The `DraggableFilter that has this input-output
-     * @param index     The index of the `FixedBall` as an input or output of
+     * @param index     The index of the {@code FixedBall} as an input or output of
      *                  the filter
      */
     public FixedBall(int x, int y, boolean isInput,
@@ -49,7 +49,7 @@ public class FixedBall implements MouseListener, Locatable {
      * Constructs a `FixedBall`, with index as input or output of the filter 0.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param isInput   Wether or not the `FixedBall` is the input of a filter
+     * @param isInput   Wether or not the {@code FixedBall} is the input of a filter
      * @param owner     The `DraggableFilter that has this input-output
      */
     public FixedBall(int x, int y, boolean isInput,
@@ -58,7 +58,7 @@ public class FixedBall implements MouseListener, Locatable {
     }
 
     /**
-     * Translates this `FixedBall`.
+     * Translates this {@code FixedBall}.
      * @param x     The change in x coordinate
      * @param y     The change in y coordinate
      */
@@ -68,7 +68,7 @@ public class FixedBall implements MouseListener, Locatable {
     }
 
     /**
-     * Paints this `FixedBall` on a `Graphics` with zoom factor.
+     * Paints this {@code FixedBall} on a {@code Graphics} with zoom factor.
      * @param g         The `Graphics`
      * @param zoom      The zoom factor
      */
@@ -110,24 +110,24 @@ public class FixedBall implements MouseListener, Locatable {
     @Override public int getY() { return y; }
 
     /**
-     * Sets the x coordinate of this `FixedBall`.
+     * Sets the x coordinate of this {@code FixedBall}.
      * @param x     The x coordinate
      */
     public void setX(int x) { this.x = x; }
 
     /**
-     * Sets the y coordinate of this `FixedBall`.
+     * Sets the y coordinate of this {@code FixedBall}.
      * @param y     The y coordinate
      */
     public void setY(int y) { this.y = y; }
 
     /**
-     * @return      The `DraggableFilter` that owns this `FixedBall`
+     * @return      The {@code DraggableFilter} that owns this `FixedBall`
      */
     public DraggableFilter owner() { return owner; }
 
     /**
-     * @return      Wether or not this `FixedBall` is connected to at least one
+     * @return      Wether or not this {@code FixedBall} is connected to at least one
      *              `Wire`
      */
     public boolean isConnected() { return isConnected; }
@@ -139,19 +139,19 @@ public class FixedBall implements MouseListener, Locatable {
     public void setConnected(boolean connected) { isConnected = connected; }
 
     /**
-     * @return  Wether or not the `FixedBall` represents an input of the filter
+     * @return  Wether or not the {@code FixedBall} represents an input of the filter
      *          it belongs to
      */
     public boolean isInput() { return isInput; }
     /**
-     * @return  Wether or not the `FixedBall` represents an output of the 
+     * @return  Wether or not the {@code FixedBall} represents an output of the 
      *          filter it belongs to
      */
     public int index() { return index; }
 
     /**
-     * Sets the highlight policy of this `FixedBall`.
-     * @param isHighlightied    Wether or not this `FixedBall` is highlighted
+     * Sets the highlight policy of this {@code FixedBall}.
+     * @param isHighlightied    Wether or not this {@code FixedBall} is highlighted
      */
     public void setHighlighted(boolean isHighlited) { 
         this.isHighlited = isHighlited;

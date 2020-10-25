@@ -24,9 +24,9 @@ public class DConvolutionFilter extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A `ConvolutionFilter` that will be placed in this filter
+     * @param filter A {@code ConvolutionFilter} that will be placed in this filter
      */
     public DConvolutionFilter(int x, int y, WorkSpace ws, boolean selected,
         ConvolutionFilter filter) {
@@ -63,10 +63,10 @@ public class DConvolutionFilter extends DraggableFilter {
     }
 
     /**
-     * Constructor with default `ConvolutionFilter`.
+     * Constructor with default {@code ConvolutionFilter}.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
     public DConvolutionFilter(int x, int y, WorkSpace ws, boolean selected) {

@@ -84,7 +84,7 @@ public class DelayFilter implements FeedbackableFilter {
     }
 
     /**
-     * Returns the incoming value, to handle feeback in `CompositeFilter`.
+     * Returns the incoming value, to handle feeback in {@code CompositeFilter}.
      * @return      The next output of the filter
      */
     public double[] incomingOutput() {
@@ -98,7 +98,7 @@ public class DelayFilter implements FeedbackableFilter {
     }
 
     /**
-     * @return      Returns the number of samples the `DelayFilter` shifts its
+     * @return      Returns the number of samples the {@code DelayFilter} shifts its
      *              input by
      */
     public int getShift() { return values.length; }

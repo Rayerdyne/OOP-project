@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * <p>A basic noise generator.</p>
  * 
- * <p>Note that the value predicted for sample t+1 (with `incomintOutput` 
+ * <p>Note that the value predicted for sample t+1 (with {@code incomintOutput} 
  * method) differs from the value given for next sample (i.e. when time will
  * have passed). I don't care: it's noise.</p>
  */
@@ -34,7 +34,7 @@ public class NoiseGenerator extends Generator {
 
     /**
      * Computes the output.
-     * @param input     Remains from `Filter` interface, unused
+     * @param input     Remains from {@code Filter} interface, unused
      */
     public double[] computeOneStep(double[] input) {
     return new double[] { amplitude2 * (random.nextDouble() - 0.5) };

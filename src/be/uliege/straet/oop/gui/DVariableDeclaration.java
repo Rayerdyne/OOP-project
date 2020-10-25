@@ -17,7 +17,7 @@ public class DVariableDeclaration extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      * @param varName   The name of the parameter the "filter" will hold
      * @param varDefinition     The definition of the parameter the "filter"
@@ -33,7 +33,7 @@ public class DVariableDeclaration extends DraggableFilter {
      * Constructor with undefined parameter name and definition.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
     public DVariableDeclaration(int x, int y, WorkSpace ws, boolean selected) {

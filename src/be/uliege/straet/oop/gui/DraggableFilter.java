@@ -16,7 +16,7 @@ import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.NodeData;
 
 /**
- * Superclass for the representations of the filters in the `WorkSpace`.
+ * Superclass for the representations of the filters in the {@code WorkSpace}.
  */
 public class DraggableFilter extends Draggable {
 
@@ -33,39 +33,39 @@ public class DraggableFilter extends Draggable {
     protected double[] parameterD;
     protected String parameterS;
     protected WFilter filterR, filterL; /* two filters must be different for 
-                two `CompositeFilter`s that may be built for stereo output */
+                two {@code CompositeFilter}s that may be built for stereo output */
 
     private Vector<Wire> inConnectedWires = new Vector<Wire>();
     private Vector<Wire> outConnectedWires = new Vector<Wire>();
 
     /**
-     * Constructs a `DraggableFilter` in `WorkSpace` at coordinates (x, y).
+     * Constructs a {@code DraggableFilter} in {@code WorkSpace} at coordinates (x, y).
      * @param x         x coordinate
      * @param y         y coordinate
-     * @param ws        The `WorkSpace` the `Draggable` belongs to
+     * @param ws        The {@code WorkSpace} the {@code Draggable} belongs to
      */
     public DraggableFilter(int x, int y, WorkSpace ws) {
         super(x, y, ws);
     }
 
     /**
-     * Constructs a `Draggable` that will be selected for positioning in given
-     * `WorkSpace`.
+     * Constructs a {@code Draggable} that will be selected for positioning in given
+     * {@code WorkSpace}.
      * @param x         The x coordinate
      * @param y         The y coordinate
      * @param ws        The `WorkSpace`
-     * @param selected  Wether or not the `Draggable` is selected wen created. 
+     * @param selected  Wether or not the {@code Draggable} is selected wen created. 
      */
     public DraggableFilter(int x, int y, WorkSpace ws, boolean selected) {
         super(x, y, ws, selected);
     }
 
     /**
-     * @return      An array of `FixedBall`s that are the inputs of this filter
+     * @return      An array of {@code FixedBall}s that are the inputs of this filter
      */
     public FixedBall[] inputs() { return inputs; }
     /**
-     * @return      An array of `FixedBall`s that are the outputs of this filter
+     * @return      An array of {@code FixedBall}s that are the outputs of this filter
      */
     public FixedBall[] outputs() { return outputs; }
 
@@ -95,7 +95,7 @@ public class DraggableFilter extends Draggable {
 
     /**
      * @return      The definition of the parameter of this filter, i.e. the 
-     *              initial `String` that may contain a parameter's name
+     *              initial {@code String} that may contain a parameter's name
      */
     public String getParameterDefinition() {  return parameterS;  }
 
@@ -114,8 +114,8 @@ public class DraggableFilter extends Draggable {
     public int getParameterType() { return NONE; }
 
     /**
-     * Shows the dialog and returns the entered `String`.
-     * @return      The `String` entered in the input dialog, `null` if none
+     * Shows the dialog and returns the entered {@code String}.
+     * @return      The {@code String} entered in the input dialog, {@code null} if none
      */
     public String getParameterInput() {
         return JOptionPane.showInputDialog("Enter new " 
@@ -127,7 +127,7 @@ public class DraggableFilter extends Draggable {
      * @param saveFile  If true, select a file for saving (then the 
      *                  file will be created), else the file should exist
      * @param extentions    Allowed extentions for the file to select.
-     * @return              A `String` containing the path of the selected file
+     * @return              A {@code String} containing the path of the selected file
      */
     public String getFilePathInput(boolean saveFile, String... extentions) {
         JFileChooser chooser = new JFileChooser();
@@ -165,7 +165,7 @@ public class DraggableFilter extends Draggable {
      * <p>Sets the property of a filter based on a String argument that will be
      * parsed in double (i.e., rounded for the delay filters).</p>
      * <p>Will have to be overriden.</p>
-     * @param s The `String` containing the definition of the parameter.
+     * @param s The {@code String} containing the definition of the parameter.
      */
     public void setParameter(String s) {
         if (s != null)
@@ -209,8 +209,8 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Parse a `double[]` from a `String`.
-     * @param s             The `String` to parse
+     * Parse a {@code double[]} from a {@code String}.
+     * @param s             The {@code String} to parse
      * @param parameters    A set of parameters
      * @return              The parsed array of double
      * @throws LoaderException  If some errors occur, eg some parameters
@@ -249,7 +249,7 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * @param df    A `DraggableFilter` instance
+     * @param df    A {@code DraggableFilter} instance
      * @return      Wether or not this instance should be updated after some 
      *              changes made to already existing variables.
      */
@@ -339,9 +339,9 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Adds a connected `Wire` to this filter.
-     * @param wire      The `Wire` to add
-     * @param atInput   Wether or not the `Wire` is connected to one input of 
+     * Adds a connected {@code Wire} to this filter.
+     * @param wire      The {@code Wire} to add
+     * @param atInput   Wether or not the {@code Wire} is connected to one input of 
      *                  this filter
      */
     public void addConnectedWire(Wire wire, boolean atInput) {
@@ -353,8 +353,8 @@ public class DraggableFilter extends Draggable {
 
     /**
      * Gets the numeral associated to some input of the filter.
-     * @param in    The `FixedBall` we want to get its input number
-     * @return      The input number, -1 if `in` is not recognized.
+     * @param in    The {@code FixedBall} we want to get its input number
+     * @return      The input number, -1 if {@code in} is not recognized.
      */
     public int numOfInput(FixedBall in) {
         return indexOf(inputs, in);
@@ -362,20 +362,20 @@ public class DraggableFilter extends Draggable {
 
     /**
      * Gets the numeral associated to some output of the filter.
-     * @param out   The `FixedBall` we want to get its output number
-     * @return      The output number, -1 if `out` is not recognized.
+     * @param out   The {@code FixedBall} we want to get its output number
+     * @return      The output number, -1 if {@code out} is not recognized.
      */
     public int numOfOutput(FixedBall out) {
         return indexOf(outputs, out);
     }
 
     /**
-     * @return      The right `WFilter` contained in this filter.
+     * @return      The right {@code WFilter} contained in this filter.
      */
     public WFilter filterR() {  return filterR;  }
 
     /**
-     * @return      The left `WFilter` contained in this filter.
+     * @return      The left {@code WFilter} contained in this filter.
      */
     public WFilter filterL() {  return filterL;  }
 
@@ -383,7 +383,7 @@ public class DraggableFilter extends Draggable {
      * Linear search for the index of a given element in an array.
      * @param array     The array we look in
      * @param o         The object we want the index in the array
-     * @return          The index if `o` is present in `array`, else -1.
+     * @return          The index if {@code o} is present in `array`, else -1.
      */
     private int indexOf(Object[] array, Object o) {
         for (int i = 0; i < array.length; i++) {
@@ -394,7 +394,7 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * @return      A `Vector<Wire>` containing the `Wire`s that are connected
+     * @return      A {@code Vector<Wire>} containing the {@code Wire}s that are connected
      *              to an input of this filter.
      */
 	public Vector<Wire> wireAtInputs() {
@@ -402,7 +402,7 @@ public class DraggableFilter extends Draggable {
     }
     
     /**
-     * @return      A `Vector<Wire>` containing the `Wire`s that are connected
+     * @return      A {@code Vector<Wire>} containing the {@code Wire}s that are connected
      *              to an output of this filter.
      */
 	public Vector<Wire> wireAtOutputs() {

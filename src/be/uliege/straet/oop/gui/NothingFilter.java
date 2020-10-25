@@ -17,7 +17,7 @@ public class NothingFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param ws        The `WorkSpace` this `NothingFilter` belongs to
+     * @param ws        The {@code WorkSpace} this {@code NothingFilter} belongs to
      * @param nextInterpMethodIsLin If true, next interpolation method is 
      *                              linear, else it's cubic
      */
@@ -29,7 +29,7 @@ public class NothingFilter extends DraggableFilter {
      * Constructor.
      * @param x         The x coordinate of this `NothingFilter`
      * @param y         The y coordinate of this `NothingFilter`
-     * @param ws        The `WorkSpace` this belongs to
+     * @param ws        The {@code WorkSpace} this belongs to
      * @param nextInterpMethodIsLin If true, next interpolation method is 
      *                              linear, else it's cubic
      */

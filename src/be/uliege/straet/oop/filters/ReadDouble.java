@@ -24,14 +24,14 @@ public class ReadDouble {
 
     /**
      * Constructs a object referencing a value.
-     * @param ref       A reference to the `WriteDouble` to 'follow'
+     * @param ref       A reference to the {@code WriteDouble} to 'follow'
      */
     public ReadDouble(WriteDouble ref) {
         this.ref = ref;
     }
 
     /**
-     * Construct the referencing tool to a `WriteDouble`.
+     * Construct the referencing tool to a {@code WriteDouble}.
      * @param ref       A reference to the WriteDouble to 'follow'
      * @param source    The block that holds the WriteDouble
      * @param i         The index of this WriteDouble regarding the source
@@ -69,14 +69,14 @@ public class ReadDouble {
     }
 
     /**
-     * @return      The `Block` that holds this `WriteDouble`.
+     * @return      The {@code Block} that holds this {@code WriteDouble}.
      */
     public Block source() {
         return source;
     }
 
     /**
-     * @return      true if this `WriteDouble` is connected to an input.
+     * @return      true if this {@code WriteDouble} is connected to an input.
      */
     public boolean connectedToInput() {
         return isConnectedToInput;

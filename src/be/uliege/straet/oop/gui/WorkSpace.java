@@ -104,8 +104,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Paints all the stuff in this `WorkSpace` on a `Graphics`.
-     * @param g     The `Grapihcs` to paint on
+     * Paints all the stuff in this {@code WorkSpace} on a {@code Graphics}.
+     * @param g     The {@code Grapihcs} to paint on
      */
     public void paintComponent(Graphics g) {
         Dimension dim = getSize();
@@ -139,8 +139,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Deletes a `Draggable` element of this `WorkSpace`.
-     * @param d     The `Draggable` to delete
+     * Deletes a {@code Draggable} element of this {@code WorkSpace}.
+     * @param d     The {@code Draggable} to delete
      */
     public void delete(Draggable d) {
         if (d instanceof DraggableFilter)
@@ -152,8 +152,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Deletes a `DraggableFilter` in the `WorkSpace`.
-     * @param d The `DraggableFilter` to delete
+     * Deletes a {@code DraggableFilter} in the {@code WorkSpace}.
+     * @param d The {@code DraggableFilter} to delete
      */
     public void delete(DraggableFilter d) {
         filters.remove(d);
@@ -167,8 +167,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Delete a `FreeBall` of this `WorkSpace`.
-     * @param fb The `FreeBall` to delete
+     * Delete a {@code FreeBall} of this {@code WorkSpace}.
+     * @param fb The {@code FreeBall} to delete
      */
     public void delete(FreeBall fb) {
         freeBalls.remove(fb);
@@ -176,8 +176,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Delete a `Wire` of this `WorkSpace`.
-     * @param wire The `Wire` to delete
+     * Delete a {@code Wire} of this {@code WorkSpace}.
+     * @param wire The {@code Wire} to delete
      */
     public void delete(Wire wire) {
         wires.remove(wire);
@@ -188,8 +188,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Deletes a `FixedBall` of this `WorkSpace`.
-     * @param fb    The `FixedBall` to delete
+     * Deletes a {@code FixedBall} of this {@code WorkSpace}.
+     * @param fb    The {@code FixedBall} to delete
      */
     public void delete(FixedBall fb) {
         inputs.remove(fb);
@@ -197,7 +197,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Adds `FixedBall`s in the vector of inputs.
+     * Adds {@code FixedBall}s in the vector of inputs.
      * @param fbs   The inputs to add
      */
     public void addInputs(FixedBall[] fbs) {
@@ -206,7 +206,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Adds `FixedBall`s in the vector of outputs.
+     * Adds {@code FixedBall}s in the vector of outputs.
      * @param fbs   The outputs to add
      */
     public void addOutputs(FixedBall[] fbs) {
@@ -215,24 +215,24 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * @return      A `Vector<FixedBall>` containing all the `FixedBall`s in
-     *              this `WorkSpace` that are inputs w.r.t. to their filter
+     * @return      A {@code Vector<FixedBall>} containing all the {@code FixedBall}s in
+     *              this {@code WorkSpace} that are inputs w.r.t. to their filter
      */
     public Vector<FixedBall> inputs() {
         return inputs;
     }
 
     /**
-     * @return      A `Vector<FixedBall>` containing all the `FixedBall`s in
-     *              this `WorkSpace` that are outputs w.r.t. to their filter
+     * @return      A {@code Vector<FixedBall>} containing all the {@code FixedBall}s in
+     *              this {@code WorkSpace} that are outputs w.r.t. to their filter
      */
     public Vector<FixedBall> outputs() {
         return outputs;
     }
 
     /**
-     * Sets the current state of the `WorkSpace`. Be carefull xD
-     * @param state The new state of the `WorkSpace`.
+     * Sets the current state of the {@code WorkSpace}. Be carefull xD
+     * @param state The new state of the {@code WorkSpace}.
      */
     public void setState(int state) {
         this.state = state;
@@ -246,7 +246,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Starts the drawing of a `Wire`.
+     * Starts the drawing of a {@code Wire}.
      * @throws FilterException  If there is no input or output to connect.
      */
     public void addConnection() throws FilterException {
@@ -270,8 +270,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     /**
      * Creates a connection between two filters knowing the intermediates
      * points.
-     * @param origin    The `FixedBall` that outputs its result in the `Wire`
-     * @param dest      The `FixedBall` that the `Wire` give its input
+     * @param origin    The {@code FixedBall} that outputs its result in the `Wire`
+     * @param dest      The {@code FixedBall} that the {@code Wire} give its input
      * @param x         The x coordinates of intermediates points
      * @param y         The y coordinates of intermediates points
      * @throws FilterException If the x and y arrays size mismatch
@@ -325,7 +325,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `GainFilter` that will be used in that 
+     * @param filter      A {@code GainFilter} that will be used in that 
      *                    `DGainFilter`
      */
     public DraggableFilter addGain(int x, int y, int orientation, 
@@ -349,7 +349,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `DelayFilter` that will be used in that 
+     * @param filter      A {@code DelayFilter} that will be used in that 
      *                    `DDelayFilter`
      */
     public DraggableFilter addDelay(int x, int y, int orientation, 
@@ -380,7 +380,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `ConvolutionFilter` that will be used in that 
+     * @param filter      A {@code ConvolutionFilter} that will be used in that 
      *                    `DConvolutionFilter`
      */
     public DraggableFilter addConvolution(int x, int y, int orientation, 
@@ -447,7 +447,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      An `Integrator` that will be used in that 
+     * @param filter      An {@code Integrator} that will be used in that 
      *                    `DIntegratorFilter`
      */
     public DraggableFilter addIntegrator(int x, int y, int orientation, 
@@ -472,7 +472,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      An `DifferentiatorFilter` that will be used in that 
+     * @param filter      An {@code DifferentiatorFilter} that will be used in that 
      *                    `DDifferentiatorFilter`
      */
     public DraggableFilter addDifferentiator(int x, int y, int orientation, 
@@ -498,7 +498,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `Sinegenerator` that will be used in that 
+     * @param filter      A {@code Sinegenerator} that will be used in that 
      *                    `DSineGenerator`
      */
     public DraggableFilter addSineGenerator(int x, int y, int orientation, 
@@ -524,7 +524,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `CenteredSquaregenerator` that will be used in that
+     * @param filter      A {@code CenteredSquaregenerator} that will be used in that
      *                    `DCenteredSquareGenerator`
      */
     public DraggableFilter addCenteredSquareGenerator(int x, int y, 
@@ -551,7 +551,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `UpSquaregenerator` that will be used in that 
+     * @param filter      A {@code UpSquaregenerator} that will be used in that 
      *                    `DUpSquareGenerator`
      */
     public DraggableFilter addUpSquareGenerator(int x, int y, int orientation, 
@@ -577,7 +577,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
-     * @param filter      A `Noisegenerator` that will be used in that 
+     * @param filter      A {@code Noisegenerator} that will be used in that 
      *                    `DNoiseGenerator`
      */
     public DraggableFilter addNoiseGenerator(int x, int y, int orientation, 
@@ -695,8 +695,8 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Links the `FixedBall`s and the `Wire`s.
-     * @param fb The `FixedBall` to add to the constructed `Wire`
+     * Links the {@code FixedBall}s and the {@code Wire}s.
+     * @param fb The {@code FixedBall} to add to the constructed `Wire`
      */
     public void sendFixedBall(FixedBall fb) {
         if (!wireHasInput) {
@@ -726,10 +726,10 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Adds a `FreeBall` to the elements of the `WorkSpace`.
+     * Adds a {@code FreeBall} to the elements of the {@code WorkSpace}.
      * @param x    The x coordinate
      * @param y    The y coordinate
-     * @param wire The `Wire` that owns this `FreeBall`
+     * @param wire The {@code Wire} that owns this `FreeBall`
      */
     public void addFreeBall(int x, int y, Wire wire) {
         if (wire.isComplete())
@@ -802,7 +802,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Returns an int scaled by `zoom`. Mainly to handle casts proprely.
+     * Returns an int scaled by {@code zoom}. Mainly to handle casts proprely.
      * @param value The value to scale
      * @param zoom  The scaling factor
      * @return The scaled value
@@ -816,8 +816,8 @@ public class WorkSpace extends JPanel implements KeyListener {
      * Pre-builds the represented filter and stores it in resultFilter. Tests 
      * it to detect if some connections are missing or impossible.
      * @param isRight               Wether or not this will be the right filter
-     *                 (only to build `CompositeFilter` from different filter)
-     * @return                      The `CompositeFilter` that has been built
+     *                 (only to build {@code CompositeFilter} from different filter)
+     * @return                      The {@code CompositeFilter} that has been built
      * @throws FilterException      When some connection or instanciation could
      *                              not be made when building the filter 
      *                              represented by the `WorkSpace`
@@ -848,12 +848,12 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * <p>Returns true if the parameter is a filter that "does" something, i.e.
-     * is not a `DInputFilter`, `DOutputFilter` nor a `DVariableDeclaration`.
+     * is not a `DInputFilter`, {@code DOutputFilter} nor a {@code DVariableDeclaration}.
      * </p>
-     * <p>"Active" filters will be added as blocks in the `CompositeFilter`.
+     * <p>"Active" filters will be added as blocks in the {@code CompositeFilter}.
      * </p>
      * @param df        The `DraggableFilter`
-     * @return          true if the `DraggableFilter` is "active".
+     * @return          true if the {@code DraggableFilter} is "active".
      */
     public static boolean isActiveFilter(DraggableFilter df) {
         return  (!(df instanceof DInputFilter) && 
@@ -863,11 +863,11 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * Loops over all the wires and makes the connections they represents in 
-     * the `CompositeFilter`.
-     * @param filter    The `CompositeFilter` in wich we makes the connections
+     * the {@code CompositeFilter}.
+     * @param filter    The {@code CompositeFilter} in wich we makes the connections
      * @param isRight   If we build the right or the left filter (to use 
-     *                  differnent filters in the different `CompositeFilter`s)
-     * @throws FilterException  If some `CompositeFilter` could not be created
+     *                  differnent filters in the different {@code CompositeFilter}s)
+     * @throws FilterException  If some {@code CompositeFilter} could not be created
      *              or some connection could not be made.
      */
     private boolean makeWiresConnections(CompositeFilter filter, 
@@ -904,14 +904,14 @@ public class WorkSpace extends JPanel implements KeyListener {
                 }
             }
 
-        } // loop over `Wire`s
+        } // loop over {@code Wire}s
         return true;
     }
 
     /**
-     * Returns the `DraggableFilter` that owns this `FixedBall`.
+     * Returns the {@code DraggableFilter} that owns this {@code FixedBall}.
      * @param fb The `FixedBall`
-     * @return The `DraggableFilter` that owns the `FixedBall`, null if it 
+     * @return The {@code DraggableFilter} that owns the `FixedBall`, null if it 
      *         could not be found.
      */
     private DraggableFilter ownerOf(FixedBall fb) {
@@ -923,9 +923,9 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Tests the current `CompositeFilter` to look for problems in the 
+     * Tests the current {@code CompositeFilter} to look for problems in the 
      * connections (e.g. impossible feeback loops).
-     * @param cf        The `CompositeFilter` to test
+     * @param cf        The {@code CompositeFilter} to test
      */
     private void testFilter(CompositeFilter cf) throws FilterException {
         double[] in = new double[cf.nbInputs()];
@@ -937,10 +937,10 @@ public class WorkSpace extends JPanel implements KeyListener {
     /**
      * Runs the represented filter on the specified input (described by one or more
      * `DInputFilter`(s)) and outputs it to the file represented in an
-     * `DOutputFilter`.
+     * {@code DOutputFilter}.
      * @param isTmp If true, the file will be outputted in a tmp file
      *              (TMP_FILE_NAME)
-     * @return The `Computer` that will be responsible of the output in the file.
+     * @return The {@code Computer} that will be responsible of the output in the file.
      */
     public Computer buildOutputFile(boolean isTmp) {
         if (outputFilters.size() != 1) {
@@ -970,9 +970,9 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Gets the `AudioSequence2`s ready for the computation.
-     * @return An array containing all the `AudioSequence2`s
-     * @throws AudioSequenceException If some `AudioSequence2` could not be 
+     * Gets the {@code AudioSequence2}s ready for the computation.
+     * @return An array containing all the {@code AudioSequence2}s
+     * @throws AudioSequenceException If some {@code AudioSequence2} could not be 
      *                                loaded.
      */
     private AudioSequence2[] getAudioSequences() throws AudioSequenceException {
@@ -996,7 +996,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Applies the filter represented in this `WorkSpace` to a sample of voice.
+     * Applies the filter represented in this {@code WorkSpace} to a sample of voice.
      * @throws ComputationException    If the computation could not be made
      * @throws FilterException         If the represented filter is invalid, or
      *                                  could not be built
@@ -1076,16 +1076,16 @@ public class WorkSpace extends JPanel implements KeyListener {
     } 
 
     /**
-     * Parameter set of this `WorkSpace`.
-     * @return      A `HashMap<String, Double>` containing all the parameters
-     *              in this `WorkSpace` and their values
+     * Parameter set of this {@code WorkSpace}.
+     * @return      A {@code HashMap<String, Double>} containing all the parameters
+     *              in this {@code WorkSpace} and their values
      */
     public HashMap<String, Double> getParameterSet() {
         return parameterSet;
     }
     
     /**
-     * Saves the current `WorkSpace` (gets file name and saves it).
+     * Saves the current {@code WorkSpace} (gets file name and saves it).
      */
     public void saveAs() {
         JFileChooser chooser = new JFileChooser();
@@ -1102,7 +1102,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Saves the current `WorkSpace` in the currently opened file. If none, 
+     * Saves the current {@code WorkSpace} in the currently opened file. If none, 
      * saves as.
      */
     public void save() {
@@ -1113,7 +1113,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Saves the current `WorkSpace` state to an xml file.
+     * Saves the current {@code WorkSpace} state to an xml file.
      * @param fileName      The name of the file to write.
      */
     public void saveToFile(String fileName) {
@@ -1132,7 +1132,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     } 
 
     /**
-     * Opens a file in this `WorkSpace` (gets file name and opens it).
+     * Opens a file in this {@code WorkSpace} (gets file name and opens it).
      */
     public void open() {
         String fileName;
@@ -1156,7 +1156,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Opens a file and loads its content to the `WorkSpace`.
+     * Opens a file and loads its content to the {@code WorkSpace}.
      * @param fileName      The name of the file to open.
      * @throws IOException  If some error occured when reading and parsing the 
      *                      file or files required by recursion.
@@ -1175,11 +1175,11 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * Export the current filter as a standalone filter, i.e. including all the
-     * inner filter included via `CompositeFilter`s.
+     * inner filter included via {@code CompositeFilter}s.
      * @throws FilterException      When some connection or instanciation could
      *                              not be made when building the filter 
      *                              represented by the `WorkSpace`
-     * @throws WriterException      If the `CompositeFilter` could not be 
+     * @throws WriterException      If the {@code CompositeFilter} could not be 
      *                              written in the file
      */
     public void exportStandaloneFilter() throws FilterException, 
@@ -1199,7 +1199,7 @@ public class WorkSpace extends JPanel implements KeyListener {
     }
 
     /**
-     * Clears the `WorkSpace` from all its components.
+     * Clears the {@code WorkSpace} from all its components.
      */
     public void clear() {
         state = NORMAL;
@@ -1228,7 +1228,7 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * Shows an error with a user friendly message and to the standard output.
-     * @param s     A `String` containing some message
+     * @param s     A {@code String} containing some message
      * @param e     An `Exception`, if not null print its stacktrace to the 
      *              standard output
      */
@@ -1332,7 +1332,7 @@ public class WorkSpace extends JPanel implements KeyListener {
      * 
      * <p>Prints a line representing a to the file...</p>
      * @param timeStamp     The time stamp of the point
-     * @param l             A `Locatable` object at this point
+     * @param l             A {@code Locatable} object at this point
      * @param isLine        Wether or not the next line is line or cubic spline
      */
     public void nothingLine(double timeStamp, Locatable l, boolean isLine,

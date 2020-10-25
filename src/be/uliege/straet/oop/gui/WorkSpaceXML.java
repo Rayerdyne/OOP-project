@@ -62,7 +62,7 @@ public class WorkSpaceXML {
 
     /**
      * Constructor for saving.
-     * @param cfR           The `CompositeFilter` represented in the 
+     * @param cfR           The {@code CompositeFilter} represented in the 
      *                      `WorkSpace`
      * @param variables     The array of the variables declarations 
      * @param filters       The array of the 'active' filters of the 
@@ -85,18 +85,18 @@ public class WorkSpaceXML {
 
     /**
      * Constructor for opening files.
-     * @param ws    The `WorkSpace` we load the contents in
+     * @param ws    The {@code WorkSpace} we load the contents in
      */
     public WorkSpaceXML(WorkSpace ws) {
         this.ws = ws;
     }
 
     /**
-     * Adds the data contained in the `WorkSpace` current state, i.e. all the 
+     * Adds the data contained in the {@code WorkSpace} current state, i.e. all the 
      * positions of the filters, variables etc.
-     * @return  A `Document` holding the `CompositeFilter` and the data needed
+     * @return  A {@code Document} holding the {@code CompositeFilter} and the data needed
      *          to reconstruct the `WorkSpace`
-     * @throws WriterException  If some error due to a `Node` occured, e.g. 
+     * @throws WriterException  If some error due to a {@code Node} occured, e.g. 
      *                          some could not be found
      */
     public Document buildDocument() throws WriterException {
@@ -132,8 +132,8 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the data relative to the variables definitions in the `WorkSpace`.
-     * @param root      The `Element` at the root of the `Document` (doc)
+     * Adds the data relative to the variables definitions in the {@code WorkSpace}.
+     * @param root      The {@code Element} at the root of the {@code Document} (doc)
      */
     private void addWSVariables(Element root) {
         for (DVariableDeclaration vd : variables) {
@@ -151,8 +151,8 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the data relative to the filters in the `WorkSpace`.
-     * @param root      The `Element` at the root of the `Document` (doc)
+     * Adds the data relative to the filters in the {@code WorkSpace}.
+     * @param root      The {@code Element} at the root of the {@code Document} (doc)
      */
     private void addWSFilters(Element root) throws WriterException {
         for (DraggableFilter df : filters) {
@@ -179,8 +179,8 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the data relative to the in-out filters in the `WorkSpace`.
-     * @param root      The `Element` at the root of the `Document` (doc)
+     * Adds the data relative to the in-out filters in the {@code WorkSpace}.
+     * @param root      The {@code Element} at the root of the {@code Document} (doc)
      */
     private void addWSIOFilters(Element root) {
         for (int i = 0; i < inputFilters.size(); i++){
@@ -220,9 +220,9 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Creates an `Element` containing the data relative to a `Wire`.
+     * Creates an {@code Element} containing the data relative to a {@code Wire}.
      * @param wire  The `Wire`
-     * @return      The built `Element` 
+     * @return      The built {@code Element} 
      */
     private Element elementFromWire(Wire wire) {
         Element e = doc.createElement(Writer.WIRE_NODE_TAG);
@@ -243,7 +243,7 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Opens a file in the `WorkSpace` ws (member of the object). 
+     * Opens a file in the {@code WorkSpace} ws (member of the object). 
      * @param fileName      The name of the file to open.
      * @throws NumberFormatException        If some number could not be parsed
      *                                      during the processes
@@ -317,7 +317,7 @@ public class WorkSpaceXML {
     
     /**
      * Adds the data related to the filter contained in the subnodes.
-     * @param node  The `Node` whose children are the filters, for short.d
+     * @param node  The {@code Node} whose children are the filters, for short.d
      * @throws NumberFormatException        If some number could not be parsed
      *                                      during the processes
      * @throws IOException                  As it can instanciate filter 
@@ -341,7 +341,7 @@ public class WorkSpaceXML {
         
         /** Mechanism to avoid re-looping through the whole NodeList: all the
           * 'abc' filters are stored in the vector at 'abc' in the 'sorted'
-          * `HashMap` */
+          * {@code HashMap} */
         HashMap<String, Vector<NodeData>> sorted = 
             new HashMap<String, Vector<NodeData>>();
         for (int i = 0; i < nl.getLength(); i++) {
@@ -371,9 +371,9 @@ public class WorkSpaceXML {
     }
     
     /**
-     * Gets the parameters contained in the `NodeList` and adds them to the
-     * `WorkSpace`.
-     * @param nl    The `NodeList` to get the parameters from
+     * Gets the parameters contained in the {@code NodeList} and adds them to the
+     * {@code WorkSpace}.
+     * @param nl    The {@code NodeList} to get the parameters from
      * @throws LoaderException  In case of an ill-formated parameter definition
      */
     private void getParameters(NodeList nl) 
@@ -448,11 +448,11 @@ public class WorkSpaceXML {
     }
 
     /**
-     * Adds the `DInputFilter`s and `DOutputFilter`s to the `WorkSpace`.
-     * @param inputs    A `Vector` of `Node`s representing the `DInputFilters`
-     * @param outputs   A `Vector` of `Node`s representing the `DOutputFilters`
-     * @param subFilters A `HashMap<String, NodeData>` mapping all the ids to
-     *                   their related `NodeData` object.
+     * Adds the {@code DInputFilter}s and {@code DOutputFilter}s to the {@code WorkSpace}.
+     * @param inputs    A {@code Vector} of {@code Node}s representing the `DInputFilters`
+     * @param outputs   A {@code Vector} of {@code Node}s representing the `DOutputFilters`
+     * @param subFilters A {@code HashMap<String, NodeData>} mapping all the ids to
+     *                   their related {@code NodeData} object.
      * @throws LoaderException  If some input or output referencing is invalid.
      */
     private void addIOFilters(Vector<NodeData> inputs, 
@@ -474,9 +474,9 @@ public class WorkSpaceXML {
     }
     
     /**
-     * Adds to the `WorkSpace` all the other filters (i.e., neither input, 
+     * Adds to the {@code WorkSpace} all the other filters (i.e., neither input, 
      * output or parameter).
-     * @param sorted    The `HashMap` containing the vectors of nodes
+     * @param sorted    The {@code HashMap} containing the vectors of nodes
      * @throws LoaderException  If some type could not be recognized
      */
     private void addFilters(HashMap<String, Vector<NodeData>> sorted) 
@@ -536,8 +536,8 @@ default:
     }
     
     /**
-     * Adds the `Wire`s represented in one node to connect it.
-     * @param sorted    The `HashMap` containing the vectors of nodes
+     * Adds the {@code Wire}s represented in one node to connect it.
+     * @param sorted    The {@code HashMap} containing the vectors of nodes
      * @throws FilterException  If some connection could not be made
      * @throws NumberFormatException If some index of the filter could not be
      *                               parsed
@@ -562,9 +562,9 @@ default:
 	}
 
     /**
-     * Adds a single `Wire` to the `WorkSpace`.
-     * @param node  The `Node` that represents the `Wire`
-     * @param data  `NodeData` related to the filter that inputs the `Wire`
+     * Adds a single {@code Wire} to the {@code WorkSpace}.
+     * @param node  The {@code Node} that represents the `Wire`
+     * @param data  {@code NodeData} related to the filter that inputs the `Wire`
      *              output
      * @throws NumberFormatException If the index of the filter could not be
      *                               parsed
@@ -608,7 +608,7 @@ default:
 
         NodeData sourceData = subFilters.get(sourceId);
         if (sourceData == null)  
-            throw new LoaderException("Could not find `NodeData` to connect " + 
+            throw new LoaderException("Could not find {@code NodeData} to connect " + 
                 "input. Id \"" + data.id + "\" attempted to connect to \"" +
                 sourceId + "\" output but did not found its data.");
         
@@ -620,10 +620,10 @@ default:
 	}
 
     /**
-     * Gets the arrays of coordinates of the `FreeBall`s that are checkpoints
-     * of `Node` n, assumed to be a `Wire` node/
+     * Gets the arrays of coordinates of the {@code FreeBall}s that are checkpoints
+     * of {@code Node} n, assumed to be a {@code Wire} node/
      * @param node      The `Node`
-     * @return          An `Entry<int[], int[]>` containing the array of x 
+     * @return          An {@code Entry<int[], int[]>} containing the array of x 
      *                  coordinate as key and of y coordinate as value
      */
 	private Entry<int[], int[]> getXY(Node node) {

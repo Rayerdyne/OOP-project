@@ -36,10 +36,10 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     protected int r = 30;
 
     /**
-     * Constructs a `Draggable` in `WorkSpace` at coordinates (x, y).
+     * Constructs a {@code Draggable} in {@code WorkSpace} at coordinates (x, y).
      * @param x         x coordinate
      * @param y         y coordinate
-     * @param ws        The `WorkSpace` the `Draggable` belongs to
+     * @param ws        The {@code WorkSpace} the {@code Draggable} belongs to
      */
     public Draggable(int x, int y, WorkSpace ws) {
         this.x = x;
@@ -52,7 +52,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a `Draggable` in `WorkSpace`
+     * Constructs a {@code Draggable} in `WorkSpace`
      * @param ws        The `WorkSpace`
      */
     public Draggable(WorkSpace ws) {
@@ -63,12 +63,12 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a `Draggable` that will be selected for positioning in given
-     * `WorkSpace`.
+     * Constructs a {@code Draggable} that will be selected for positioning in given
+     * {@code WorkSpace}.
      * @param x         The x coordinate
      * @param y         The y coordinate
      * @param ws        The `WorkSpace`
-     * @param selected  Wether or not the `Draggable` is selected wen created. 
+     * @param selected  Wether or not the {@code Draggable} is selected wen created. 
      *                  Basically, it will be true, because we won't place the
      *                  filters statically.
      */
@@ -84,8 +84,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Paints the `Draggable`.
-     * @param g         The `Graphics` object to paint on it
+     * Paints the {@code Draggable}.
+     * @param g         The {@code Graphics} object to paint on it
      * @param back      The background `Color`
      * @param fore      The foreground `Color`
      * @param zoom      The zooming factor
@@ -112,8 +112,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Paints the `Draggable` with `WorkSpace` zoom factor.
-     * @param g         The `Graphics` object to paint on it
+     * Paints the {@code Draggable} with {@code WorkSpace} zoom factor.
+     * @param g         The {@code Graphics} object to paint on it
      * @param back      The background `Color`
      * @param fore      The foreground `Color`
      */
@@ -122,7 +122,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * @return      Wether or not the `Draggable` element is selected, i.e. if 
+     * @return      Wether or not the {@code Draggable} element is selected, i.e. if 
      *              the user is dragging it
      *          
      */
@@ -131,7 +131,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Updates the x, y coordinates of the `Draggable` (when this is selected)
+     * Updates the x, y coordinates of the {@code Draggable} (when this is selected)
      */
     public void updatePosition() {
         Point pos = ws.getMousePosition();
@@ -151,7 +151,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Rotates the `Draggable` 90° clockwise
+     * Rotates the {@code Draggable} 90° clockwise
      */
     public void rotate() {
         for (int i = 0; i < xCorners.length; i++) {
@@ -178,7 +178,7 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Delete this from its `WorkSpace`.
+     * Delete this from its {@code WorkSpace}.
      */
     public void delete() {
         ws.delete(this);

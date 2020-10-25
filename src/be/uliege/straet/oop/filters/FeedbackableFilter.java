@@ -10,7 +10,7 @@ package be.uliege.straet.oop.filters;
  */
 public interface FeedbackableFilter extends WFilter {
     /**
-     * For `FeedbackableFilter`s instances,
+     * For {@code FeedbackableFilter}s instances,
      * @return          The output array that will be outputed on next step
      */
     public double[] incomingOutput();

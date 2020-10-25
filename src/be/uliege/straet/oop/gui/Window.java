@@ -28,7 +28,7 @@ public class Window extends JFrame {
     private WorkSpace ws = new WorkSpace();
     private FMenuBar fmb = new FMenuBar(ws);
 
-    /** It is a `LinkedHashMap` to be able to get the buttons in the order we
+    /** It is a {@code LinkedHashMap} to be able to get the buttons in the order we
      * inserted them.
      */
     private static HashMap<JButton, Procedure> buttonsActionsUp = 

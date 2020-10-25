@@ -14,20 +14,20 @@ public class FreeBall extends Draggable {
     private Wire wire;
 
     /**
-     * Constructor of a `FreeBall` at coordinates (0, 0).
-     * @param ws        The `WorkSpace` this `FreeBall` belongs to
-     * @param wire      The `Wire` this `FreeBall` is a checkpoint of
+     * Constructor of a {@code FreeBall} at coordinates (0, 0).
+     * @param ws        The {@code WorkSpace} this {@code FreeBall} belongs to
+     * @param wire      The {@code Wire} this {@code FreeBall} is a checkpoint of
      */
     public FreeBall(WorkSpace ws, Wire wire) {
         this(0, 0, ws, wire);
     }
 
     /**
-     * Constructor of a `FreeBall` at coordinates (x, y).
+     * Constructor of a {@code FreeBall} at coordinates (x, y).
      * @param x         The x coordinate of the `FreeBall`
      * @param y         The y coordinate of the `FreeBall`
-     * @param ws        The `WorkSpace` this `FreeBall` belongs to
-     * @param wire      The `Wire` this `FreeBall` is a checkpoint of
+     * @param ws        The {@code WorkSpace} this {@code FreeBall} belongs to
+     * @param wire      The {@code Wire} this {@code FreeBall} is a checkpoint of
      */
     public FreeBall(int x, int y, WorkSpace ws, Wire wire) {
         super(x, y, ws);
@@ -35,7 +35,7 @@ public class FreeBall extends Draggable {
     }
 
     /**
-     * @return      The `Wire` this `FreeBall` belongs to
+     * @return      The {@code Wire} this {@code FreeBall} belongs to
      */
     public Wire wire() { return wire; }
 
@@ -59,7 +59,7 @@ public class FreeBall extends Draggable {
     @Override
     public void delete() {
         ws.delete(wire);
-        // `FreeBall`s must be deleted alongside with their `Wire`
+        // {@code FreeBall}s must be deleted alongside with their `Wire`
         ws.delete(this);
     }
 

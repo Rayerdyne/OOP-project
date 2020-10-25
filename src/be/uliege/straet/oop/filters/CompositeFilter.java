@@ -57,14 +57,14 @@ import be.uliege.montefiore.oop.audio.FilterException;
     }
 
     /**
-     * Constructs an invalid `CompositeFilter`. This is useful when placing a
-     * `DCompositeFilter` whose file representing the desired filter has not 
+     * Constructs an invalid {@code CompositeFilter}. This is useful when placing a
+     * {@code DCompositeFilter} whose file representing the desired filter has not 
      * been set.
      */
     public CompositeFilter() {}
 
     /**
-     * @return      All the `Block`s contained in that `CompositeFilter`
+     * @return      All the {@code Block}s contained in that `CompositeFilter`
      */
     public Collection<Block> blocks() {
         return this.blocks.values();
@@ -74,7 +74,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * Adds a block to the composite filter (unconnected). Does nothing if the
      * filter is already addded.
      * @param f                     The filter to add.
-     * @throws FilterException      If the `Block` could not be instanciated
+     * @throws FilterException      If the {@code Block} could not be instanciated
      */
     public void addBlock(WFilter f) throws FilterException {
         if (!blocks.containsKey(f)) {
@@ -86,8 +86,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * Adds a block with an id to the composite filter (unconnected). Does 
      * nothing if the filter is already addded.
      * @param f                     The filter to add.
-     * @param id                    The id of the `Block` to create
-     * @throws FilterException      If the `Block` could not be instanciated
+     * @param id                    The id of the {@code Block} to create
+     * @throws FilterException      If the {@code Block} could not be instanciated
      */
     public void addBlock(WFilter f, String id) throws FilterException {
         if (!blocks.containsKey(f)) {
@@ -198,7 +198,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
     }
 
     /**
-     * Gets the `Block` corresponding to a given filter.
+     * Gets the {@code Block} corresponding to a given filter.
      * @param f                     The filter to get the corresponding block
      * @throws FilterException      If the filter could not be found, i.e. it
      *                              has not been added
@@ -244,7 +244,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
     /**
      * @param i                 The index of the output we want to get
-     * @return                  A `ReadDouble` to the i-th output of the filter
+     * @return                  A {@code ReadDouble} to the i-th output of the filter
      * @throws FilterException  If index exceeds the output count.
      */
     public ReadDouble output(int i) throws FilterException {

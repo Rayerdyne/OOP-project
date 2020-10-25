@@ -14,9 +14,9 @@ public class DDelayFilter extends DraggableFilter {
      * Constructor.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A `DelayFilter` that will be used in that filter
+     * @param filter A {@code DelayFilter} that will be used in that filter
      */
     public DDelayFilter(int x, int y, WorkSpace ws, boolean selected,
         DelayFilter filter) {
@@ -48,10 +48,10 @@ public class DDelayFilter extends DraggableFilter {
     }
 
     /**
-     * Constructor with default `DelayFilter`.
+     * Constructor with default {@code DelayFilter}.
      * @param x     The x coordinate of the filter to place in the `WorkSpace`
      * @param y     The y coordinate of the filter to place in the `WorkSpace`
-     * @param ws    The `WorkSpace` it belongs to
+     * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
     public DDelayFilter(int x, int y, WorkSpace ws, boolean selected) {
