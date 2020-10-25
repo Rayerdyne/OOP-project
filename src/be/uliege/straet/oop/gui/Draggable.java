@@ -36,7 +36,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     protected int r = 30;
 
     /**
-     * Constructs a {@code Draggable} in {@code WorkSpace} at coordinates (x, y).
+     * Constructs a {@code Draggable} in {@code WorkSpace} at coordinates 
+     * (x, y).
      * @param x         x coordinate
      * @param y         y coordinate
      * @param ws        The {@code WorkSpace} the {@code Draggable} belongs to
@@ -52,8 +53,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a {@code Draggable} in `WorkSpace`
-     * @param ws        The `WorkSpace`
+     * Constructs a {@code Draggable} in{@code WorkSpace}
+     * @param ws        The{@code WorkSpace}
      */
     public Draggable(WorkSpace ws) {
         this(30, 30, ws);
@@ -63,14 +64,14 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     }
 
     /**
-     * Constructs a {@code Draggable} that will be selected for positioning in given
-     * {@code WorkSpace}.
+     * Constructs a {@code Draggable} that will be selected for positioning in
+     * given {@code WorkSpace}.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param ws        The `WorkSpace`
-     * @param selected  Wether or not the {@code Draggable} is selected wen created. 
-     *                  Basically, it will be true, because we won't place the
-     *                  filters statically.
+     * @param ws        The{@code WorkSpace}
+     * @param selected  Wether or not the {@code Draggable} is selected wen 
+     *                  created. Basically, it will be true, because we won't
+     *                  place the filters statically.
      */
     public Draggable(int x, int y, WorkSpace ws, boolean selected) {
         this(x, y, ws);
@@ -86,8 +87,8 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     /**
      * Paints the {@code Draggable}.
      * @param g         The {@code Graphics} object to paint on it
-     * @param back      The background `Color`
-     * @param fore      The foreground `Color`
+     * @param back      The background{@code Color}
+     * @param fore      The foreground{@code Color}
      * @param zoom      The zooming factor
      */
     public void paint(Graphics g, Color back, Color fore, double zoom) {
@@ -114,29 +115,30 @@ public class Draggable implements MouseListener, KeyListener, Locatable {
     /**
      * Paints the {@code Draggable} with {@code WorkSpace} zoom factor.
      * @param g         The {@code Graphics} object to paint on it
-     * @param back      The background `Color`
-     * @param fore      The foreground `Color`
+     * @param back      The background{@code Color}
+     * @param fore      The foreground{@code Color}
      */
     public void paint(Graphics g, Color back, Color fore) {
         paint(g, back, fore, ws.zoomFactor());
     }
 
     /**
-     * @return      Wether or not the {@code Draggable} element is selected, i.e. if 
-     *              the user is dragging it
-     *          
+     * @return      Wether or not the {@code Draggable} element is selected, 
+     *              i.e. if the user is dragging it         
      */
     public boolean isSelected() {
         return selected;
     }
 
     /**
-     * Updates the x, y coordinates of the {@code Draggable} (when this is selected)
+     * Updates the x, y coordinates of the {@code Draggable} (when this is 
+     * selected).
      */
     public void updatePosition() {
         Point pos = ws.getMousePosition();
         if (xCorners == null ) {
-            System.out.println("The coordinates of the points have not been set. RIP");
+            System.out.println("The coordinates of the points have not been " +
+                "set. RIP");
             return;
         }
         if (pos != null) {

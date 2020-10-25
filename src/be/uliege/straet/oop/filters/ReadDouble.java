@@ -12,7 +12,7 @@ package be.uliege.straet.oop.filters;
  * be the best solution in terms of speed, we could have used only WriteDouble
  * objects, but this way prevent from setting value where we should not.</p>
  * 
- * <p>Added: reference to the object holding the associated ReadDouble, and the 
+ * <p>Added: reference to the object holding the associated ReadDouble, and the
  * correponding output index, for being able to write in xml file.</p>
  */
 
@@ -32,8 +32,8 @@ public class ReadDouble {
 
     /**
      * Construct the referencing tool to a {@code WriteDouble}.
-     * @param ref       A reference to the WriteDouble to 'follow'
-     * @param source    The block that holds the WriteDouble
+     * @param ref       A reference to the {@code WriteDouble} to 'follow'
+     * @param source    The block that holds the {@code WriteDouble}
      * @param i         The index of this WriteDouble regarding the source
      */
     public ReadDouble(WriteDouble ref, Block source, int i) {
@@ -55,7 +55,8 @@ public class ReadDouble {
     }
 
     /**
-     * @return      The value currently stored in the referenced `WriteDouble`
+     * @return      The value currently stored in the referenced
+     *              {@code WriteDouble}
      */
     public double value() {
         return ref.value;

@@ -57,14 +57,15 @@ import be.uliege.montefiore.oop.audio.FilterException;
     }
 
     /**
-     * Constructs an invalid {@code CompositeFilter}. This is useful when placing a
-     * {@code DCompositeFilter} whose file representing the desired filter has not 
-     * been set.
+     * Constructs an invalid {@code CompositeFilter}. This is useful when 
+     * placing a {@code DCompositeFilter} whose file representing the desired
+     * filter has not been set.
      */
     public CompositeFilter() {}
 
     /**
-     * @return      All the {@code Block}s contained in that `CompositeFilter`
+     * @return      All the {@code Block}s contained in that
+     * {@code CompositeFilter}
      */
     public Collection<Block> blocks() {
         return this.blocks.values();
@@ -74,7 +75,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * Adds a block to the composite filter (unconnected). Does nothing if the
      * filter is already addded.
      * @param f                     The filter to add.
-     * @throws FilterException      If the {@code Block} could not be instanciated
+     * @throws FilterException      If the {@code Block} could not be   
+     *                              instanciated
      */
     public void addBlock(WFilter f) throws FilterException {
         if (!blocks.containsKey(f)) {
@@ -87,7 +89,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
      * nothing if the filter is already addded.
      * @param f                     The filter to add.
      * @param id                    The id of the {@code Block} to create
-     * @throws FilterException      If the {@code Block} could not be instanciated
+     * @throws FilterException      If the {@code Block} could not be 
+     *                              instanciated
      */
     public void addBlock(WFilter f, String id) throws FilterException {
         if (!blocks.containsKey(f)) {
@@ -165,7 +168,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
         for (int i = 0; i < nbOutputs; i++) {
             if (! isOutputConnected[i])
-                throw new FilterException("All outputs aren't yet connected !");
+                throw new FilterException(
+                    "All outputs aren't yet connected !");
         }
 
         for (int i = 0; i < nbInputs; i++)
@@ -244,7 +248,8 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
     /**
      * @param i                 The index of the output we want to get
-     * @return                  A {@code ReadDouble} to the i-th output of the filter
+     * @return                  A {@code ReadDouble} to the i-th output of the
+     *                          filter
      * @throws FilterException  If index exceeds the output count.
      */
     public ReadDouble output(int i) throws FilterException {
@@ -270,7 +275,7 @@ import be.uliege.montefiore.oop.audio.FilterException;
 
     /**
      * Gets the unique id associated to a filter.
-     * @param f     The `WFilter`
+     * @param f     The{@code WFilter}
      * @return      The id      
      */
     public String idOf(WFilter f) {

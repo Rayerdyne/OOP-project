@@ -1,6 +1,6 @@
 /** 
- * <p>This class just holds a double value in order to benefit of the referencing
- * mechanisms.</p>
+ * <p>This class just holds a double value in order to benefit of the 
+ * referencing mechanisms.</p>
  * 
  * <p>We could alternatively use a array of size 1.</p>
  */

@@ -13,11 +13,14 @@ public class DDifferentiatorFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A {@code DifferentiatorFilter} that will be used in that filter
+     * @param filter    A {@code DifferentiatorFilter} that will be used in 
+     *                  that filter
      */
     public DDifferentiatorFilter(int x, int y, WorkSpace ws, boolean selected,
         DifferentiatorFilter filter) {
@@ -50,12 +53,15 @@ public class DDifferentiatorFilter extends DraggableFilter {
 
     /**
      * Constructor with default {@code DifferentiatorFilter}.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
-    public DDifferentiatorFilter(int x, int y, WorkSpace ws, boolean selected) {
+    public DDifferentiatorFilter(int x, int y, WorkSpace ws, boolean selected) 
+        {
         this(x, y, ws, selected, new DifferentiatorFilter());
     }
 

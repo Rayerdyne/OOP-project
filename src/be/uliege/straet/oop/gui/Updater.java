@@ -1,8 +1,8 @@
 package be.uliege.straet.oop.gui;
 
 /**
- * Reapeatedly sends repaint messages to a WorkSpace object, when a `Draggable`
- * object is selected and dragged.
+ * Reapeatedly sends repaint messages to a WorkSpace object, when a 
+ * {@code Draggable} object is selected and dragged.
  */
 public class Updater extends Thread {
     private WorkSpace ws;
@@ -14,7 +14,7 @@ public class Updater extends Thread {
     /**
      * Constructor.
      * @param ws        The {@code WorkSpace} this {@code Updater} updates
-     * @param hasWire   Wether or not we are drawing a `Wire`
+     * @param hasWire   Wether or not we are drawing a {@code Wire}
      */
     private Updater(WorkSpace ws, boolean hasWire) {
         this.ws = ws;
@@ -22,10 +22,10 @@ public class Updater extends Thread {
     }
 
     /**
-     * Constructs an {@code Updater} that will make the {@code WorkSpace} to be repainted
-     * until the {@code Draggable} is released.
-     * @param ws    The `WorkSpace`
-     * @param d     The `Draggable`
+     * Constructs an {@code Updater} that will make the {@code WorkSpace} to be
+     * repainted until the {@code Draggable} is released.
+     * @param ws    The{@code WorkSpace}
+     * @param d     The{@code Draggable}
      */
     public Updater(WorkSpace ws, Draggable d) {
         this(ws, false);
@@ -33,10 +33,10 @@ public class Updater extends Thread {
     }
 
     /**
-     * Builds an {@code Updater} that will make the {@code WorkSpace} to be repainted
-     * until the {@code Wire} is complete.
-     * @param ws    The `WorkSpace`
-     * @param d     The `Wire`
+     * Builds an {@code Updater} that will make the {@code WorkSpace} to be 
+     * repainted until the {@code Wire} is complete.
+     * @param ws    The{@code WorkSpace}
+     * @param d     The{@code Wire}
      */
     public Updater(WorkSpace ws, Wire wire) {
         this(ws, true);

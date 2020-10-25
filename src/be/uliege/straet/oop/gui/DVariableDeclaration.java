@@ -15,8 +15,10 @@ public class DVariableDeclaration extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      * @param varName   The name of the parameter the "filter" will hold
@@ -31,8 +33,10 @@ public class DVariableDeclaration extends DraggableFilter {
 
     /**
      * Constructor with undefined parameter name and definition.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
@@ -77,8 +81,8 @@ public class DVariableDeclaration extends DraggableFilter {
 
         if (newVarName.equals("x") || newVarName.equals("y") || 
             newVarName.equals("orientation")) {
-            WorkSpace.showError("A variable can not take the names \"x\" or \"y\" " +
-                "or \"orientation\" because of name collision.", null);
+            WorkSpace.showError("A variable can not take the names \"x\" or " +
+                "\"y\"or \"orientation\" because of name collision.", null);
             return;
             }
 

@@ -2,13 +2,15 @@
  * INFO0062 - Object-Oriented Programming
  * Project basis
  *
- * Example code to filter a WAV file using audio.jar. The filter has to be implemented first.
+ * Example code to filter a WAV file using audio.jar. The filter has to be 
+ * implemented first.
  * 
  * @author: J.-F. Grailet (ULiege)
  */
 
 import be.uliege.straet.oop.filters.*;
-import be.uliege.montefiore.oop.audio.*; // Will import: TestAudioFilter, Filter, FilterException
+import be.uliege.montefiore.oop.audio.*; // Will import: TestAudioFilter, 
+                                         // Filter, FilterException
 
 public class Example
 {

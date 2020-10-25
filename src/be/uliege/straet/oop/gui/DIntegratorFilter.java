@@ -16,11 +16,14 @@ public class DIntegratorFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A {@code IntegratorFilter} that will be used in that filter
+     * @param filter    A {@code IntegratorFilter} that will be used in that
+     *                  filter
      */
     public DIntegratorFilter(int x, int y, WorkSpace ws, boolean selected,
         IntegratorFilter filter) {
@@ -53,8 +56,10 @@ public class DIntegratorFilter extends DraggableFilter {
 
     /**
      * Constructor with default {@code IntegratorFilter}.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */

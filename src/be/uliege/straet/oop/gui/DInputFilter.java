@@ -11,8 +11,10 @@ public class DInputFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      * @param iFileName     The name of the file in which the input will be 
@@ -40,7 +42,8 @@ public class DInputFilter extends DraggableFilter {
     }
 
     /**
-     * Loads the audio sequence based on the file name given in `parameterS`
+     * Loads the audio sequence based on the file name given in
+     * {@code parameterS}
      * @throws AudioSequenceException   If the sequence could not be loaded
      *  (e.g., I/O error)
      */

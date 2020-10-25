@@ -31,8 +31,8 @@ import be.uliege.montefiore.oop.audio.*;
  * 
  * <p> The class provides two static methods: <ul>
  *  <li> a main, that parses a file and apply it to a .wav file. </li>
- *  <li> a {@code load} method, wich takes the name of the file to parse in argument 
- *     and returns a CompositeFilter.</li></ul></p>
+ *  <li> a {@code load} method, wich takes the name of the file to parse in 
+ * argument and returns a CompositeFilter.</li></ul></p>
  */
 public class Loader {
     /**
@@ -103,7 +103,8 @@ public class Loader {
             CompositeFilter cf = load(fileName, parameters, verbose);
             try {
                 TestAudioFilter.applyFilter(cf, inName, outName);
-            } // if we don't get the input in the current directory, then try in ./wav/
+            } // if we don't get the input in the current directory, then try 
+              // in ./wav/
             catch (AudioSequenceException e) {
                 TestAudioFilter.applyFilter(cf, "wav/" + inName,
                                                 "wav/" + outName);
@@ -161,7 +162,8 @@ public class Loader {
             f = filterFromNode(filterNode, parameters, verbose);
         } catch (LoaderException e) { // re-throw with filename info
             e.printStackTrace();
-            throw new LoaderException(e.getMessage() + " File: \"" + fileName + "\".");
+            throw new LoaderException(e.getMessage() + " File: \"" + fileName +
+                "\".");
         }
 
         return f;
@@ -174,8 +176,8 @@ public class Loader {
      *                          parameters introduced in the input file
      * @param verbose           If true, print connections info
      * @return                  The built CompositeFilter
-     * @throws LoaderException              In case of error in instanciating or
-     *                                      connecting sub-filters
+     * @throws LoaderException              In case of error in instanciating 
+     *                                      or connecting sub-filters
      * @throws FilterException              If something went wrong whe
      *                                      instanciating CompositeFilter
      * @throws NumberFormatException        If an error occured when parsing a
@@ -197,7 +199,7 @@ public class Loader {
         // get its id
         Node idNode = attributes.getNamedItem(Writer.ID_ATTR_NAME);
         if (idNode == null)
-            throw new LoaderException("No id provided for a composite filter" + 
+            throw new LoaderException("No id provided for a composite filter" +
                 " node.");
         String cfId = idNode.getNodeValue();
 
@@ -276,12 +278,12 @@ public class Loader {
                         "\" not found.");
 
                 if (verbose)
-                    System.out.println("> connect output " + inFilterData.id + 
+                    System.out.println("> connect output " + inFilterData.id +
                         "." + sfData.fOutputNum + " to output this(" + cfId + 
                         ")." + sfData.cfOutputNum);
                 try {
-                    cf.connectBlockToOutput(inFilterData.filter, sfData.fOutputNum,
-                        sfData.cfOutputNum);
+                    cf.connectBlockToOutput(inFilterData.filter, 
+                        sfData.fOutputNum, sfData.cfOutputNum);
                 }
                 catch (FilterException e) {
                     throw new LoaderException("Output connection error in "+ 
@@ -310,7 +312,7 @@ public class Loader {
      * @param verbose       Wether or not we have to print information.
      * @throws LoaderException  If some connection could not be made
      */
-    private static void connectOneFilter(NodeData sfData, CompositeFilter cf, 
+    private static void connectOneFilter(NodeData sfData, CompositeFilter cf,
         String cfId, HashMap<String, NodeData> subFilters,
         boolean verbose) throws LoaderException {
 
@@ -326,8 +328,8 @@ public class Loader {
                         sfData.filter, i);
                 }
                 catch (FilterException e) {
-                    throw new LoaderException("Input connection error in "+ 
-                        "composite filter of id \"" + cfId + "\", filter" +
+                    throw new LoaderException("Input connection error in " +
+                        "composite filter of id \"" + cfId + "\", filter"  +
                         " to connect id: \"" + sfData.id + "\": " + 
                         e.getMessage());
                 }

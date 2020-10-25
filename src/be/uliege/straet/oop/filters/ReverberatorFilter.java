@@ -149,7 +149,8 @@ public class ReverberatorFilter extends CompositeFilter {
     
     /**
      * Return a newly created low-pass filter.
-     * This could alternatively be another class extending {@code CompositeFilter}.
+     * This could alternatively be another class extending 
+     * {@code CompositeFilter}.
      * @param gain                  The gain used for the filter
      * @param delay                 The delay used for the filter
      * @return                      The newly created filter

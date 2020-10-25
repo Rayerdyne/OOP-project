@@ -43,7 +43,7 @@ public class Block {
 
     /**
      * Contructor.
-     * @param filter                The filter associated ot the `Block`
+     * @param filter                The filter associated ot the{@code Block}
      */
     public Block(WFilter filter) throws BlockException {
         this(filter, null);
@@ -52,7 +52,7 @@ public class Block {
     /**
      * Contructor.
      * @param filter                The filter associated
-     * @param id                    The id given to the `Block`
+     * @param id                    The id given to the{@code Block}
      * @throws BlockException       If something went wrong, i.e. the class 
      *                              is not found, or the filter is null.
      */
@@ -109,7 +109,7 @@ public class Block {
     }
 
     /**
-     * @return      The filter contained in this `Block`
+     * @return      The filter contained in this{@code Block}
      */
     public WFilter filter() {
         return filter;
@@ -151,22 +151,23 @@ public class Block {
     }
 
     /**
-     * Wether or not the Blocks contains a class implementing 
+     * Wether or not the {@code Block}s contains a class implementing 
      * {@code FeedbackableFilter}.
-     * @return      true when `FeedbackableFilter`, else false
+     * @return      true when {@code FeedbackableFilter}, else false
      */
     private boolean isFeedbackableFilter() {
         return isFeedbackableFilter;
     }
 
     /**
-     * Connects output of another `Block`, as an input of this (Block).
-     * @param b1                    The {@code Block} to connect
-     * @param o1                    The index of the output of the `Block`
-     * @param i2                    The index of the input of this {@code Block} 
-     *                              filter (this)
-     * @throws BlockException       If the connection could not be done, e.g.
-     *                              the input-output index are invalid.
+     * Connects output of another {@code Block}, as an input of this 
+     * ({@code Block}).
+     * @param b1                The {@code Block} to connect
+     * @param o1                The index of the output of the {@code Block}
+     * @param i2                The index of the input of this {@code Block} 
+     *                          filter (this)
+     * @throws BlockException   If the connection could not be done, e.g. the
+     *                          input-output index are invalid.
      */
     public void connectInput(Block b1, int o1, int i2) throws BlockException {
         checkIndex("input", i2, filter.nbInputs());
@@ -180,8 +181,9 @@ public class Block {
     }
 
     /**
-     * Connects the i1 input of the {@code Block} to an arbitrary ReadDouble input,
-     * in order to connect a {@code Block} to the input of the composite filter.
+     * Connects the i1 input of the {@code Block} to an arbitrary ReadDouble 
+     * input, in order to connect a {@code Block} to the input of the composite
+     * filter.
      * @param input                 The {@code ReadDouble} to connect
      * @param i1                    The index of the input we connect.
      * @throws BlockException       If the connection could not be done, e.g.
@@ -208,13 +210,12 @@ public class Block {
     /**
      * Computes one step of the whole "Block diagram", and returns a vector
      * containing the {@code Block}s that will have to be updated.
-     * @param updateAfter               A vector of {@code Block} containing the 
-     *                                  {@code Block}s that will have to be updated.
-     * @throws BlockException           If something impossible occured in the
-     *                                  connections (impossible feedback loop,
-     *                                  no input connection...)
-     * @throws FilterException          If some filter could not compute one 
-     *                                  step.
+     * @param updateAfter           A vector of {@code Block} containing the 
+     *                              {@code Block}s that will have to be updated
+     * @throws BlockException       If something impossible occured in the
+     *                              connections (impossible feedback loop, no
+     *                              input connection...)
+     * @throws FilterException      If some filter could not compute one steps
      */
     public Vector<Block> computeOneStep(Vector<Block> updateAfter)
         throws BlockException, FilterException {
@@ -279,25 +280,25 @@ public class Block {
     }
 
     /**
-     * @return      The id associated to this `Block`
+     * @return      The id associated to this{@code Block}
      */
     public String id() {  return this.id;  }
 
     /**
      * @return      The number of inputs of the filter contained in this 
-     *              `Block`
+     *             {@code Block}
      */
     public int nbInputs() { return filter.nbInputs(); }
 
     /**
      * @return      The number of outputs of the filter contained in this
-     *                  `Block`
+     *                 {@code Block}
      */
     public int nbOutputs() { return filter.nbOutputs(); }
 
     /**
-     * @return      i-th reference to {@code ReadDouble} describing the i-th input of
-     *              {@code Block}.
+     * @return      i-th reference to {@code ReadDouble} describing the i-th 
+     *              input of {@code Block}.
      * @throws BlockException   If the index exceeds the array length.
      */
     public ReadDouble input(int i) throws BlockException {
@@ -308,8 +309,8 @@ public class Block {
     }
 
     /**
-     * @return      i-th reference to {@code ReadDouble} describing the i-th output
-     *              of the {@code Block}.
+     * @return      i-th reference to {@code ReadDouble} describing the i-th 
+     *              output of the {@code Block}.
      * @throws BlockException   If the index exceeds the array length.
      */
     public ReadDouble output(int i) throws BlockException {

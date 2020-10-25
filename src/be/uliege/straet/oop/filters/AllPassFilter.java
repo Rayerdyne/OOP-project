@@ -32,9 +32,9 @@ public class AllPassFilter extends CompositeFilter {
      * Constructs an all-pass filter with an inner composite filter nested in.
      * Of course it will be used for nested all-pass filters needed for the 
      * reverberator.
-     * @param gain                  The gain to use
-     * @param delay                 The delay to use
-     * @param inner                 The inner {@code CompositeFilter} to nest in
+     * @param gain              The gain to use
+     * @param delay             The delay to use
+     * @param inner             The inner {@code CompositeFilter} to nest in
      * @throws FilterException      If some filter could not be instanciated
      */
     public AllPassFilter (double gain, int delay, CompositeFilter inner) 

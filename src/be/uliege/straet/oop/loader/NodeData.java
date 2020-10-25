@@ -142,7 +142,7 @@ public class NodeData {
             id = type + "_" + numNode.getNodeValue();
         }
         else if (!type.equals(Writer.VARIABLE_NODE_TAG)) { 
-                                                  // specialCase flag is not set
+                                                // specialCase flag is not set
             Node idNode = attributes.getNamedItem(Writer.ID_ATTR_NAME);
             if (idNode == null)
                 throw new LoaderException("No id provided for a " + type
@@ -205,8 +205,8 @@ public class NodeData {
             case Writer.ADDITION_F_NODE_TAG:
                 filter = new AdditionFilter();
                 break;
-            case Writer.INTEGRATOR_F_NODE_TAG: // we could handle the case of fs != 44100
-                filter = new IntegratorFilter();
+            case Writer.INTEGRATOR_F_NODE_TAG:   // we could handle the case of
+                filter = new IntegratorFilter(); // fs != 44100
                 break;
             case Writer.DIFFERENTIATOR_F_NODE_TAG:
                 filter = new DifferentiatorFilter();
@@ -268,8 +268,8 @@ public class NodeData {
     /**
      * Gets the x and y coordinates and orientation if present in the node.
      * @param n          The node to get its position and orientation
-     * @param attributes The {@code ValueMapper} that contains the data of the `Node`
-     *                   we are interested in
+     * @param attributes The {@code ValueMapper} that contains the data of the
+     *                   {@code Node} we are interested in
      * @throws LoaderException If some value is not valid, but not when it is 
      *                         absent
      */
@@ -282,7 +282,8 @@ public class NodeData {
                 attributes, Writer.Y_COORD_ATTR_NAME , null)[0];
             orientation = (int) getNodeParamValue(attributes, 
                 Writer.ORIENTATION_ATTR_NAME, null)[0];
-            // System.out.println("id: " + id + " (x, y) = (" + x + ", " + y + ").");
+            // System.out.println("id: " + id + " (x, y) = (" + x + ", " + y
+            // + ").");
         } catch (LoaderException le) {
             String m = le.getMessage();
             // rip regex...
@@ -375,14 +376,16 @@ public class NodeData {
     }
 
     /**
-     * Sets {@code ioFileName} member, for {@code DInputFilter}s and {@code DOutputFilter}s to
-     * recall their file name.
+     * Sets {@code ioFileName} member, for {@code DInputFilter}s and 
+     * {@code DOutputFilter}s to recall their file name.
      * @param n                 The {@code Node} that represents the io filter
-     * @param attributes        A {@code ValueMapper} containing the attributes of
-     *                          the `Node`
+     * @param attributes        A {@code ValueMapper} containing the attributes
+     *                          of the {@code Node}
      * @throws LoaderException  If not present
      */
-    public void setIOFileName(Node n, ValueMapper attributes) throws LoaderException {
+    public void setIOFileName(Node n, ValueMapper attributes) 
+        throws LoaderException {
+
         Node fileNameNode = attributes.getNamedItem(
             Writer.IO_FILENAME_ATTR_NAME);
         
@@ -398,8 +401,8 @@ public class NodeData {
      * related to a node representing a connection beween a composite 
      * filter ouput and another filter output.
      * @param n                     The node to get data from
-     * @param attributes            A {@code ValueMapper} containing the attributes of
-     *                              the `Node`
+     * @param attributes            A {@code ValueMapper} containing the 
+     *                              attributes of the {@code Node}
      * @throws LoaderException      If some reference is absent, wrong or 
      *                              ill formatted
      */
@@ -438,8 +441,8 @@ public class NodeData {
             cfOutputNum = Integer.valueOf(cfOutputNumNode.getNodeValue());
         }
         catch (NumberFormatException e) {
-            throw new LoaderException("Composite filter output index to " +
-                "connect could not be parsed. Filter id: \"" + id + "\". "+
+            throw new LoaderException("Composite filter output index to "  +
+                "connect could not be parsed. Filter id: \"" + id + "\". " +
                 e.getMessage());
         }
     }
@@ -448,8 +451,8 @@ public class NodeData {
      * For the simplicity of getTypeContent method, sets the members 
      * related to a node representing a filter located in another xml file.
      * @param n                     The node to get data from
-     * @param attributes            A {@code ValueMapper} containing the attributes
-     *                              of the `Node`
+     * @param attributes            A {@code ValueMapper} containing the 
+     *                              attributes of the {@code Node}
      * @param parameters            A HashMap with values of the parameters
      *                              introduced in the input file
      * @param verbose               If true, print connections info
@@ -535,10 +538,10 @@ public class NodeData {
     /**
      * Add all variables definitions in the attributes of a {@code let} node.
      * @param n                 The node
-     * @param attributes        A {@code ValueMapper} containing the attributes of
-     *                          the `Node`
-     * @param parameters        A {@code HashMap<String, Double>} with values of the
-     *                          parameters introduced in the input file
+     * @param attributes        A {@code ValueMapper} containing the attributes
+     *                          of the {@code Node}
+     * @param parameters        A {@code HashMap<String, Double>} with values 
+     *                          of the parameters introduced in the input file
      * @throws LoaderException  If some parsing failed.
      */
     private void addVariables(Node n, ValueMapper attributes, 

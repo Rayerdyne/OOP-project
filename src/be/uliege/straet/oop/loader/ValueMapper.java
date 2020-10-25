@@ -11,7 +11,7 @@ import org.w3c.dom.NodeList;
 
 /**
  * Class to handle properly the fact that we can specify attributes either in
- * the tag or in the "{@code Writer.VALUE_NODE_TAG}" children attributes.
+ * the tag or in the {@code Writer.VALUE_NODE_TAG} children attributes.
  */
 public class ValueMapper {
     private HashMap<String, Node> hm;
@@ -38,7 +38,7 @@ public class ValueMapper {
 
     /**
      * Adds all the entries of a {@code NamedNodeMap}.
-     * @param nnm   The `NamedNodeMap`
+     * @param nnm   The{@code NamedNodeMap}
      */
     public void addAllNNM(NamedNodeMap nnm) {
         if (nnm == null)
@@ -71,23 +71,23 @@ public class ValueMapper {
     }
 
     /**
-     * @return      A {@code Set<Entry<String, Node>>} containing all the entries in
-     *              this `ValueMapper`
+     * @return      A {@code Set<Entry<String, Node>>} containing all the
+     *              entries in this {@code ValueMapper}
      */
     public Set<Entry<String, Node>> entries() {
         return hm.entrySet();
     }
 
     /**
-     * @return      A {@code Collection<Node>} containing all the values stored in
-     *              this `ValueMapper`
+     * @return      A {@code Collection<Node>} containing all the values stored
+     *              in this {@code ValueMapper}
      */
     public Collection<Node> values() {
         return hm.values();
     }
 
     /**
-     * @return      The number of entries in this `ValueMapper`
+     * @return      The number of entries in this{@code ValueMapper}
      */
     public int getLength() {
         return hm.size();

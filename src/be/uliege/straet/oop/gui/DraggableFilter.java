@@ -33,13 +33,15 @@ public class DraggableFilter extends Draggable {
     protected double[] parameterD;
     protected String parameterS;
     protected WFilter filterR, filterL; /* two filters must be different for 
-                two {@code CompositeFilter}s that may be built for stereo output */
+                two {@code CompositeFilter}s that may be built for stereo 
+                output */
 
     private Vector<Wire> inConnectedWires = new Vector<Wire>();
     private Vector<Wire> outConnectedWires = new Vector<Wire>();
 
     /**
-     * Constructs a {@code DraggableFilter} in {@code WorkSpace} at coordinates (x, y).
+     * Constructs a {@code DraggableFilter} in {@code WorkSpace} at coordinate
+     * (x, y).
      * @param x         x coordinate
      * @param y         y coordinate
      * @param ws        The {@code WorkSpace} the {@code Draggable} belongs to
@@ -49,23 +51,26 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * Constructs a {@code Draggable} that will be selected for positioning in given
-     * {@code WorkSpace}.
+     * Constructs a {@code Draggable} that will be selected for positioning in 
+     * given {@code WorkSpace}.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param ws        The `WorkSpace`
-     * @param selected  Wether or not the {@code Draggable} is selected wen created. 
+     * @param ws        The{@code WorkSpace}
+     * @param selected  Wether or not the {@code Draggable} is selected wen 
+     *                  created
      */
     public DraggableFilter(int x, int y, WorkSpace ws, boolean selected) {
         super(x, y, ws, selected);
     }
 
     /**
-     * @return      An array of {@code FixedBall}s that are the inputs of this filter
+     * @return      An array of {@code FixedBall}s that are the inputs of this
+     *              filter
      */
     public FixedBall[] inputs() { return inputs; }
     /**
-     * @return      An array of {@code FixedBall}s that are the outputs of this filter
+     * @return      An array of {@code FixedBall}s that are the outputs of this
+     *              filter
      */
     public FixedBall[] outputs() { return outputs; }
 
@@ -115,7 +120,8 @@ public class DraggableFilter extends Draggable {
 
     /**
      * Shows the dialog and returns the entered {@code String}.
-     * @return      The {@code String} entered in the input dialog, {@code null} if none
+     * @return      The {@code String} entered in the input dialog, 
+     *              {@code null} if none
      */
     public String getParameterInput() {
         return JOptionPane.showInputDialog("Enter new " 
@@ -127,7 +133,8 @@ public class DraggableFilter extends Draggable {
      * @param saveFile  If true, select a file for saving (then the 
      *                  file will be created), else the file should exist
      * @param extentions    Allowed extentions for the file to select.
-     * @return              A {@code String} containing the path of the selected file
+     * @return              A {@code String} containing the path of the 
+     *                      selected file
      */
     public String getFilePathInput(boolean saveFile, String... extentions) {
         JFileChooser chooser = new JFileChooser();
@@ -341,8 +348,8 @@ public class DraggableFilter extends Draggable {
     /**
      * Adds a connected {@code Wire} to this filter.
      * @param wire      The {@code Wire} to add
-     * @param atInput   Wether or not the {@code Wire} is connected to one input of 
-     *                  this filter
+     * @param atInput   Wether or not the {@code Wire} is connected to one
+     *                  input of this filter
      */
     public void addConnectedWire(Wire wire, boolean atInput) {
         if (atInput)
@@ -383,7 +390,8 @@ public class DraggableFilter extends Draggable {
      * Linear search for the index of a given element in an array.
      * @param array     The array we look in
      * @param o         The object we want the index in the array
-     * @return          The index if {@code o} is present in `array`, else -1.
+     * @return          The index if {@code o} is present in {@code array}, 
+     *                  else -1.
      */
     private int indexOf(Object[] array, Object o) {
         for (int i = 0; i < array.length; i++) {
@@ -394,16 +402,16 @@ public class DraggableFilter extends Draggable {
     }
 
     /**
-     * @return      A {@code Vector<Wire>} containing the {@code Wire}s that are connected
-     *              to an input of this filter.
+     * @return      A {@code Vector<Wire>} containing the {@code Wire}s that 
+     *              are connected to an input of this filter.
      */
 	public Vector<Wire> wireAtInputs() {
 		return inConnectedWires;
     }
     
     /**
-     * @return      A {@code Vector<Wire>} containing the {@code Wire}s that are connected
-     *              to an output of this filter.
+     * @return      A {@code Vector<Wire>} containing the {@code Wire}s that 
+     *              are connected to an output of this filter.
      */
 	public Vector<Wire> wireAtOutputs() {
 		return outConnectedWires;

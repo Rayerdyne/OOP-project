@@ -31,9 +31,9 @@ import be.uliege.straet.oop.filters.Block;
 import be.uliege.straet.oop.filters.BlockException;
 
 /**
- * <p>Class reponsible of the writing of a {@code CompositeFilter} to a file.</p>
- * <p>It will hold all the constant {@code String}s for the nodes tags, attributes 
- * names etc. </p>
+ * <p>Class reponsible of the writing of a {@code CompositeFilter} to a file.
+ * </p> <p> It will hold all the constant {@code String}s for the nodes tags, 
+ * attributes names etc. </p>
  */
 public class Writer {
 
@@ -94,7 +94,7 @@ public class Writer {
 
     /**
      * Constructs a {@code Document} from a {@code CompositeFilter}.
-     * @param cf        The `CompositeFilter`
+     * @param cf        The{@code CompositeFilter}
      * @return          The {@code Document} that has been built
      */
     public static Document documentFromFilter(CompositeFilter cf) 
@@ -121,7 +121,7 @@ public class Writer {
 
     /**
      * Write a {@code Document} to a xml file. 
-     * @param docmument         The `Document`
+     * @param docmument         The{@code Document}
      * @param fileName          The name of the file to write
      * @throws WriterException  If someting went wrong
      */
@@ -151,7 +151,7 @@ public class Writer {
     /**
      * Adds a filter to the {@code Document}.
      * @param cf                The {@code CompositeFilter} to add
-     * @param d                 The `Document`
+     * @param d                 The{@code Document}
      * @throws BlockException   If we could not determine some filter's type
      * @throws WriterException  If some-sub-CompositeFilter is ill-formatted
      */
@@ -166,10 +166,11 @@ public class Writer {
 
     /**
      * Append filters present in {@code CompositeFilter} cf to an element
-     * @param cf                The `CompositeFilter`
-     * @param cfId              The id associated to the `CompositeFilter`
-     * @param e                 The `Element`
-     * @param d                 The associated `Document`
+     * @param cf                The{@code CompositeFilter}
+     * @param cfId              The id associated to the 
+     *                          {@code CompositeFilter}
+     * @param e                 The {@code Element}
+     * @param d                 The associated{@code Document}
      * @throws BlockException   If we could not determine some filter's type
      * @throws WriterException  If some sub-{@code CompositeFilter} is 
      *                          ill-formatted
@@ -192,7 +193,8 @@ public class Writer {
             o.setAttribute("n", String.valueOf(output.outputIndex()));
             String outputId = output.source() == null ? 
                                                    cfId : output.source().id();
-            o.setAttribute(REF_ATTR_NAME, outputId + "." + output.outputIndex());
+            o.setAttribute(REF_ATTR_NAME, outputId + "." 
+                                                   + output.outputIndex());
             e.appendChild(o);
         }
 
@@ -203,15 +205,17 @@ public class Writer {
     }
 
     /**
-     * Builds an {@code Element} from a {@code Block} in the {@code CompositeFilter}.
-     * @param b     The `Block`
-     * @param cfId  The id of the `CompositeFilter`
+     * Builds an {@code Element} from a {@code Block} in the 
+     * {@code CompositeFilter}.
+     * @param b     The {@code Block}
+     * @param cfId  The id of the{@code CompositeFilter}
      * @param d     The {@code Document} to create the {@code Element} for
-     * @return      The newly built `Element`
+     * @return      The newly built{@code Element}
      * @throws BlockException   If a class name could not be found for the 
-     *                          {@code Block} or an index exceeds the array's size
-     * @throws WriterException  If a composite {@code Block} does not contains a 
-     *                          {@code CompositeFilter} (???)
+     *                          {@code Block} or an index exceeds the array's 
+     *                          size
+     * @throws WriterException  If a composite {@code Block} does not contains
+     *                          a {@code CompositeFilter} (???)
      */
     private static Element elementFromBlock(Block b, String cfId,
         Document d) throws BlockException, WriterException {
@@ -225,7 +229,8 @@ public class Writer {
                 ReadDouble input = b.input(i);
                 String inputId = input.source() == null ? 
                                                     cfId : input.source().id();
-                y.setAttribute("input." + i, inputId + "." + input.outputIndex());
+                y.setAttribute("input." + i, inputId + "." 
+                                                     + input.outputIndex());
                 if (i != 0 && i % INPUTS_PER_NODE == 0) {
                     x.appendChild(y);
                     y = d.createElement(VALUE_NODE_TAG);

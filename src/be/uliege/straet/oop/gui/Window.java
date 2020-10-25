@@ -28,8 +28,8 @@ public class Window extends JFrame {
     private WorkSpace ws = new WorkSpace();
     private FMenuBar fmb = new FMenuBar(ws);
 
-    /** It is a {@code LinkedHashMap} to be able to get the buttons in the order we
-     * inserted them.
+    /** It is a {@code LinkedHashMap} to be able to get the buttons in the 
+     * order we inserted them.
      */
     private static HashMap<JButton, Procedure> buttonsActionsUp = 
                                        new HashMap<JButton, Procedure>();
@@ -64,13 +64,15 @@ public class Window extends JFrame {
             catch (FilterException e) {
                 System.out.println(e.getMessage());
             }  });
-        buttonsActionsUp.put(new JButton("Addition"), () -> {ws.addAddition();});
+        buttonsActionsUp.put(new JButton("Addition"), 
+            () -> {ws.addAddition();});
 
         buttonsActionsDown.put(new JButton("Variable"), 
             () -> {ws.addVariableDeclaration();});
         buttonsActionsDown.put(new JButton("Input"), () -> {ws.addInput();});
         buttonsActionsDown.put(new JButton("Output"), () -> {ws.addOutput();});
-        buttonsActionsDown.put(new JButton("Cancel"), () -> {ws.cancelCurrent();});
+        buttonsActionsDown.put(new JButton("Cancel"), 
+            () -> {ws.cancelCurrent();});
 
         initUi();
         new Thread(new RetardatorFocusGiver(ws)).start();
@@ -86,7 +88,8 @@ public class Window extends JFrame {
                 try { 
                     ws.addComposite(); 
                 } catch (Exception e) {
-                    WorkSpace.showError("Could not add the composite filter", e);
+                    WorkSpace.showError("Could not add the composite filter",
+                                        e);
                 }
                 break;
             case "Convolution":     ws.addConvolution();    break;

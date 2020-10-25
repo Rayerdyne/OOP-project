@@ -1,8 +1,8 @@
 package be.uliege.straet.oop.gui;
 
 /**
- * Exception that will be raised by {@code Computer} instances when they'll raise 
- * exception during their execution.
+ * Exception that will be raised by {@code Computer} instances when they'll 
+ * raise exception during their execution.
  */
 public class ComputationException extends Exception {
    /**

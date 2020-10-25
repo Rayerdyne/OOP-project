@@ -17,7 +17,8 @@ public class NothingFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param ws        The {@code WorkSpace} this {@code NothingFilter} belongs to
+     * @param ws        The {@code WorkSpace} this {@code NothingFilter} 
+     *                  belongs to
      * @param nextInterpMethodIsLin If true, next interpolation method is 
      *                              linear, else it's cubic
      */
@@ -27,8 +28,8 @@ public class NothingFilter extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x         The x coordinate of this `NothingFilter`
-     * @param y         The y coordinate of this `NothingFilter`
+     * @param x         The x coordinate of this{@code NothingFilter}
+     * @param y         The y coordinate of this{@code NothingFilter}
      * @param ws        The {@code WorkSpace} this belongs to
      * @param nextInterpMethodIsLin If true, next interpolation method is 
      *                              linear, else it's cubic
@@ -70,8 +71,8 @@ public class NothingFilter extends DraggableFilter {
     }
 
     /**
-     * @return      The time stamp of this `NothingFilter`, i.e. the time at 
-     *              wich the drawing will at this point.
+     * @return      The time stamp of this {@code NothingFilter}, i.e. the time
+     *              at wich the drawing will at this point
      */
     public double getTimeStamp() {
         return timeStamp;

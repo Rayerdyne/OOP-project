@@ -69,7 +69,7 @@ public class FMenuBar extends JMenuBar implements ActionListener {
         miAdd.put(new JMenuItem("Composite filter"), () -> {
             try { ws.addComposite(); }
             catch (Exception e) {
-                WorkSpace.showError("Owww you got a BIG problem (should NOT " + 
+                WorkSpace.showError("Owww you got a BIG problem (should NOT " +
                     "happen)", e);
             }  });
         miAdd.put(new JMenuItem("Integrator filter"), 
@@ -99,7 +99,7 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                 WorkSpace.showError("The filter could not be written in the " +
                     "output file", we);
             } catch (FilterException fe) {
-                WorkSpace.showError("Filter represented by the {@code WorkSpace} " +
+                WorkSpace.showError("Filter represented by the `WorkSpace`" +
                     "could not be built", fe);
             }  });
 

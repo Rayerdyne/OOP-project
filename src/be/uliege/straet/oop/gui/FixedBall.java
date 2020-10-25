@@ -29,10 +29,11 @@ public class FixedBall implements MouseListener, Locatable {
      * Constructor.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param isInput   Wether or not the {@code FixedBall} is the input of a filter
+     * @param isInput   Wether or not the {@code FixedBall} is the input of a 
+     *                  filter
      * @param owner     The `DraggableFilter that has this input-output
-     * @param index     The index of the {@code FixedBall} as an input or output of
-     *                  the filter
+     * @param index     The index of the {@code FixedBall} as an input or 
+     *                  output of the filter
      */
     public FixedBall(int x, int y, boolean isInput,
         DraggableFilter owner, int index) {
@@ -46,10 +47,12 @@ public class FixedBall implements MouseListener, Locatable {
     }
 
     /**
-     * Constructs a `FixedBall`, with index as input or output of the filter 0.
+     * Constructs a {@code FixedBall}, with index as input or output of the 
+     * filter 0.
      * @param x         The x coordinate
      * @param y         The y coordinate
-     * @param isInput   Wether or not the {@code FixedBall} is the input of a filter
+     * @param isInput   Wether or not the {@code FixedBall} is the input of a 
+     *                  filter
      * @param owner     The `DraggableFilter that has this input-output
      */
     public FixedBall(int x, int y, boolean isInput,
@@ -69,7 +72,7 @@ public class FixedBall implements MouseListener, Locatable {
 
     /**
      * Paints this {@code FixedBall} on a {@code Graphics} with zoom factor.
-     * @param g         The `Graphics`
+     * @param g         The{@code Graphics}
      * @param zoom      The zoom factor
      */
     public void paint(Graphics g, double zoom) {
@@ -122,36 +125,37 @@ public class FixedBall implements MouseListener, Locatable {
     public void setY(int y) { this.y = y; }
 
     /**
-     * @return      The {@code DraggableFilter} that owns this `FixedBall`
+     * @return      The {@code DraggableFilter} that owns this{@code FixedBall}
      */
     public DraggableFilter owner() { return owner; }
 
     /**
-     * @return      Wether or not this {@code FixedBall} is connected to at least one
-     *              `Wire`
+     * @return      Wether or not this {@code FixedBall} is connected to at 
+     *              least one {@code Wire}
      */
     public boolean isConnected() { return isConnected; }
 
     /**
      * @param connected     The state of the connection to set to this 
-     *                      `FixedBall`
+     *                     {@code FixedBall}
      */
     public void setConnected(boolean connected) { isConnected = connected; }
 
     /**
-     * @return  Wether or not the {@code FixedBall} represents an input of the filter
-     *          it belongs to
+     * @return  Wether or not the {@code FixedBall} represents an input of the
+     *          filter it belongs to
      */
     public boolean isInput() { return isInput; }
     /**
-     * @return  Wether or not the {@code FixedBall} represents an output of the 
+     * @return  Wether or not the {@code FixedBall} represents an output of the
      *          filter it belongs to
      */
     public int index() { return index; }
 
     /**
      * Sets the highlight policy of this {@code FixedBall}.
-     * @param isHighlightied    Wether or not this {@code FixedBall} is highlighted
+     * @param isHighlightied    Wether or not this {@code FixedBall} is 
+     *                          highlighted
      */
     public void setHighlighted(boolean isHighlited) { 
         this.isHighlited = isHighlited;

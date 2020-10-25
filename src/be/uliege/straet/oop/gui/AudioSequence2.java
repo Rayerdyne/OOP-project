@@ -27,8 +27,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * <p>Decompiled (by Procyon v0.5.36) version of {@code AudioSequence} to add the 
- * ability to have multiple input files.</p>
+ * <p>Decompiled (by Procyon v0.5.36) version of {@code AudioSequence} to add 
+ * the ability to have multiple input files.</p>
  * <p>If one input is "too short" comparing to the others, it'll put zeros.</p>
  */
 public class AudioSequence2 {
@@ -40,11 +40,12 @@ public class AudioSequence2 {
     /**
      * Constructor.
      * @param pathname      The path to the file to open and load in this 
-     *                      `AudioSequence`
+     *                     {@code AudioSequence}
      * @throws AudioSequenceException   If the input file could not be opened 
      *                                  or loaded
      */
-    public AudioSequence2(final String pathname) throws AudioSequenceException {
+    public AudioSequence2(final String pathname) throws AudioSequenceException
+        {
         try {
             if (!pathname.endsWith(".csv")) {
                 final AudioInputStream audioInputStream = 
@@ -53,8 +54,8 @@ public class AudioSequence2 {
                 final long n = audioInputStream.getFrameLength() * 
                                 this.format.getFrameSize();
                 if (n > 2147483647L) {
-                    throw new AudioSequenceException("Your audio file is too " + 
-                        "large and amounts more than " + n);
+                    throw new AudioSequenceException("Your audio file is too" +
+                        " large and amounts more than " + n);
                 }
                 final byte[] b = new byte[(int)n];
                 audioInputStream.read(b, 0, b.length);
@@ -103,22 +104,23 @@ public class AudioSequence2 {
      * Filters the array with given {@code Filter}.
      * @param array     The sequence of number to filter
      * @param filter    The {@code Filter} to apply
-     * @throws FilterException      If the {@code Filter} could not process the 
+     * @throws FilterException      If the {@code Filter} could not process the
      *                              input.
      */
     private static void filter(final short[] array, final Filter filter) 
         throws FilterException {
         for (int i = 0; i < array.length; ++i) {
-            array[i] = (short)filter.computeOneStep( new double[] { array[i] })[0];
+            array[i] = (short)filter.computeOneStep( 
+                new double[] { array[i] })[0];
         }
         filter.reset();
     }
     
     /**
-     * Filters the left and the right channels of the {@code AudioSequence} with 
-     * given {@code Filter}.
+     * Filters the left and the right channels of the {@code AudioSequence} 
+     * with given {@code Filter}.
      * @param filter                The {@code Filter} to apply
-     * @throws FilterException      If the {@code Filter} could not process the 
+     * @throws FilterException      If the {@code Filter} could not process the
      *                              input.
      */
     public void filter(final Filter filter) throws FilterException {
@@ -128,7 +130,7 @@ public class AudioSequence2 {
 
     /**
      * (I added this method)
-     * @return      The right channel of the `AudioSequence`
+     * @return      The right channel of the {@code AudioSequence}
      */
     public short[] getRightChannel() {
         /*for (int i = 0; i < 500; i++) {
@@ -137,11 +139,11 @@ public class AudioSequence2 {
         return rightChannel;}
     /**
      * (I added this method)
-     * @return      The right channel of the `AudioSequence`
+     * @return      The right channel of the {@code AudioSequence}
      */
     public short[] getLeftChannel() {   return leftChannel;   }
     /**
-     * @return      The number of the samples in that `AudioSequence`
+     * @return      The number of the samples in that {@code AudioSequence}
      */
     public long getSize() {  return leftChannel.length;  }
 

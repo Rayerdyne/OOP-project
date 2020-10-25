@@ -6,7 +6,9 @@ package be.uliege.montefiore.oop.audio;
 
 public class TestAudioFilter
 {
-    public static void applyFilter(final Filter filter, final String s, final String s2) throws FilterException, AudioSequenceException {
+    public static void applyFilter(final Filter filter, final String s, 
+        final String s2) throws FilterException, AudioSequenceException {
+
         final AudioSequence audioSequence = new AudioSequence(s);
         audioSequence.filter(filter);
         String s3 = s2;

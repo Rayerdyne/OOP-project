@@ -62,8 +62,8 @@ public class Computer implements Runnable {
 
     /**
      * Constructs a {@code Computer}.
-     * @param inputs   An array of {@code AudioSequence2} that will be inputted to 
-     *                 the `CompositeFilter`
+     * @param inputs   An array of {@code AudioSequence2} that will be inputted
+     *                 to the {@code CompositeFilter}
      * @param cf     The {@code CompositeFilter} we want to apply to the inputs
      * @param type   Sets the type of computation to do: PLAY_AUDIO, 
      *               COMPUTE_FILE or APPLY_TO_VOICE
@@ -75,8 +75,8 @@ public class Computer implements Runnable {
         throws ComputationException {
 
         if (type != APPLY_TO_VOICE && inputs.length != cfR.nbInputs())
-            throw new ComputationException("The numbers of AudioSequences "
-                + "and of composite filter inputs mismatch.");
+            throw new ComputationException("The numbers of AudioSequences " +
+                "and of composite filter inputs mismatch.");
 
         this.inputs = inputs;
         this.cfR = cfR;
@@ -96,10 +96,11 @@ public class Computer implements Runnable {
     }
 
     /**
-     * Constructs a `Computer`
-     * @param inputs   An array of {@code AudioSequence2} that will be inputted to 
-     *                 the `CompositeFilter`
-     * @param cf       The {@code CompositeFilter} we want to apply to the inputs
+     * Constructs a {@code Computer}
+     * @param inputs   An array of {@code AudioSequence2} that will be inputted
+     *                 to the {@code CompositeFilter}
+     * @param cf       The {@code CompositeFilter} we want to apply to the 
+     *                 inputs
      * @param filename The name of the output wav file
      * @throws ComputationException If the number of inputs mismatch the number
      *                              AudioSequences.
@@ -115,11 +116,11 @@ public class Computer implements Runnable {
     }
 
     /**
-     * Construcs a `Computer`, for applying the filter to a voice sample.
-     * @param inputs An array of {@code AudioSequence2} that will be inputted to the
-     *               composite filter
-     * @param cfR    The right `CompositeFilter`, to apply to the voice.
-     * @param cfL    The left `CompositeFilter`, to apply to the voice.
+     * Construcs a {@code Computer}, for applying the filter to a voice sample.
+     * @param inputs An array of {@code AudioSequence2} that will be inputted 
+     *               to the {@code CompositeFilter}
+     * @param cfR    The right {@code CompositeFilter}, to apply to the voice
+     * @param cfL    The left {@code CompositeFilter}, to apply to the voice
      * @param remote An array of {@code int}s, remote value representing the 
      *               computation's state.
      * @throws ComputationException     If something goes wrong...
@@ -198,13 +199,14 @@ public class Computer implements Runnable {
     /**
      * Plays the audio after the filter has been applied.
      * @param areChannelsSet    If true, does not loads the short arrays from 
-     *                          the {@code AudioSequence}s, an duse them as they are.
+     *                          the {@code AudioSequence}s, an duse them as 
+     *                          they are
      */
     public void runAudio(boolean areChannelsSet) {
         if (!areChannelsSet)
             setChannels();
-        AudioFormat format = new AudioFormat(SAMPLING_FREQUENCY, SAMPLE_SIZE_BITS, CHANNELS, 
-                                             SIGNED, BIG_ENDIAN);
+        AudioFormat format = new AudioFormat(SAMPLING_FREQUENCY, 
+            SAMPLE_SIZE_BITS, CHANNELS, SIGNED, BIG_ENDIAN);
         DataLine.Info info = new DataLine.Info(SourceDataLine.class, 
             format, 2200);
 
@@ -246,7 +248,7 @@ public class Computer implements Runnable {
             }
 
         } catch (LineUnavailableException e) {
-            WorkSpace.showError("Recieved {@code LineUnavailibleException}.", e);
+            WorkSpace.showError("Recieved `LineUnavailibleException`.", e);
         } catch (FilterException e) {
             WorkSpace.showError("Could not compute step.", e);
         }

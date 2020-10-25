@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
 
 /**
  * <p>Represents a connection between two filters.</p>
- * <p>It can start and end with a `FixedBall`, and can go through {@code FreeBall}s
- * that are {@code Draggable}.</p>
+ * <p>It can start and end with a {@code FixedBall}, and can go through 
+ * {@code FreeBall}s that are {@code Draggable}.</p>
  */
 public class Wire implements MouseListener {
 
@@ -42,8 +42,8 @@ public class Wire implements MouseListener {
     /**
      * Paints the {@code Wire} on a {@code Graphics}.
      * @param g         The {@code Graphics} object to draw on
-     * @param back      The background `Color`
-     * @param fore      The foreground `Color`
+     * @param back      The background{@code Color}
+     * @param fore      The foreground{@code Color}
      */
     public void paint(Graphics g, Color back, Color fore, double zoom) {
         if (points.size() >= 2) {
@@ -68,7 +68,7 @@ public class Wire implements MouseListener {
     
     /**
      * Sets one end of the {@code Wire}.
-     * @param origin        The `FixedBall`
+     * @param origin        The{@code FixedBall}
      */
     public void setFirst(FixedBall fb) {
         if (fb.isInput())
@@ -87,7 +87,7 @@ public class Wire implements MouseListener {
 
     /**
      * Sets the second end of a {@code Wire}.
-     * @param destination       The `FixedBall`
+     * @param destination       The{@code FixedBall}
      * @return                  Wether or not we could successfully add the
      *                          second end
      */
@@ -113,9 +113,9 @@ public class Wire implements MouseListener {
     }
 
     /**
-     * Gets the {@code FixedBall} that has been selected first (to draw the wire 
-     * dynamically and see it when drawing).
-     * @return  The `FixedBall`
+     * Gets the {@code FixedBall} that has been selected first (to draw the 
+     * wire dynamically and see it when drawing).
+     * @return  The{@code FixedBall}
      */
     public FixedBall firstEnd() {
         if (input == null)
@@ -134,7 +134,8 @@ public class Wire implements MouseListener {
     }
 
     /**
-     * When the {@code Wire} is deleted, frees the destination end of the {@code Wire}.
+     * When the {@code Wire} is deleted, frees the destination end of the 
+     * {@code Wire}.
      */
     public void freeEnds() {
         if (input != null)
@@ -155,13 +156,15 @@ public class Wire implements MouseListener {
     @Override public void mouseExited(MouseEvent e) {}
 
     /**
-     * @return      The end of this {@code Wire} that is an input w.r.t. to its 
-     *              filter. This could be veiwed as the output of this `Wire`
+     * @return      The end of this {@code Wire} that is an input w.r.t. to its
+     *              filter. This could be veiwed as the output of this
+     *              {@code Wire}
      */
     public FixedBall input() { return input; }
     /**
-     * @return      The end of this {@code Wire} that is an output w.r.t. to its 
-     *              filter. This could be veiwed as the input of this `Wire`
+     * @return      The end of this {@code Wire} that is an output w.r.t. to 
+     *              its filter. This could be veiwed as the input of this
+     *              {@code Wire}
      */
     public FixedBall output() { return output; }
     /**
@@ -171,8 +174,8 @@ public class Wire implements MouseListener {
                                          output != null; }
 
     /**
-     * @return      A {@code Vector<FreeBall>} containing all the {@code FreeBall}s that
-     *              are checkpoints of this `Wire`
+     * @return      A {@code Vector<FreeBall>} containing all the
+     *              {@code FreeBall}s that are checkpoints of this{@code Wire}
      */
     public Vector<FreeBall> freeBalls() { return freeBalls; }
 }

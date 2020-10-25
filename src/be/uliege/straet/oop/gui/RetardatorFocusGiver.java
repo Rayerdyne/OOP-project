@@ -1,8 +1,8 @@
 package be.uliege.straet.oop.gui;
 
 /**
- * Because of idk the {@code WorkSpace} has not the focus and I can't figure out how
- * to give it in another way.
+ * Because of idk the {@code WorkSpace} has not the focus and I can't figure 
+ * out how to give it in another way.
  */
 public class RetardatorFocusGiver implements Runnable {
     public static final int TO_WAIT = 200;    
@@ -18,7 +18,7 @@ public class RetardatorFocusGiver implements Runnable {
     }
 
     /**
-     * Sleeps TO_WAIT milliseconds then makes the {@code WorkSpace} request the 
+     * Sleeps TO_WAIT milliseconds then makes the {@code WorkSpace} request the
      * focus.
      */
     public void run() {

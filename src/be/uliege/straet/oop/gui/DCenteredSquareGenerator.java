@@ -16,15 +16,17 @@ public class DCenteredSquareGenerator extends DraggableFilter {
 
     /**
      * Constructor.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
-     * @param filter A {@code CenteredSquareGenerator} that will be used in that 
-     *               filter
+     * @param filter    A {@code CenteredSquareGenerator} that will be used in
+     *                  that filter
      */
-    public DCenteredSquareGenerator(int x, int y, WorkSpace ws, boolean selected,
-        CenteredSquareGenerator filter) {
+    public DCenteredSquareGenerator(int x, int y, WorkSpace ws, 
+        boolean selected, CenteredSquareGenerator filter) {
         super(x, y, ws, selected);
 
         xCorners = new int[4];      yCorners = new int[4];
@@ -58,12 +60,15 @@ public class DCenteredSquareGenerator extends DraggableFilter {
 
     /**
      * Constructor with default {@code CenteredSquareGenerator}.
-     * @param x     The x coordinate of the filter to place in the `WorkSpace`
-     * @param y     The y coordinate of the filter to place in the `WorkSpace`
+     * @param x     The x coordinate of the filter to place in the
+     *              {@code WorkSpace}
+     * @param y     The y coordinate of the filter to place in the
+     *              {@code WorkSpace}
      * @param ws    The {@code WorkSpace} it belongs to
      * @param selected  If true, the user is currently dragging this filter
      */
-    public DCenteredSquareGenerator(int x, int y, WorkSpace ws, boolean selected) {
+    public DCenteredSquareGenerator(int x, int y, WorkSpace ws, 
+        boolean selected) {
         this(x, y, ws, selected, new CenteredSquareGenerator());
     }
 
