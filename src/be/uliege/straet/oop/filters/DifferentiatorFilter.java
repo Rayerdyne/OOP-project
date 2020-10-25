@@ -3,6 +3,7 @@ package be.uliege.straet.oop.filters;
 import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 /** 
  * <p>This class provides another type of basic block, a simple differentiator,
@@ -73,8 +74,11 @@ public class DifferentiatorFilter implements WFilter {
         prev = 0;
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
-        return new HashMap<String, String>();
+        HashMap<String, String> hm = new HashMap<String, String>();
+        hm.put(Writer.FS_ATTR_NAME, String.valueOf(fs));
+        return hm;
     }
 
     /**

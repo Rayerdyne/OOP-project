@@ -2,6 +2,8 @@ package be.uliege.straet.oop.filters;
 
 import java.util.HashMap;
 
+import be.uliege.straet.oop.loader.Writer;
+
 /**
  * <p>INFO0062 - Object-Oriented Programming project.</p>
  *
@@ -63,10 +65,13 @@ public class SineGenerator extends Generator {
         return new double[] { amplitude * Math.sin(omega_0 * (t + dt)) };
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
         HashMap<String, String> hm = new HashMap<String, String>();
-        hm.put("frequency", String.valueOf(omega_0 / (2.0 * Math.PI)));
-        hm.put("amplitude", String.valueOf(amplitude));
+        hm.put(Writer.FREQUENCY_ATTR_NAME, 
+            String.valueOf(omega_0 / (2.0*Math.PI)));
+        hm.put(Writer.AMPLITUDE_ATTR_NAME, String.valueOf(amplitude));
+        hm.put(Writer.FS_ATTR_NAME, String.valueOf(1 / dt));
         return hm;
     }
 

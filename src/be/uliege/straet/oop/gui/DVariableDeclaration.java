@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 
 import be.uliege.straet.oop.loader.LoaderException;
+import be.uliege.straet.oop.loader.Writer;
 
 public class DVariableDeclaration extends DraggableFilter {
     public static final int RADIUS = 20;
@@ -79,8 +80,9 @@ public class DVariableDeclaration extends DraggableFilter {
             return;
         }
 
-        if (newVarName.equals("x") || newVarName.equals("y") || 
-            newVarName.equals("orientation")) {
+        if (newVarName.equals(Writer.X_COORD_ATTR_NAME) || 
+            newVarName.equals(Writer.Y_COORD_ATTR_NAME) || 
+            newVarName.equals(Writer.ORIENTATION_ATTR_NAME)) {
             WorkSpace.showError("A variable can not take the names \"x\" or " +
                 "\"y\"or \"orientation\" because of name collision.", null);
             return;

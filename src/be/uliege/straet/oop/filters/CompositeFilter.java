@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 /**
  * Composite filter class, to build and hold "block diagrams" of filters.
@@ -22,14 +23,17 @@ import be.uliege.montefiore.oop.audio.FilterException;
     private WriteDouble[] inputObjs;
     private ReadDouble[] inputRefs;
 
+    private String fileName;
 
     /**
      * Constructor.
      * @param nbInputs          The number of inputs of the composite filter
      * @param nbOuputs          The number of outputs of the composite filter
+     * @param fileName          The name of the file that represents this 
+     *                          filter, to make writing to file easier
      * @throws FilterException  If a number of input-output is <= 0
      */
-    public CompositeFilter(int nbInputs, int nbOutputs) throws 
+    public CompositeFilter(int nbInputs, int nbOutputs, String fileName) throws
         FilterException {
 
         if (nbInputs <= 0) 
@@ -54,6 +58,19 @@ import be.uliege.montefiore.oop.audio.FilterException;
         
         isOutputConnected = new boolean[nbOutputs];
         Arrays.fill(isOutputConnected, false);
+
+        this.fileName = fileName;
+    }
+
+    /**
+     * Constructor.
+     * @param nbInputs          The number of inputs of the composite filter
+     * @param nbOuputs          The number of outputs of the composite filter
+     * @throws FilterException  If a number of input-output is <= 0
+     */
+    public CompositeFilter(int nbInputs, int nbOutputs) throws 
+        FilterException {
+        this(nbInputs, nbOutputs, null);
     }
 
     /**
@@ -269,8 +286,11 @@ import be.uliege.montefiore.oop.audio.FilterException;
         });
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
-        return new HashMap<String, String>();
+        HashMap<String, String> hm = new HashMap<String, String>();
+        hm.put(Writer.SRC_FILE_ATTR_NAME, String.valueOf(fileName));
+        return hm;
     }
 
     /**
@@ -285,4 +305,17 @@ import be.uliege.montefiore.oop.audio.FilterException;
         }
         return b.id();
     }
+
+    /**
+     * @param fileName      The name of the file used to build this 
+     *                      {@code CompositeFilter}
+     */
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
+     * @return The name of the file used to build this {@code CompositeFilter}
+     */
+    public String getFileName() { return fileName; }
 }

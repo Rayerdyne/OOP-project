@@ -4,6 +4,7 @@ package be.uliege.straet.oop.filters;
 import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 /** 
  * This filter represents the GainFilter, i.e. it scales its input by a 
@@ -64,9 +65,10 @@ public class GainFilter implements WFilter {
      */
     public void reset() {}
 
+    @Override
     public HashMap<String, String> getParameters() {
         HashMap<String, String> hm = new HashMap<String, String>();
-        hm.put("gain", String.valueOf(gain));
+        hm.put(Writer.GAIN_F_NODE_TAG, String.valueOf(gain));
         return hm;
     }
 

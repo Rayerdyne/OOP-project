@@ -3,6 +3,7 @@ package be.uliege.straet.oop.filters;
 import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 /** 
  * This class provides another type of primitive block, a simple integrator.
@@ -74,8 +75,12 @@ public class IntegratorFilter implements FeedbackableFilter {
         return new double[] { integral };
     }
 
+
+    @Override
     public HashMap<String, String> getParameters() {
-        return new HashMap<String, String>();
+        HashMap<String, String> hm = new HashMap<String, String>();
+        hm.put(Writer.FS_ATTR_NAME, String.valueOf(fs));
+        return hm;
     }
 
     /**

@@ -2,6 +2,8 @@ package be.uliege.straet.oop.filters;
 
 import java.util.HashMap;
 
+import be.uliege.straet.oop.loader.Writer;
+
 /**
  * A basic square wave generator, switches from 0 to amplitude and 
  * vice-versa
@@ -64,10 +66,12 @@ public class UpSquareGenerator extends Generator {
             return new double[] { 0.0 };
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
         HashMap<String, String> hm = new HashMap<String, String>();
-        hm.put("frequency", String.valueOf(frequency));
-        hm.put("amplitude", String.valueOf(amplitude));
+        hm.put(Writer.FREQUENCY_ATTR_NAME, String.valueOf(frequency));
+        hm.put(Writer.AMPLITUDE_ATTR_NAME, String.valueOf(amplitude));
+        hm.put(Writer.FS_ATTR_NAME, String.valueOf(1 / dt));
         return hm;
     }
 

@@ -395,8 +395,9 @@ public class WorkSpace extends JPanel implements KeyListener {
         return cf;
     }
     
-    /** Starts the placing of a composite filter of name cfName at (0, 0), 
-     * needs focus.
+    /** 
+     * Starts the placing of an undefined composite filter at (0, 0), needs
+     * focus.
      * @throws FilterException              If an error occured when 
      *                                      instanciating and connecting filter
      * @throws LoaderException              If an error occured when loading 
@@ -411,11 +412,11 @@ public class WorkSpace extends JPanel implements KeyListener {
         DOMException, FilterException, ParserConfigurationException, 
         SAXException, IOException {     
         if (isBusy())  return; 
-        addComposite(0, 0, 0, true);
+        addComposite(0, 0, 0, true, null);
     }
 
     /**
-     * Starts the placing of a undefined composite filter. It will be invalid 
+     * Starts the placing of a composite filter. It will be invalid 
      * until it is set.
      * @param x     The x coordinate of the filter
      * @param y     The y coordinate of the filter
@@ -423,6 +424,8 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                    "normally" + orientation * 90° clockwise.
      * @param selected    Wether or not the user is dragging this filter when 
      *                    it is placed.
+     * @param fileName    The name of the file describing this 
+     *                    {@code CompositeFilter}
      * @throws FilterException              If an error occured when 
      *                                      instanciating and connecting filter
      * @throws LoaderException              If an error occured when loading 
@@ -434,11 +437,15 @@ public class WorkSpace extends JPanel implements KeyListener {
      * @throws DOMException                 Idem
      */
     public DraggableFilter addComposite(int x, int y, int orientation, 
-        boolean selected) throws LoaderException, DOMException, 
-        FilterException, ParserConfigurationException, SAXException,
-        IOException {
+        boolean selected, String fileName) throws LoaderException, 
+        DOMException, FilterException, ParserConfigurationException, 
+        SAXException, IOException {
         
-        DCompositeFilter cf = new DCompositeFilter(x, y, this, selected);
+        DCompositeFilter cf;
+        if (fileName != null)
+            cf = new DCompositeFilter(x, y, this, selected, fileName);
+        else 
+            cf = new DCompositeFilter(x, y, this, selected);
         filters.add(cf);
         return cf;
     }
@@ -1076,6 +1083,7 @@ public class WorkSpace extends JPanel implements KeyListener {
 
     /**
      * Refreshes the list of variables, the names and the values.
+     * TODO: reload files loaded with the parameters of the workspace
      */
     public void refreshVariablesValues() {
         for (int i = 0; i < variables.size(); i++) {

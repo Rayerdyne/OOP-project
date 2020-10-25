@@ -72,7 +72,8 @@ public class NodeData {
     /** If connected to a `CompositeFilter`'s output, the number of the output
      * of the {@code CompositeFilter} it will be connected */
     public int cfOutputNum;
-    /** If input or output filter, the name of the file to read/write */
+    /** <p>If input or output filter, the name of the file to read/write.</p>
+     * <p>If composite filter from source file, name of that file.</p> */
     public String ioFileName;
 
     // "standard" types members
@@ -212,7 +213,8 @@ public class NodeData {
                 filter = new DifferentiatorFilter();
                 break;
             case Writer.CONVOLUTION_F_NODE_TAG:
-                double[] v = getNodeParamValue(attributes, "v", parameters);
+                double[] v = getNodeParamValue(attributes, 
+                    Writer.CONVOLUTION_VECTOR_ATTR_NAME, parameters);
                 filter = new ConvolutionFilter(v);
                 break;
             case Writer.SINE_GEN_NODE_TAG: {
@@ -220,26 +222,31 @@ public class NodeData {
                     Writer.FREQUENCY_ATTR_NAME, parameters)[0];
                 double amplitude = getNodeParamValue(attributes, 
                     Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
-                filter = new SineGenerator(frequency, amplitude);
+                double fs = getNodeParamValue(attributes, 
+                    Writer.FREQUENCY_ATTR_NAME, parameters)[0];
+                filter = new SineGenerator(frequency, amplitude, fs);
                 break; }
-                //TODO coucou c ici
             case Writer.UP_SQUARE_GEN_NODE_TAG: {
                 double frequency = getNodeParamValue(attributes, 
                     Writer.FREQUENCY_ATTR_NAME, parameters)[0];
                 double amplitude = getNodeParamValue(attributes, 
                     Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
-                filter = new SquareUpGenerator(frequency, amplitude);
+                double fs = getNodeParamValue(attributes, 
+                    Writer.FREQUENCY_ATTR_NAME, parameters)[0];
+                filter = new SquareUpGenerator(frequency, amplitude, fs);
                 break; }
             case Writer.CENTERED_SQUARE_GEN_NODE_TAG: {
                 double frequency = getNodeParamValue(attributes, 
                     Writer.FREQUENCY_ATTR_NAME, parameters)[0];
                 double amplitude = getNodeParamValue(attributes, 
                     Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
-                filter = new CenteredSquareGenerator(frequency, amplitude); 
+                double fs = getNodeParamValue(attributes, 
+                    Writer.FREQUENCY_ATTR_NAME, parameters)[0];
+                filter = new CenteredSquareGenerator(frequency, amplitude, fs); 
                 break; }
             case Writer.NOISE_GEN_NODE_TAG: {
-                double amplitude = getNodeParamValue(attributes, "amplitude", 
-                                                     parameters)[0];
+                double amplitude = getNodeParamValue(attributes, 
+                    Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
                 filter = new NoiseGenerator(amplitude); 
                 break;}
             case Writer.OUTPUT_NODE_TAG:
@@ -298,12 +305,12 @@ public class NodeData {
      * commas. </p>
      * <p>Parses an expression made of '+' and '*', use "+ -1" for 
      * substractions.</p>
-     * @param vm                    A ValueMapper listing the attributes of the
-     *                              Node
+     * @param vm                    A {@code ValueMapper} listing the 
+     *                              attributes of the {@code Node}
      * @param valueName             The name of the value to get, i.e. the 
      *                              one of the attribute
-     * @param parameters            A HashMap with values of the parameters 
-     *                              introduced in the xml input file
+     * @param parameters            A {@code HashMap} with values of the 
+     *                              parameters introduced in the xml input file
      * @return                      The values contained (array >1 if 
      *                              convolution)
      * @throws LoaderException      If no valid value is given
@@ -492,7 +499,11 @@ public class NodeData {
 
         } // for over attributes
 
-        filter = Loader.load(srcNode.getNodeValue() , parameters2, verbose);
+        String fileName = srcNode.getNodeValue();
+        ioFileName = fileName;
+        CompositeFilter cf = Loader.load(fileName, parameters2, verbose);
+        cf.setFileName(fileName);
+        filter = cf;
     }
 
     /**

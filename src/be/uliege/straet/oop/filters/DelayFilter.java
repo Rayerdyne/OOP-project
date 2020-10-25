@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 /** 
  * This filter represents a delay filter, i.e. it shifts its input by a 
@@ -92,9 +93,10 @@ public class DelayFilter implements FeedbackableFilter {
         return new double[] { values[index] };
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
         HashMap<String, String> hm = new HashMap<String, String>();
-        hm.put("delay", String.valueOf(values.length));
+        hm.put(Writer.DELAY_F_NODE_TAG, String.valueOf(values.length));
         return hm;
     }
 

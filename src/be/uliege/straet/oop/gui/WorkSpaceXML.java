@@ -24,9 +24,16 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.filters.SineGenerator;
+import be.uliege.straet.oop.filters.UpSquareGenerator;
+import be.uliege.straet.oop.filters.CenteredSquareGenerator;
 import be.uliege.straet.oop.filters.CompositeFilter;
+import be.uliege.straet.oop.filters.ConvolutionFilter;
 import be.uliege.straet.oop.filters.DelayFilter;
+import be.uliege.straet.oop.filters.DifferentiatorFilter;
 import be.uliege.straet.oop.filters.GainFilter;
+import be.uliege.straet.oop.filters.IntegratorFilter;
+import be.uliege.straet.oop.filters.NoiseGenerator;
 import be.uliege.straet.oop.loader.LoaderException;
 import be.uliege.straet.oop.loader.NodeData;
 import be.uliege.straet.oop.loader.ValueMapper;
@@ -116,11 +123,12 @@ public class WorkSpaceXML {
             String typeOfFilter = n.getNodeName();
             if (typeOfFilter.equals(Writer.OUTPUT_NODE_TAG)) {
                 String id = Writer.OUTPUT_ID_PREFIX + 
-                    n.getAttributes().getNamedItem("n").getNodeValue();
+                    n.getAttributes().getNamedItem(Writer.NB_IOPUTS_ATTR_NAME)
+                      .getNodeValue();
                 children.put(id, (Element) n);
             }
             else if (!typeOfFilter.equals(Writer.VALUE_NODE_TAG)) {
-                String id = n.getAttributes().getNamedItem("id")
+                String id = n.getAttributes().getNamedItem(Writer.ID_ATTR_NAME)
                              .getNodeValue();
                 children.put(id, (Element) n);
             }
@@ -485,11 +493,18 @@ public class WorkSpaceXML {
     /**
      * Adds to the {@code WorkSpace} all the other filters (i.e., neither 
      * input, output or parameter).
-     * @param sorted    The {@code HashMap} containing the vectors of nodes
-     * @throws LoaderException  If some type could not be recognized
+     * @param sorted    The {@code HashMap<String, Vector<NodeData>>} 
+     *                  containing the vectors of nodes
+     * @throws IOException      Raised when parsing inner 
+     *                          {@code CompositeFilter}
+     * @throws SAXException     Idem
+     * @throws ParserConfigurationException Idem
+     * @throws FilterException  Idem
+     * @throws DOMException     Idem
      */
     private void addFilters(HashMap<String, Vector<NodeData>> sorted) 
-        throws LoaderException {
+        throws DOMException, FilterException, ParserConfigurationException, 
+        SAXException, IOException {
 
         for (Map.Entry<String, Vector<NodeData>> entry: sorted.entrySet()) {
             String name = entry.getKey();
@@ -509,29 +524,42 @@ case Writer.ADDITION_F_NODE_TAG:
     for (NodeData d : entry.getValue()) 
         d.draggableFilter = ws.addAddition(d.x, d.y, d.orientation, false);
     break;
-/*
-TODO case "integrator":for (NodeData n : entry.getValue())  addGain(n);
+case Writer.CONVOLUTION_F_NODE_TAG:
+    for (NodeData d : entry.getValue()) 
+        d.draggableFilter = ws.addConvolution(d.x, d.y, d.orientation, false,
+                                              (ConvolutionFilter) d.filter);
     break;
-case "differentiator":for (NodeData n : entry.getValue())  addGain(n);
+case Writer.COMPOSITE_F_NODE_TAG:
+    for (NodeData d : entry.getValue()) {
+        d.draggableFilter = ws.addComposite(d.x, d.y, d.orientation, false,
+                                            d.ioFileName);
+        System.out.println("Name of src file: " + d.ioFileName);
+    }
     break;
-case "convolution":for (NodeData n : entry.getValue())  addGain(n);
-    break;
-case "sine_generator":for (NodeData n : entry.getValue())  addGain(n);
-    break; 
-case "square_up_generator": for (NodeData n : entry.getValue())  addGain(n);
-    break; 
-case "square_centered_generator": for (NodeData n : entry.getValue())  addGain(n);
-    break; 
-case "noise_generator": for (NodeData n : entry.getValue())  addGain(n);
-    break;
-case Writer.OUTPUT_NODE_TAG:for (NodeData n : entry.getValue())  addGain(n);
-    break;
-case Writer.VARIABLE_NODE_TAG:for (NodeData n : entry.getValue())  addGain(n);
-    break;
-case "composite":for (NodeData n : entry.getValue())  addGain(n);
-    break;
-case "filter":for (NodeData n : entry.getValue())  addGain(n);
-    break;*/
+case Writer.INTEGRATOR_F_NODE_TAG:  
+    for (NodeData d : entry.getValue())  
+        d.draggableFilter = ws.addIntegrator(d.x, d.y, d.orientation, false,
+                                             (IntegratorFilter) d.filter);
+case Writer.DIFFERENTIATOR_F_NODE_TAG:  
+    for (NodeData d : entry.getValue())  
+        d.draggableFilter = ws.addDifferentiator(d.x, d.y, d.orientation, 
+                               false, (DifferentiatorFilter) d.filter);
+case Writer.SINE_GEN_NODE_TAG:  
+    for (NodeData d : entry.getValue())  
+        d.draggableFilter = ws.addSineGenerator(d.x, d.y, d.orientation, false,
+                                                (SineGenerator) d.filter);
+case Writer.CENTERED_SQUARE_GEN_NODE_TAG:  
+    for (NodeData d : entry.getValue())  
+        d.draggableFilter = ws.addCenteredSquareGenerator(d.x, d.y, 
+                    d.orientation, false, (CenteredSquareGenerator) d.filter);
+case Writer.UP_SQUARE_GEN_NODE_TAG:  
+    for (NodeData d : entry.getValue())  
+        d.draggableFilter = ws.addUpSquareGenerator(d.x, d.y, d.orientation, 
+                                        false, (UpSquareGenerator) d.filter);
+case Writer.NOISE_GEN_NODE_TAG:  
+    for (NodeData d : entry.getValue())  
+        d.draggableFilter = ws.addNoiseGenerator(d.x, d.y, d.orientation, 
+                                        false, (NoiseGenerator) d.filter);
 case Writer.INPUT_POS_NODE_TAG:
 case Writer.OUTPUT_NODE_TAG:
 case Writer.VARIABLE_NODE_TAG:

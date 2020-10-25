@@ -3,6 +3,8 @@ package be.uliege.straet.oop.filters;
 import java.util.HashMap;
 import java.util.Random;
 
+import be.uliege.straet.oop.loader.Writer;
+
 /**
  * <p>A basic noise generator.</p>
  * 
@@ -48,8 +50,11 @@ public class NoiseGenerator extends Generator {
         return new double[] { amplitude2 * (random.nextDouble() - 0.5) };
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
-        return new HashMap<String, String>();
+        HashMap<String, String> hm = new HashMap<String, String>();
+        hm.put(Writer.AMPLITUDE_ATTR_NAME, String.valueOf(amplitude2/2.0));
+        return hm;
     }
 
     /**

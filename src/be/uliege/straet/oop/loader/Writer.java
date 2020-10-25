@@ -65,7 +65,9 @@ public class Writer {
         WIRE_INPUT_ATTR_NAME = "input",
         IO_FILENAME_ATTR_NAME = "content",
         FREQUENCY_ATTR_NAME = "frequency",
-        AMPLITUDE_ATTR_NAME = "amplitude";
+        AMPLITUDE_ATTR_NAME = "amplitude",
+        FS_ATTR_NAME = "fs", 
+        CONVOLUTION_VECTOR_ATTR_NAME = "vector";
 
     private static int INPUTS_PER_NODE = 2;
     private static int PARAMETERS_PER_NODE = 2;
@@ -171,8 +173,10 @@ public class Writer {
     private static void appendFilters(CompositeFilter cf, String cfId,
         Element e, Document d) throws BlockException, WriterException {
         
-        e.setAttribute("in", String.valueOf(cf.nbInputs()));
-        e.setAttribute("out", String.valueOf(cf.nbOutputs()));
+        e.setAttribute(Writer.NB_INPUTS_ATTR_NAME, 
+            String.valueOf(cf.nbInputs()));
+        e.setAttribute(Writer.NB_OUTPUTS_ATTR_NAME, 
+            String.valueOf(cf.nbOutputs()));
 
         // Outputs:
         for (int i = 0; i < cf.nbOutputs(); i++) {
@@ -183,7 +187,8 @@ public class Writer {
                 throw new BlockException(fe.getMessage());
             }
             Element o = d.createElement(OUTPUT_NODE_TAG);
-            o.setAttribute("n", String.valueOf(output.outputIndex()));
+            o.setAttribute(NB_IOPUTS_ATTR_NAME, 
+                           String.valueOf(output.outputIndex()));
             String outputId = output.source() == null ? 
                                                    cfId : output.source().id();
             o.setAttribute(REF_ATTR_NAME, outputId + "." 
@@ -214,7 +219,7 @@ public class Writer {
         Document d) throws BlockException, WriterException {
         Element x = d.createElement(b.type());
             // id
-            x.setAttribute("id", b.id());
+            x.setAttribute(Writer.ID_ATTR_NAME, b.id());
 
             // inputs references, 2 by 2 in children
             Element y = d.createElement(VALUE_NODE_TAG);
@@ -249,7 +254,7 @@ public class Writer {
                 x.appendChild(y);
 
             // if CompositeFilter, then write it
-            if (b.type() == "composite") {
+            if (b.type() == Writer.NESTED_COMPOSITE_NODE_TAG) {
                 if (!(b.filter() instanceof CompositeFilter))
                     throw new WriterException("composite Block contains " + 
                         "non-CompositeFilter filter ?!?!?");

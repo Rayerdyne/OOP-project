@@ -119,13 +119,14 @@ public class Loader {
      * <p>Creates a composite filter based on the file at "fileName", in wich
      * parameters are set to the value found in parameters.</p>
      * 
-     * <p>Note: it will have to read files so that it also throws IOExceptions,
-     * ParserConfigurationExceptions and SAXExceptions.</p>
-     * @param fileName                  The location of file to read
-     * @param parameters                A HashMap with values of the variable 
-     *                                  parameters introduced in the input file
-     * @param verbose                   If true, print connections info
-     * @return                          The newly created CompositeFilter
+     * <p>Note: it will have to read files so that it also throws 
+     * {@code IOExceptions}, {@code ParserConfigurationExceptions} and 
+     * {@code SAXExceptions}.</p>
+     * @param fileName      The location of file to read
+     * @param parameters    A {@code HashMap} with values of the parameters 
+     *                      introduced in the input file
+     * @param verbose   If true, print connections info
+     * @return          The newly created {@code CompositeFilter}
      * @throws FilterException              If an error occured when 
      *                                      instanciating and connecting filter
      * @throws LoaderException              If an error occured when loading 
@@ -154,10 +155,10 @@ public class Loader {
 
         Node filterNode = doc.getFirstChild();
 
-        CompositeFilter f;
         if (parameters == null)
-            parameters = new HashMap<String, Double>();
-
+        parameters = new HashMap<String, Double>();
+        
+        CompositeFilter f;
         try {
             f = filterFromNode(filterNode, parameters, verbose);
         } catch (LoaderException e) { // re-throw with filename info

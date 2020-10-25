@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import be.uliege.montefiore.oop.audio.FilterException;
+import be.uliege.straet.oop.loader.Writer;
 
 /** 
  * This filter represents a delay filter, i.e. it shifts its input by a 
@@ -89,13 +90,14 @@ public class ConvolutionFilter implements WFilter {
         Arrays.fill(values, 0.0);
     }
 
+    @Override
     public HashMap<String, String> getParameters() {
         HashMap<String, String> hm = new HashMap<String, String>();
         String sv = new String();
         for (double x : v) {
             sv += String.valueOf(x) + ", ";
         }
-        hm.put("v", sv);
+        hm.put(Writer.CONVOLUTION_VECTOR_ATTR_NAME, sv);
         return hm;
     }
 
