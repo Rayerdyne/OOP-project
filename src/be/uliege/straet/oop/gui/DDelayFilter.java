@@ -43,10 +43,11 @@ public class DDelayFilter extends DraggableFilter {
 
         color = Color.GRAY;
 
+        int shift = filter.getShift();
         filterR = filter;
-        filterL = new DelayFilter(filter.getShift());
-        parameterD = new double[] { DelayFilter.DEF_SHIFT };
-        parameterS = Integer.toString(DelayFilter.DEF_SHIFT);
+        filterL = new DelayFilter(shift);
+        parameterD = new double[] { shift };
+        parameterS = Integer.toString(shift);
     }
 
     /**

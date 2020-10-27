@@ -45,10 +45,11 @@ public class DDifferentiatorFilter extends DraggableFilter {
 
         color = Color.WHITE;
 
+        double fs = filter.getSamplingFrequency();
         filterR = filter;
-        filterL = new DifferentiatorFilter(filter.getSamplingFrequency());
-        parameterD = new double[] { filter.getSamplingFrequency() };
-        parameterS = Double.toString(filter.getSamplingFrequency());
+        filterL = new DifferentiatorFilter(fs);
+        parameterD = new double[] { fs };
+        parameterS = Double.toString(fs);
     }
 
     /**

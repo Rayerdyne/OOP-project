@@ -48,10 +48,11 @@ public class DIntegratorFilter extends DraggableFilter {
 
         color = Color.WHITE;
 
+        double fs = filter.getSamplingFrequency();
         filterR = filter;
-        filterL = new IntegratorFilter(filter.getSamplingFrequency());
-        parameterD = new double[] { filter.getSamplingFrequency() };
-        parameterS = Double.toString(filter.getSamplingFrequency());
+        filterL = new IntegratorFilter(fs);
+        parameterD = new double[] { fs };
+        parameterS = Double.toString(fs);
     }
 
     /**

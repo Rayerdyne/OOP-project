@@ -42,10 +42,11 @@ public class DGainFilter extends DraggableFilter {
 
         color = Color.ORANGE;
 
+        double gain = filter.getGain();
         filterR = filter;
-        filterL = new GainFilter(filter.getGain());
-        parameterD = new double[] { GainFilter.DEF_GAIN };
-        parameterS = Double.toString(GainFilter.DEF_GAIN);
+        filterL = new GainFilter(gain);
+        parameterD = new double[] { gain };
+        parameterS = Double.toString(gain);
     }
 
     /**
