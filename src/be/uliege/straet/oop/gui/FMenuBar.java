@@ -3,6 +3,7 @@ package be.uliege.straet.oop.gui;
 import java.util.LinkedHashMap;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -102,6 +103,12 @@ public class FMenuBar extends JMenuBar implements ActionListener {
             } catch (FilterException fe) {
                 WorkSpace.showError("Filter represented by the `WorkSpace`" +
                     "could not be built", fe);
+            }  });
+        miFile.put(new JMenuItem("Export convolution vector..."), () -> {
+            try { ws.exportConvolutionVector(); }
+            catch (IOException | FilterException e) {
+                WorkSpace.showError("Could not build or write the equivalent" +
+                    " convolution vector", e);
             }  });
         miFile.put(new JMenuItem("Quit"), 
                     () -> { ws.quit();           });

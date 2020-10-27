@@ -327,4 +327,49 @@ import be.uliege.straet.oop.loader.Writer;
      * @return The name of the file used to build this {@code CompositeFilter}
      */
     public String getFileName() { return fileName; }
+
+    /**
+     * <p>Computes a vector of numbers, returned as a {@code Double[]}, that is
+     * the convolution vector equivalent to the application of that filter to
+     * the input. That is, applying the filter or a {@code ConvolutionFilter}
+     * with that vector in argument will have approximately the same effect.
+     * </p><p>Note that this will have to {@code reset()} this 
+     * {@code CompositeFilter}</p>
+     * @param precision         The maximal difference between two consecutive
+     *                          outputs that has to be carried out 
+     *                          {@code getMaxSamplesInfluenced()} times.
+     * @return                  A {@code Double[]} containing the values of 
+     *                          that vector
+     * @throws FilterException  If this {@code CompositeFilter} is invalid and
+     *                          any output could be computed.
+     */
+    public Double[] computeEquivalentConvolutionVector(double precision) 
+        throws FilterException {
+
+        int maxsi = this.getMaxSamplesInfluenced();
+        if (maxsi < 0 || maxsi >= WFilter.INFINITY)
+            throw new FilterException("Could not compute equivalent " + 
+                "convolution vector as the maximum number of samples " +
+                "influenced is unbouned (due to generator).");
+
+        Vector<Double> res = new Vector<Double>();
+        
+        this.reset();
+        double cur, prev;
+        cur = this.computeOneStep(new double[]{ 1 })[0];
+        int i = 0;
+        do {
+            prev = cur;
+            cur = this.computeOneStep(new double[] { 1 })[0];
+            res.add(prev);
+            if (Math.abs(cur - prev) < precision)
+                i++;
+            else 
+                i = 0;
+        } while (i < maxsi);
+
+        this.reset();
+
+        return (Double[]) res.toArray();
+    }
 }

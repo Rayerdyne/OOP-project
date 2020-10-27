@@ -15,6 +15,9 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -1224,6 +1227,48 @@ public class WorkSpace extends JPanel implements KeyListener {
             String fileName = chooser.getSelectedFile().getPath();
             CompositeFilter cf = buildFilter(true);
             Writer.writeFilter(cf, fileName);
+        }
+    }
+
+    /**
+     * Exports an equivalent convolution vector to a csv chosen csv file, 
+     * requires the user to enter the precision.
+     * @throws IOException      If some file could not be opened - written.
+     * @throws FilterException  If the filter is not currently complete, or an 
+     *                          output could not be computed.
+     */
+    public void exportConvolutionVector() throws IOException, FilterException {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "CSV files", "csv", "CSV");
+        chooser.setFileFilter(filter);
+        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        int returnVal = chooser.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = chooser.getSelectedFile();
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            cfR = buildFilter(true);
+            double precision;
+            String s = JOptionPane.showInputDialog(this, 
+                "Enter the precision (the maximal difference between two " +
+                "consecutive outputs that has to be carried out " +
+                "getMaxSamplesInfluenced() times.");
+            if (s == null) {
+                bw.close();
+                return;
+            }
+            precision = Double.parseDouble(s);
+            if (precision < 0) {
+                showError("The precision cannot be negative !", null);
+                bw.close();
+                return;
+            }
+            
+            Double[] d = cfR.computeEquivalentConvolutionVector(precision);
+            for (int i = 0; i < d.length-1; i++) 
+                bw.write(Double.toString(d[i]) + ", ");
+            bw.write(Double.toString(d[d.length-1]));
+            bw.close();
         }
     }
 
