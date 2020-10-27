@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -31,10 +31,10 @@ public class Window extends JFrame {
     /** It is a {@code LinkedHashMap} to be able to get the buttons in the 
      * order we inserted them.
      */
-    private static HashMap<JButton, Procedure> buttonsActionsUp = 
-                                       new HashMap<JButton, Procedure>();
-    private static HashMap<JButton, Procedure> buttonsActionsDown = 
-                                       new HashMap<JButton, Procedure>();
+    private static LinkedHashMap<JButton, Procedure> buttonsActionsUp = 
+                                       new LinkedHashMap<JButton, Procedure>();
+    private static LinkedHashMap<JButton, Procedure> buttonsActionsDown = 
+                                       new LinkedHashMap<JButton, Procedure>();
     private static final String[] extraFilters = {
         "Composite", "Convolution", "Integrator", "Differentiator", 
         "Sine generator", "Centered square generator", "Up square generator",
@@ -54,18 +54,18 @@ public class Window extends JFrame {
         super(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(710, 377);
-        buttonsActionsUp.put(new JButton("Other: "), () -> {
-                addSelectedFilter();
-            });
-        buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
-        buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
         buttonsActionsUp.put(new JButton("Connection"), () -> {
             try { ws.addConnection(); }
             catch (FilterException e) {
                 System.out.println(e.getMessage());
             }  });
         buttonsActionsUp.put(new JButton("Addition"), 
-            () -> {ws.addAddition();});
+                () -> {ws.addAddition();});
+        buttonsActionsUp.put(new JButton("Delay"), () -> {ws.addDelay();});
+        buttonsActionsUp.put(new JButton("Gain"), () -> {ws.addGain();});
+        buttonsActionsUp.put(new JButton("Other: "), () -> {
+                addSelectedFilter();
+            });
 
         buttonsActionsDown.put(new JButton("Variable"), 
             () -> {ws.addVariableDeclaration();});

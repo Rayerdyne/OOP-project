@@ -69,8 +69,8 @@ public class Writer {
         FS_ATTR_NAME = "fs", 
         CONVOLUTION_VECTOR_ATTR_NAME = "vector";
 
-    private static int INPUTS_PER_NODE = 2;
-    private static int PARAMETERS_PER_NODE = 2;
+    public static final int INPUTS_PER_NODE = 2;
+    public static final int ATTRIBUTES_PER_NODE = 2;
     // public static void main(String[] args) {
 
     // }
@@ -234,24 +234,26 @@ public class Writer {
                     y = d.createElement(VALUE_NODE_TAG);
                 }
             }
-            if (b.nbInputs() % INPUTS_PER_NODE == 0 || 
-                b.nbInputs() < INPUTS_PER_NODE ) 
+            if (b.nbInputs() > 0 && (b.nbInputs() % INPUTS_PER_NODE == 0 || 
+                                     b.nbInputs() < INPUTS_PER_NODE)) { 
                 x.appendChild(y);
+            }
             
             // parameters (e.g. gain="0.7")
             y = d.createElement(VALUE_NODE_TAG);
             int i = 0;
             HashMap<String, String> parameters = b.filter().getParameters();
             for (HashMap.Entry<String, String> entry : parameters.entrySet()) {
-                y.setAttribute(entry.getKey(), entry.getValue());
-                if (i != 0 && i % PARAMETERS_PER_NODE == 0) {
+                if ((i+1) % ATTRIBUTES_PER_NODE == 0) {
                     x.appendChild(y);
                     y = d.createElement(VALUE_NODE_TAG);
                 }
+                y.setAttribute(entry.getKey(), entry.getValue());
                 i++;
             }
-            if (i == 1)
+            if (y.getAttributes().getLength() >= 1) {
                 x.appendChild(y);
+            }
 
             // if CompositeFilter, then write it
             if (b.type() == Writer.NESTED_COMPOSITE_NODE_TAG) {

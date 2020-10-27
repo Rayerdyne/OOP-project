@@ -1,6 +1,6 @@
 package be.uliege.straet.oop.gui;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +21,8 @@ public class FMenuBar extends JMenuBar implements ActionListener {
     private WorkSpace ws;
 
     JMenu menuFile = new JMenu("File");
-    HashMap<JMenuItem, Procedure> miFile = new HashMap<JMenuItem, Procedure>();
+    LinkedHashMap<JMenuItem, Procedure> miFile = 
+        new LinkedHashMap<JMenuItem, Procedure>();
     // ...
 
     JMenu menuView = new JMenu("View");
@@ -29,10 +30,12 @@ public class FMenuBar extends JMenuBar implements ActionListener {
     JMenuItem miZoomOut = new JMenuItem("Zoom out");
 
     JMenu menuRun = new JMenu("Run");
-    HashMap<JMenuItem, Procedure> miRun = new HashMap<JMenuItem, Procedure>();
+    LinkedHashMap<JMenuItem, Procedure> miRun = 
+        new LinkedHashMap<JMenuItem, Procedure>();
 
     JMenu menuAdd = new JMenu("Add");
-    HashMap<JMenuItem, Procedure> miAdd = new HashMap<JMenuItem, Procedure>();
+    LinkedHashMap<JMenuItem, Procedure> miAdd = 
+        new LinkedHashMap<JMenuItem, Procedure>();
 
     /**
      * Constructor.
@@ -91,8 +94,6 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                     () -> { ws.saveAs();           });
         miFile.put(new JMenuItem("Open"), 
                     () -> { ws.open();           });
-        miFile.put(new JMenuItem("Quit"), 
-                    () -> { ws.quit();           });
         miFile.put(new JMenuItem("Export standalone filter"), () -> { 
             try { ws.exportStandaloneFilter(); }
             catch (WriterException we) {
@@ -102,6 +103,8 @@ public class FMenuBar extends JMenuBar implements ActionListener {
                 WorkSpace.showError("Filter represented by the `WorkSpace`" +
                     "could not be built", fe);
             }  });
+        miFile.put(new JMenuItem("Quit"), 
+                    () -> { ws.quit();           });
 
         miRun.put(new JMenuItem("Build filter"), () -> {           
             try { ws.buildFilter(true);	}

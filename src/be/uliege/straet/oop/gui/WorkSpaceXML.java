@@ -199,14 +199,17 @@ public class WorkSpaceXML {
         for (int i = 0; i < inputFilters.size(); i++) {
             DInputFilter dif = inputFilters.elementAt(i);
             Element newE = doc.createElement(Writer.INPUT_POS_NODE_TAG);
-            newE.setAttribute(Writer.X_COORD_ATTR_NAME,
+            Element pos = doc.createElement(Writer.VALUE_NODE_TAG);
+            pos.setAttribute(Writer.X_COORD_ATTR_NAME,
                               Integer.toString(dif.getX()));
-            newE.setAttribute(Writer.Y_COORD_ATTR_NAME, 
+            pos.setAttribute(Writer.Y_COORD_ATTR_NAME, 
                               Integer.toString(dif.getY()));
+            pos.setAttribute(Writer.ORIENTATION_ATTR_NAME, 
+                              Integer.toString(dif.getOrientation()));
+            newE.appendChild(pos);
+
             newE.setAttribute(Writer.NB_IOPUTS_ATTR_NAME,
                               Integer.toString(inputFilters.indexOf(dif)));
-            newE.setAttribute(Writer.ORIENTATION_ATTR_NAME, 
-                              Integer.toString(dif.getOrientation()));
             newE.setAttribute(Writer.IO_FILENAME_ATTR_NAME, 
                               dif.getParameterDefinition());
             root.appendChild(newE);
@@ -530,11 +533,9 @@ case Writer.CONVOLUTION_F_NODE_TAG:
                                               (ConvolutionFilter) d.filter);
     break;
 case Writer.COMPOSITE_F_NODE_TAG:
-    for (NodeData d : entry.getValue()) {
+    for (NodeData d : entry.getValue()) 
         d.draggableFilter = ws.addComposite(d.x, d.y, d.orientation, false,
                                             d.ioFileName);
-        System.out.println("Name of src file: " + d.ioFileName);
-    }
     break;
 case Writer.INTEGRATOR_F_NODE_TAG:  
     for (NodeData d : entry.getValue())  
@@ -548,18 +549,22 @@ case Writer.SINE_GEN_NODE_TAG:
     for (NodeData d : entry.getValue())  
         d.draggableFilter = ws.addSineGenerator(d.x, d.y, d.orientation, false,
                                                 (SineGenerator) d.filter);
+    break;
 case Writer.CENTERED_SQUARE_GEN_NODE_TAG:  
     for (NodeData d : entry.getValue())  
         d.draggableFilter = ws.addCenteredSquareGenerator(d.x, d.y, 
                     d.orientation, false, (CenteredSquareGenerator) d.filter);
+    break;
 case Writer.UP_SQUARE_GEN_NODE_TAG:  
     for (NodeData d : entry.getValue())  
         d.draggableFilter = ws.addUpSquareGenerator(d.x, d.y, d.orientation, 
                                         false, (UpSquareGenerator) d.filter);
+    break;
 case Writer.NOISE_GEN_NODE_TAG:  
     for (NodeData d : entry.getValue())  
         d.draggableFilter = ws.addNoiseGenerator(d.x, d.y, d.orientation, 
                                         false, (NoiseGenerator) d.filter);
+    break;
 case Writer.INPUT_POS_NODE_TAG:
 case Writer.OUTPUT_NODE_TAG:
 case Writer.VARIABLE_NODE_TAG:

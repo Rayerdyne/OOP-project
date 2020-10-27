@@ -1136,6 +1136,8 @@ public class WorkSpace extends JPanel implements KeyListener {
             saveAs();
         else 
             saveToFile(openedFileName);
+        
+        
     }
 
     /**
@@ -1169,7 +1171,7 @@ public class WorkSpace extends JPanel implements KeyListener {
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            fileName = chooser.getSelectedFile().getName();
+            fileName = chooser.getSelectedFile().getPath();
             try {
                 clear();
                 openFile(fileName);
