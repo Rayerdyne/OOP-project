@@ -1238,6 +1238,22 @@ public class WorkSpace extends JPanel implements KeyListener {
      *                          output could not be computed.
      */
     public void exportConvolutionVector() throws IOException, FilterException {
+        // get the precision...
+        double precision;
+        String s = JOptionPane.showInputDialog(this, 
+            "Enter the precision (the maximal difference between two " +
+            "consecutive\noutputs that has to be carried out " +
+            "getMaxSamplesInfluenced() times.");
+        if (s == null) 
+            return;
+        
+        precision = Double.parseDouble(s);
+        if (precision < 0) {
+            showError("The precision cannot be negative !", null);
+            return;
+        }
+        
+        // get the file
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "CSV files", "csv", "CSV");
@@ -1248,23 +1264,8 @@ public class WorkSpace extends JPanel implements KeyListener {
             File file = chooser.getSelectedFile();
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             cfR = buildFilter(true);
-            double precision;
-            String s = JOptionPane.showInputDialog(this, 
-                "Enter the precision (the maximal difference between two " +
-                "consecutive outputs that has to be carried out " +
-                "getMaxSamplesInfluenced() times.");
-            if (s == null) {
-                bw.close();
-                return;
-            }
-            precision = Double.parseDouble(s);
-            if (precision < 0) {
-                showError("The precision cannot be negative !", null);
-                bw.close();
-                return;
-            }
             
-            Double[] d = cfR.computeEquivalentConvolutionVector(precision);
+            double[] d = cfR.computeEquivalentConvolutionVector(precision);
             for (int i = 0; i < d.length-1; i++) 
                 bw.write(Double.toString(d[i]) + ", ");
             bw.write(Double.toString(d[d.length-1]));

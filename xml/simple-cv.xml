@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<filter id="whole_filter" in="1" out="1">
+  <output content="To be defined" n="0" ref="filter_addition1.0">
+    <v orientation="0" x="432" y="101"/>
+    <wire input="0"/>
+  </output>
+  <delay id="filter_delay0">
+    <v input.0="whole_filter.0"/>
+    <v delay="5"/>
+    <v orientation="0" x="172" y="156"/>
+    <wire input="0">
+      <fb x="110" y="154"/>
+    </wire>
+  </delay>
+  <addition id="filter_addition1">
+    <v input.0="filter_gain2.0" input.1="whole_filter.0"/>
+    <v orientation="0" x="312" y="101"/>
+    <wire input="0"/>
+    <wire input="1"/>
+  </addition>
+  <gain id="filter_gain2">
+    <v input.0="filter_delay0.0"/>
+    <v gain="0.6"/>
+    <v orientation="0" x="258" y="153"/>
+    <wire input="0"/>
+  </gain>
+  <input content="To be defined" n="0">
+    <v orientation="0" x="75" y="77"/>
+  </input>
+</filter>

@@ -338,12 +338,12 @@ import be.uliege.straet.oop.loader.Writer;
      * @param precision         The maximal difference between two consecutive
      *                          outputs that has to be carried out 
      *                          {@code getMaxSamplesInfluenced()} times.
-     * @return                  A {@code Double[]} containing the values of 
+     * @return                  A {@code double[]} containing the values of 
      *                          that vector
      * @throws FilterException  If this {@code CompositeFilter} is invalid and
      *                          any output could be computed.
      */
-    public Double[] computeEquivalentConvolutionVector(double precision) 
+    public double[] computeEquivalentConvolutionVector(double precision) 
         throws FilterException {
 
         int maxsi = this.getMaxSamplesInfluenced();
@@ -352,7 +352,7 @@ import be.uliege.straet.oop.loader.Writer;
                 "convolution vector as the maximum number of samples " +
                 "influenced is unbouned (due to generator).");
 
-        Vector<Double> res = new Vector<Double>();
+        Vector<Double> v = new Vector<Double>();
         
         this.reset();
         double cur, prev;
@@ -360,16 +360,25 @@ import be.uliege.straet.oop.loader.Writer;
         int i = 0;
         do {
             prev = cur;
-            cur = this.computeOneStep(new double[] { 1 })[0];
-            res.add(prev);
+            cur = this.computeOneStep(new double[] { 0 })[0];
+            v.add(prev);
             if (Math.abs(cur - prev) < precision)
                 i++;
-            else 
+            else {
                 i = 0;
-        } while (i < maxsi);
+                System.out.println("Reset !");
+            }
+        } while (i <= maxsi + 1);
 
         this.reset();
 
-        return (Double[]) res.toArray();
+        double[] res = new double[v.size()];
+        i = 0;
+        for (Double d : v)
+            res[i++] = d;
+        
+        System.out.println(v.toString());
+
+        return res;
     }
 }
