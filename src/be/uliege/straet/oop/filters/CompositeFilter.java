@@ -364,10 +364,8 @@ import be.uliege.straet.oop.loader.Writer;
             v.add(prev);
             if (Math.abs(cur - prev) < precision)
                 i++;
-            else {
+            else 
                 i = 0;
-                System.out.println("Reset !");
-            }
         } while (i <= maxsi + 1);
 
         this.reset();
@@ -377,8 +375,6 @@ import be.uliege.straet.oop.loader.Writer;
         for (Double d : v)
             res[i++] = d;
         
-        System.out.println(v.toString());
-
         return res;
     }
 }

@@ -1242,8 +1242,8 @@ public class WorkSpace extends JPanel implements KeyListener {
         double precision;
         String s = JOptionPane.showInputDialog(this, 
             "Enter the precision (the maximal difference between two " +
-            "consecutive\noutputs that has to be carried out " +
-            "getMaxSamplesInfluenced() times.");
+            "consecutive outputs that\nhas to be carried out " +
+            "getMaxSamplesInfluenced() times. (0.001 is a good value)");
         if (s == null) 
             return;
         
@@ -1258,6 +1258,7 @@ public class WorkSpace extends JPanel implements KeyListener {
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "CSV files", "csv", "CSV");
         chooser.setFileFilter(filter);
+        chooser.setDialogTitle("CSV to save the vector in");
         chooser.setDialogType(JFileChooser.SAVE_DIALOG);
         int returnVal = chooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
