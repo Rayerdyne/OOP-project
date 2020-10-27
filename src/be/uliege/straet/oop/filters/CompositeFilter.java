@@ -293,6 +293,15 @@ import be.uliege.straet.oop.loader.Writer;
         return hm;
     }
 
+    @Override
+    public int getMaxSamplesInfluenced() { 
+        int n = 0;
+        for (WFilter f : blocks.keySet()) 
+            n += f.getMaxSamplesInfluenced();
+
+        return n;
+    }
+
     /**
      * Gets the unique id associated to a filter.
      * @param f     The {@code WFilter}

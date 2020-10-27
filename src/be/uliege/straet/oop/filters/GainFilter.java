@@ -72,5 +72,8 @@ public class GainFilter implements WFilter {
         return hm;
     }
 
+    @Override
+    public int getMaxSamplesInfluenced() { return 0; }
+
     public double getGain() { return gain; }
 }

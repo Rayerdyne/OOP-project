@@ -101,6 +101,9 @@ public class ConvolutionFilter implements WFilter {
         return hm;
     }
 
+    @Override
+    public int getMaxSamplesInfluenced() { return v.length; }
+
     /**
      * @return      The vector of doubles the fitler convolutes with.
      */

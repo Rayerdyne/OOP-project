@@ -100,6 +100,9 @@ public class DelayFilter implements FeedbackableFilter {
         return hm;
     }
 
+    @Override
+    public int getMaxSamplesInfluenced() { return values.length; }
+
     /**
      * @return      Returns the number of samples the {@code DelayFilter} 
      *              shifts its input by

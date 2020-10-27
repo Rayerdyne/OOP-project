@@ -83,6 +83,9 @@ public class IntegratorFilter implements FeedbackableFilter {
         return hm;
     }
 
+    @Override
+    public int getMaxSamplesInfluenced() { return 0; }
+
     /**
      * @return      The sampling frequency, in Hz.
      */

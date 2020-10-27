@@ -56,4 +56,13 @@ public abstract class Generator implements FeedbackableFilter {
      */
     public double getSamplingFrequency() { return 1.0 / dt; }
 
+    /**
+     * As {@code Generator}s may generate constant sound over time, they will 
+     * influence all outputs.
+     */
+    @Override
+    public int getMaxSamplesInfluenced() {
+        return WFilter.INFINITY;
+    }
+
 }

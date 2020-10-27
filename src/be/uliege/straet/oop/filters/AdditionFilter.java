@@ -54,6 +54,8 @@ public class AdditionFilter implements WFilter {
      */
     public void reset() {}
 
+    public int getMaxSamplesInfluenced() { return 0; }
+
     public HashMap<String, String> getParameters() {
         return new HashMap<String, String>();
     }
