@@ -3,6 +3,8 @@
 
 This project is the extention of the programming project I had to make as part of the Object-Oriented Programming course, during the academic year 2019-2020.
 
+Basically, this has become a tool for building block diagrams. (Short explaination [here](SignalProcessing.md) if you are not familiar with this)
+
 
 Directories containing classes:
 
