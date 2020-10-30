@@ -298,6 +298,7 @@ public class WorkSpace extends JPanel implements KeyListener {
             freeBalls.add(fr);
         }
         wire.setSecond(dest);
+        dest.setConnected(true);
         wires.add(wire);
     }
 

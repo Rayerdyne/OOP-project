@@ -233,7 +233,7 @@ public class NodeData {
                     Writer.AMPLITUDE_ATTR_NAME, parameters)[0];
                 double fs = getNodeParamValue(attributes, 
                     Writer.FREQUENCY_ATTR_NAME, parameters)[0];
-                filter = new SquareUpGenerator(frequency, amplitude, fs);
+                filter = new UpSquareGenerator(frequency, amplitude, fs);
                 break; }
             case Writer.CENTERED_SQUARE_GEN_NODE_TAG: {
                 double frequency = getNodeParamValue(attributes, 

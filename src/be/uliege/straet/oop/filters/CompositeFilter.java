@@ -370,10 +370,9 @@ import be.uliege.straet.oop.loader.Writer;
 
         this.reset();
 
-        double[] res = new double[v.size()];
-        i = 0;
-        for (Double d : v)
-            res[i++] = d;
+        double[] res = new double[v.size() - maxsi + 1];
+        for (i = 0; i < v.size() - maxsi + 1; i++) 
+            res[i] = v.get(i);
         
         return res;
     }
