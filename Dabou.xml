@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<filter id="whole_filter" in="1" out="1">
-  <output n="0" ref="filter_addition2.0"/>
-  <gain gain="0.6" id="filter_gain1" input.0="filter_delay0.0"/>
-  <delay delay="10000" id="filter_delay0" input.0="filter_addition2.0"/>
-  <addition id="filter_addition2" input.0="whole_filter.0" input.1="filter_gain1.0"/>
-</filter>
